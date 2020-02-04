@@ -94,4 +94,22 @@ describe('Grid', () => {
             expect(test_grid_instance.render()).toEqual(first_grid)
         })
     })
+
+    describe('5 x 5 spinner', () => {
+        it('rotates the strip by 90 deg', () => {
+            test_grid_instance = new Grid(5)
+            test_grid = [
+                ['-', '-', '-', '-', '-'],
+                ['-', '-', '-', '-', '-'],
+                ['-', '*', '*', '*', '-'],
+                ['-', '-', '-', '-', '-'],
+                ['-', '-', '-', '-', '-'],
+            ]
+
+            test_grid_instance.place_cells([[2, 1], [2, 2], [2, 3]])
+            test_grid_instance.evolve()
+            expect(test_grid_instance.render()).toEqual(test_grid)
+        })
+    
+    })
 })
