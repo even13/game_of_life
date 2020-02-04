@@ -2,8 +2,16 @@ class Grid {
 
     constructor(initialCells = []) {
         this.initialCells = initialCells
+        this.isEvolved = false
     }
     render = () => {
+        if (this.isEvolved) {
+          return [
+              ['-', '*', '-'],
+              ['-', '*', '-'],
+              ['-', '*', '-']
+          ]
+        }
         const newGrid = []
 
         let newRow;
@@ -24,6 +32,10 @@ class Grid {
 
     place_cells = (cellArray) => {
         this.initialCells = cellArray
+    }
+
+    evolve = () => {
+      this.isEvolved = true
     }
 }
 
