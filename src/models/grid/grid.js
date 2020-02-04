@@ -4,27 +4,22 @@ class Grid {
         this.initialCells = initialCells
     }
     render = () => {
-        if (this.initialCells.length == 2) return ([
-            ['-', '-', '-'],
-            ['-', '-', '*'],
-            ['-', '-', '*']
-        ])
-        return this.initialCells.length && JSON.stringify(this.initialCells[0]) == JSON.stringify([0,0]) ? 
-        [
-            ['*', '-', '-'],
-            ['-', '-', '-'],
-            ['-', '-', '-']
-        ] : this.initialCells.length && JSON.stringify(this.initialCells[0]) == JSON.stringify([1,2]) ?
-        [
-            ['-', '-', '-'],
-            ['-', '-', '-'],
-            ['-', '*', '-']
-        ] :
-        [
-            ['-', '-', '-'],
-            ['-', '-', '-'],
-            ['-', '-', '-']
-        ]
+        const newGrid = []
+
+        let newRow;
+
+        for (let y = 0; y < 3; y++) {
+            newRow = []
+            for (let x = 0; x < 3; x++) {
+                if (JSON.stringify(this.initialCells).includes(JSON.stringify([x,y]))) {
+                    newRow.push('*')
+                } else {
+                    newRow.push('-')
+                }
+            }
+            newGrid.push(newRow)
+        }
+        return newGrid
     }
 
     place_cells = (cellArray) => {
