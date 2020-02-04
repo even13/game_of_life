@@ -13,14 +13,6 @@ class Grid {
             ['-', '-', '-'],
             ['-', '-', '-']
         ]
-        } else if (this.gridSize == 5) {
-          return [
-            ['-', '-', '-', '-', '-'],
-            ['-', '-', '-', '-', '-'],
-            ['-', '*', '*', '*', '-'],
-            ['-', '-', '-', '-', '-'],
-            ['-', '-', '-', '-', '-'],
-        ]
         }
         return this.currentGrid
     }
@@ -29,9 +21,9 @@ class Grid {
         this.initialCells = cellArray
         const newGrid = []
         let newRow;
-        for (let y = 0; y < 3; y++) {
+        for (let y = 0; y < this.gridSize; y++) {
             newRow = []
-            for (let x = 0; x < 3; x++) {
+            for (let x = 0; x < this.gridSize; x++) {
                 if (JSON.stringify(this.initialCells).includes(JSON.stringify([x,y]))) {
                     newRow.push('*')
                 } else {
