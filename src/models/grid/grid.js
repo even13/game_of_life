@@ -1,25 +1,12 @@
 class Grid {
 
-    constructor(initialCells = []) {
+    constructor(gridSize = 3, initialCells = []) {
         this.initialCells = initialCells
         this.isEvolved = false
         this.currentGrid = null
+        this.gridSize = gridSize
     }
     render = () => {
-        // const newGrid = []
-        // let newRow;
-        // for (let y = 0; y < 3; y++) {
-        //     newRow = []
-        //     for (let x = 0; x < 3; x++) {
-        //         if (JSON.stringify(this.initialCells).includes(JSON.stringify([x,y]))) {
-        //             newRow.push('*')
-        //         } else {
-        //             newRow.push('-')
-        //         }
-        //     }
-        //     newGrid.push(newRow)
-        // }
-        // this.currentGrid = newGrid
         if (this.currentGrid == null) {
           return [
             ['-', '-', '-'],
@@ -28,17 +15,15 @@ class Grid {
         ]
         }
         return this.currentGrid
-        
-        
     }
 
     place_cells = (cellArray) => {
         this.initialCells = cellArray
         const newGrid = []
         let newRow;
-        for (let y = 0; y < 3; y++) {
+        for (let y = 0; y < this.gridSize; y++) {
             newRow = []
-            for (let x = 0; x < 3; x++) {
+            for (let x = 0; x < this.gridSize; x++) {
                 if (JSON.stringify(this.initialCells).includes(JSON.stringify([x,y]))) {
                     newRow.push('*')
                 } else {
