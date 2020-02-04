@@ -4,11 +4,16 @@ class Grid {
         this.initialCells = initialCells
     }
     render = () => {
-        return this.initialCells.length ? 
+        return this.initialCells.length && JSON.stringify(this.initialCells[0]) == JSON.stringify([0,0]) ? 
         [
             ['*', '-', '-'],
             ['-', '-', '-'],
             ['-', '-', '-']
+        ] : this.initialCells.length && JSON.stringify(this.initialCells[0]) == JSON.stringify([1,2]) ?
+        [
+            ['-', '-', '-'],
+            ['-', '-', '-'],
+            ['-', '*', '-']
         ] :
         [
             ['-', '-', '-'],

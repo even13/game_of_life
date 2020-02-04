@@ -28,4 +28,15 @@ describe('Grid', () => {
         test_grid_instance.place_cells([[0,0]])
         expect(test_grid_instance.render()).toEqual(test_grid)
     })
+
+    it('can take a cell at 1,2', () => {
+        test_grid = [
+            ['-', '-', '-'],
+            ['-', '-', '-'],
+            ['-', '*', '-']
+        ]
+
+        test_grid_instance.place_cells([[1,2]])
+        expect(test_grid_instance.render()).toEqual(test_grid)
+    })
 })
