@@ -28,17 +28,34 @@ describe("<GridDisplay />", () => {
 
   })
 
-  it ("creates an array of cells for each row", () => {
+  describe('rendering cells', () => {
+    it ("creates an array of cells for each row of a 3 x 3 grid", () => {
 
-    let test_grid = [
-        ['-', '-', '-'],
-        ['-', '*', '-'],
-        ['-', '-', '-']
-    ]
-    wrapper = setup(GridDisplay, {}, {data: test_grid})
-    const RowComponent = findByTestAttr(wrapper, 'component-row')
-    console.log(wrapper.debug())
-    expect(wrapper.find({ cells: test_grid[0] })).toHaveLength(2)
-    expect(wrapper.find({ cells: test_grid[1] })).toHaveLength(1)
+      let test_grid = [
+          ['-', '-', '-'],
+          ['-', '*', '-'],
+          ['-', '-', '-']
+      ]
+      wrapper = setup(GridDisplay, {}, {data: test_grid})
+      console.log(wrapper.debug())
+      expect(wrapper.find({ cells: test_grid[0] })).toHaveLength(2)
+      expect(wrapper.find({ cells: test_grid[1] })).toHaveLength(1)
+    })
+
+    it ("creates an array of cells for each row of a 5 x 5 grid", () => {
+  
+      let test_grid = [
+          ['-', '-', '-', '-', '-'],
+          ['-', '-', '-', '-', '-'],
+          ['-', '-', '*', '-', '-'],
+          ['-', '-', '-', '-', '-'],
+          ['-', '-', '-', '-', '-'],
+      ]
+      wrapper = setup(GridDisplay, {}, {data: test_grid})
+      console.log(wrapper.debug())
+      expect(wrapper.find({ cells: test_grid[0] })).toHaveLength(4)
+      expect(wrapper.find({ cells: test_grid[2] })).toHaveLength(1)
+    })
   })
+  
 })
