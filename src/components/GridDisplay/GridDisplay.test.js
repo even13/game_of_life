@@ -56,6 +56,24 @@ describe("<GridDisplay />", () => {
       expect(wrapper.find({ cells: test_grid[0] })).toHaveLength(4)
       expect(wrapper.find({ cells: test_grid[2] })).toHaveLength(1)
     })
-  })
+
+    it ("creates an array of cells for each row of a 5 x 5 grid", () => {
   
+      let test_grid = [
+          ['-', '-', '-', '-', '-', '-', '-', '-'],
+          ['-', '-', '-', '*', '-', '-', '-', '-'],
+          ['-', '-', '-', '-', '-', '-', '-', '-'],
+          ['-', '-', '-', '-', '-', '-', '*', '-'],
+          ['-', '-', '-', '-', '-', '-', '-', '-'],
+          ['-', '-', '-', '-', '-', '-', '*', '-'],
+          ['-', '-', '-', '-', '-', '-', '-', '-'],
+          ['-', '-', '-', '-', '-', '-', '-', '-'],
+      ]
+      wrapper = setup(GridDisplay, {}, {data: test_grid})
+      console.log(wrapper.debug())
+      expect(wrapper.find({ cells: test_grid[0] })).toHaveLength(5)
+      expect(wrapper.find({ cells: test_grid[1] })).toHaveLength(1)
+      expect(wrapper.find({ cells: test_grid[3] })).toHaveLength(2)
+    })
+  })
 })
