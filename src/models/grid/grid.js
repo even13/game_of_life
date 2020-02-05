@@ -17,6 +17,10 @@ class Grid {
         return this.currentGrid
     }
 
+    seed_grid = (grid) => {
+      this.currentGrid = grid
+    }
+
     place_cells = (cellArray) => {
         this.initialCells = cellArray
         const newGrid = []
@@ -53,18 +57,29 @@ class Grid {
     }
 
     neighbours = (x, y) => {
-      let size = this.currentGrid.length
-      return [
-      this.currentGrid[(size + (x - 1)) % size][(size + (y - 1)) % size], 
-      this.currentGrid[(size + x) % size][(size + (y - 1)) % size],
-      this.currentGrid[(size + (x + 1)) % size][(size + (y - 1)) % size], 
-      this.currentGrid[(size + (x - 1)) % size][(size + y) % size],
-      this.currentGrid[(size + (x + 1)) % size][(size + y) % size], 
-      this.currentGrid[(size + (x - 1)) % size][(size + (y + 1)) % size],
-      this.currentGrid[(size + x) % size][(size + (y + 1)) % size], 
-      this.currentGrid[(size + (x + 1)) % size][(size + (y + 1)) % size],
-    ]
+      let arr = []
+      for (let row = (y - 1); row < (y + 2); row++) {
+        for (let col = (x - 1); col < (x + 2); col++)
+          if (x !== col || y !== row) {
+            arr.push(this.currentGrid[(this.gridSize + row) % this.gridSize][(this.gridSize + col) % this.gridSize]);
+          }
+      }
+      return arr
     }
+
+    // neighbours = (x, y) => {
+    //   let size = this.currentGrid.length
+    //   return [
+    //   this.currentGrid[(size + (x - 1)) % size][(size + (y - 1)) % size], 
+    //   this.currentGrid[(size + x) % size][(size + (y - 1)) % size],
+    //   this.currentGrid[(size + (x + 1)) % size][(size + (y - 1)) % size], 
+    //   this.currentGrid[(size + (x - 1)) % size][(size + y) % size],
+    //   this.currentGrid[(size + (x + 1)) % size][(size + y) % size], 
+    //   this.currentGrid[(size + (x - 1)) % size][(size + (y + 1)) % size],
+    //   this.currentGrid[(size + x) % size][(size + (y + 1)) % size], 
+    //   this.currentGrid[(size + (x + 1)) % size][(size + (y + 1)) % size],
+    // ]
+    // }
 
     newState = (state, live_cell_count) => {
       if (live_cell_count == 2 && state == '*') {
@@ -79,4 +94,4 @@ class Grid {
     }
 }
 
-export default Grid;
+module.exports = Grid;
