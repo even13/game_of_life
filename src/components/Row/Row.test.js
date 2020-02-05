@@ -20,9 +20,17 @@ describe("<Row />", () => {
         expect(RowComponent).toHaveLength(1)
     })
 
-    it ("renders 3 cells when passed 3 cells", () => {
-      wrapper = setup(Row, {cells: [1, 2, 3]})
-      let cellComponent = findByTestAttr(wrapper, 'component-cell')
-      expect(cellComponent).toHaveLength(3)
+    describe('rendering <Cells />s', () => {
+      it ("renders 3 cells when passed 3 cells", () => {
+        wrapper = setup(Row, {cells: [1, 2, 3]})
+        let cellComponent = findByTestAttr(wrapper, 'component-cell')
+        expect(cellComponent).toHaveLength(3)
+      })
+
+      it ("renders 8 cells when passed 8 cells", () => {
+        wrapper = setup(Row, {cells: [1, 2, 3, 4, 5, 9, 't', 8]})
+        let cellComponent = findByTestAttr(wrapper, 'component-cell')
+        expect(cellComponent).toHaveLength(8)
+      })
     })
 })
