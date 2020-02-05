@@ -3,6 +3,7 @@ import Enzyme, {shallow} from 'enzyme'
 import EnzymeAdapter from 'enzyme-adapter-react-16'
 import Row from './Row'
 import Cell from '../Cell/Cell'
+import {setup, findByTestAttr} from '../../test-helper'
 
 Enzyme.configure({adapter: new EnzymeAdapter()})
 
@@ -11,8 +12,8 @@ describe("<Row />", () => {
     let RowComponent;
 
     beforeEach( () => {
-        wrapper = shallow(<Row />)
-        RowComponent = wrapper.find("[data-test='component-row']")
+        wrapper = setup(Row)
+        RowComponent = findByTestAttr(wrapper, 'component-row')
     })
 
     it ("renders without error", () => {
@@ -25,7 +26,7 @@ describe("<Row />", () => {
         <Cell key={2} data-test={'component-cell'}/>,
         <Cell key={3} data-test={'component-cell'}/>
       ]}/>)
-        let cellComponent = wrapper.find("[data-test='component-cell']")
+        let cellComponent = findByTestAttr(wrapper, 'component-cell')
         expect(cellComponent).toHaveLength(3)
     })
 })
