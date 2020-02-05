@@ -8,14 +8,14 @@ class Row extends React.Component {
         const rowLength = this.props.cells.length;
         for (let i = 0; i < rowLength; i++) {
             res.push(
-                <Cell 
-                    key={`${i}_cell`}
-                    onClick={ () => this.props.onStateChange(this.props.coord)}
-                    coord={this.props.coord}
-                    id={`${i}_cell`}
+                <Cell
+                    key={`${res.length}${this.props.yCoord}_cell`}
+                    onClick={this.props.onStateChange}
+                    coord={[i, this.props.yCoord]}
+                    id={`${res.length}${this.props.yCoord}_cell`}
                     data-test='component-cell'
                     value={this.props.cells[i]} />
-            )
+            );
         }
 
         return res;
@@ -23,13 +23,13 @@ class Row extends React.Component {
 
     render() {
         return (
-            <div 
+            <div
                 className={Classes.Row}
                 data-test='component-row'>
                 {this.renderCells()}
             </div>
-        )
+        );
     }
 }
 
-export default Row
+export default Row;

@@ -8,15 +8,18 @@ class App extends React.Component {
         model: new Grid(),
         coords: []
     }
+
     changeState = (coord) => {
-        const newArray = [ ...this.state.coords ]
-        newArray.push(coord)
-        const newGrid = new Grid()
-        newGrid.place_cells(newArray)
-        console.log(newGrid.render())
-        this.setState({ 
-          coords: newArray,
-          model: newGrid
+        const newArray = [...this.state.coords];
+        newArray.push(coord);
+        const newGrid = new Grid();
+        newGrid.place_cells(newArray);
+
+        this.setState(() => {
+            return {
+                coords: newArray,
+                model: newGrid
+            }
         })
     }
 
@@ -25,11 +28,11 @@ class App extends React.Component {
             <div className="App" data-test='component-app'>
                 <GridDisplay
                     data-test='component-grid-display'
-                    model={ this.state.model } 
-                    onStateChange={this.changeState}/>
+                    model={this.state.model}
+                    onStateChange={this.changeState} />
             </div>
         );
     }
-}
+};
 
 export default App;
