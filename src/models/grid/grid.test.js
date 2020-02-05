@@ -5,17 +5,20 @@ describe('Grid', () => {
     let test_grid_instance;
 
     beforeEach(() => {
-        test_grid_instance = new Grid();
+        test_grid_instance = new Grid(3);
     })
 
-    it('initially shows an empty grid', () => {
-        test_grid = [
-            ['-', '-', '-'],
-            ['-', '-', '-'],
-            ['-', '-', '-']
-        ]
+    it('initially shows an empty 30 x 30 grid', () => {
+        test_grid_instance = new Grid();
 
-        expect(test_grid_instance.render()).toEqual(test_grid)
+        expect(test_grid_instance.render().length).toEqual(30)
+    })
+
+    describe('#gridSize', () => {
+        it('shows a grid of dimensions #gridSize x #gridSize', () => {
+            let thirtyGrid = new Grid(35)
+            expect(thirtyGrid.render().length).toBe(35)
+        })
     })
 
     it('can take a cell at 0,0', () => {
