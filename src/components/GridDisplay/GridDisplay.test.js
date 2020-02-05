@@ -52,7 +52,7 @@ describe("<GridDisplay />", () => {
           ['-', '-', '-', '-', '-'],
       ]
       wrapper = setup(GridDisplay, {}, {data: test_grid})
-      console.log(wrapper.debug())
+      
       expect(wrapper.find({ cells: test_grid[0] })).toHaveLength(4)
       expect(wrapper.find({ cells: test_grid[2] })).toHaveLength(1)
     })

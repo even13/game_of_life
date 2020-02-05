@@ -12,7 +12,7 @@ describe("<Row />", () => {
     let RowComponent;
 
     beforeEach( () => {
-        wrapper = setup(Row)
+        wrapper = setup(Row, {cells: []})
         RowComponent = findByTestAttr(wrapper, 'component-row')
     })
 
@@ -21,12 +21,8 @@ describe("<Row />", () => {
     })
 
     it ("renders 3 cells when passed 3 cells", () => {
-      wrapper = shallow(<Row cells={[
-        <Cell key={1} data-test={'component-cell'}/>,
-        <Cell key={2} data-test={'component-cell'}/>,
-        <Cell key={3} data-test={'component-cell'}/>
-      ]}/>)
-        let cellComponent = findByTestAttr(wrapper, 'component-cell')
-        expect(cellComponent).toHaveLength(3)
+      wrapper = setup(Row, {cells: [1, 2, 3]})
+      let cellComponent = findByTestAttr(wrapper, 'component-cell')
+      expect(cellComponent).toHaveLength(3)
     })
 })
