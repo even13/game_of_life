@@ -1,15 +1,15 @@
-import React from 'react'
-import Enzyme, {shallow} from 'enzyme'
+import Enzyme from 'enzyme'
 import EnzymeAdapter from 'enzyme-adapter-react-16'
 import GridDisplay from './GridDisplay'
-import Row from '../Row/Row'
 import {setup, findByTestAttr} from '../../test-helper'
+import Grid from '../../models/grid/grid'
 
 Enzyme.configure({adapter: new EnzymeAdapter()})
 
 describe("<GridDisplay />", () => {
   let wrapper;
   let GridDisplayComponent;
+  let testGridModel = new Grid(3)
 
   beforeEach( () => {
     wrapper = setup(GridDisplay)
@@ -80,5 +80,13 @@ describe("<GridDisplay />", () => {
       expect(wrapper.find({ cells: test_grid[1] })).toHaveLength(1)
       expect(wrapper.find({ cells: test_grid[3] })).toHaveLength(2)
     })
+  })
+
+  describe('cell data', () => {
+
+    describe('placing live cells', () => {
+
+    })
+
   })
 })

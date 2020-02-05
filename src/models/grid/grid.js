@@ -63,9 +63,7 @@ class Grid {
     }
 
     newState = (state, live_cell_count) => {
-      if (live_cell_count === 2 && state === '*') {
-        return '*'
-      } else if (live_cell_count === 3 && state === '*') {
+      if ((live_cell_count === 2 && state === '*') || (live_cell_count === 3 && state === '*')) {
         return '*'
       } else if (live_cell_count === 3 && state === '-') {
         return '*'
