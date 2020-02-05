@@ -1,9 +1,12 @@
 import React from 'react'
 import Row from '../Row/Row'
+import Grid from '../../models/grid/grid'
+
+const gridInstance = new Grid(30)
 
 class GridDisplay extends React.Component {
   state = {
-    data: []
+    data: gridInstance.render()
   }
 
   renderGrid = () => {
@@ -19,6 +22,7 @@ class GridDisplay extends React.Component {
 
     return res
   }
+
   render() {
     return (
       <div data-test='component-grid-display'>

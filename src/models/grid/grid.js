@@ -1,6 +1,6 @@
 class Grid {
 
-    constructor(gridSize = 3, initialCells = []) {
+    constructor(gridSize = 30, initialCells = []) {
         this.initialCells = initialCells
         this.isEvolved = false
         this.currentGrid = null
@@ -8,11 +8,7 @@ class Grid {
     }
     render = () => {
         if (this.currentGrid == null) {
-          return [
-            ['-', '-', '-'],
-            ['-', '-', '-'],
-            ['-', '-', '-']
-        ]
+          this.currentGrid = Array(this.gridSize).fill(Array(this.gridSize).fill('-'));
         }
         return this.currentGrid
     }
