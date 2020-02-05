@@ -22,10 +22,23 @@ describe("<GridDisplay />", () => {
   it ("can display 3 rows correctly when passed in 3 rows", () => {
     wrapper = shallow(<GridDisplay />)
     wrapper.setState({data: [1, 1, 1]})
-    
+
     const RowComponent = wrapper.find("[data-test='component-row']")
-    console.log(wrapper.debug())
     expect(RowComponent).toHaveLength(3)
 
+  })
+
+  it ("creates an array of cells for each row", () => {
+    wrapper = shallow(<GridDisplay />)
+    let test_grid = [
+        ['-', '-', '-'],
+        ['-', '*', '-'],
+        ['-', '-', '-']
+    ]
+    wrapper.setState({data: test_grid})
+    const RowComponent = wrapper.find("[data-test='component-row']")
+    console.log(wrapper.debug())
+    expect(wrapper.find({ cells: test_grid[0] })).toHaveLength(2)
+    expect(wrapper.find({ cells: test_grid[1] })).toHaveLength(1)
   })
 })

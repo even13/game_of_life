@@ -8,10 +8,11 @@ class GridDisplay extends React.Component {
 
   renderGrid = () => {
     const res = []
-    this.state.data.forEach((_, i) => {
+    this.state.data.forEach((array, i) => {
         res.push(
-          <Row 
-            key={`${i}index`} 
+          <Row
+            key={`${i}index`}
+            cells={array}
             data-test='component-row' />
         )
     })
