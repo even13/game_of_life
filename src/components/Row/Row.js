@@ -1,5 +1,6 @@
 import React from 'react';
 import Cell from '../Cell/Cell';
+import Classes from './Row.module.css';
 
 class Row extends React.Component {
     renderCells = () => {
@@ -19,7 +20,9 @@ class Row extends React.Component {
 
     render() {
         return (
-            <div data-test='component-row'>
+            <div 
+                className={Classes.Row}
+                data-test='component-row'>
                 {this.renderCells()}
             </div>
         )
