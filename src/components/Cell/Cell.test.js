@@ -1,20 +1,20 @@
 import React from 'react'
 import Enzyme, {shallow} from 'enzyme'
 import EnzymeAdapter from 'enzyme-adapter-react-16'
-import Row from './Row'
+import Cell from './Cell'
 
 Enzyme.configure({adapter: new EnzymeAdapter()})
 
-describe("<Row />", () => {
+describe("<Cell />", () => {
     let wrapper;
-    let RowComponent;
+    let CellComponent;
 
     beforeEach( () => {
-        wrapper = shallow(<Row />)
-        RowComponent = wrapper.find("[data-test='component-row']")
+        wrapper = shallow(<Cell />)
+        CellComponent = wrapper.find("[data-test='component-cell']")
     })
 
     it ("renders without error", () => {
-        expect(RowComponent).toHaveLength(1)
+        expect(CellComponent).toHaveLength(1)
     })
 })
