@@ -35,5 +35,24 @@ describe("<App />", () => {
         });
     })
 
+    describe('cell data', () => {
+
+        describe('placing live cells', () => {
+            
+            it ("", () => {
+                const testCell = wrapper.find({ 'data-test': 'component-grid-display'}).dive().find( { id: '0index'}).dive().find( { id: '0_cell'})
+                // console.log(wrapper.find( { id: '0index'}).dive().find( { id: '0_cell'}).dive().debug() )
+                // console.log(testCell.debug())
+                testCell.simulate('click')
+                console.log(testCell.props())
+                expect(testCell.prop('value')).toEqual("*")
+            })
+            
+            // wrapper.find().simulate('click')
+
+        })
+
+    })
+
 
 })

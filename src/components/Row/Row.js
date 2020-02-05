@@ -10,6 +10,9 @@ class Row extends React.Component {
             res.push(
                 <Cell 
                     key={`${i}_cell`}
+                    onClick={ () => this.props.onStateChange(this.props.coord)}
+                    coord={this.props.coord}
+                    id={`${i}_cell`}
                     data-test='component-cell'
                     value={this.props.cells[i]} />
             )

@@ -6,6 +6,7 @@ class Cell extends React.Component {
         return (
             <div 
                 className={Classes.Cell} 
+                onClick={this.props.onClick}
                 data-test='component-cell'></div>
         )
     }
