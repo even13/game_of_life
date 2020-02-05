@@ -20,7 +20,7 @@ class App extends React.Component {
                 coords: newArray,
                 model: newGrid
             }
-        })
+        });
     }
 
     render() {

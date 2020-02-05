@@ -12,19 +12,35 @@ describe('cellState', () => {
     let testGridModel = new Grid();
 
     beforeEach(() => {
-        wrapper = setup(App, {}, { model: testGridModel });
+        wrapper = mount(<App />);
+        wrapper.setState({ model: testGridModel });
     });
 
     describe("placing live cells from the browser", () => {
         let testCell;
 
         it('changes the value assigned to the clicked cell', () => {
-            wrapper = mount(<App />);
             testCell = wrapper.find({ id: '00_cell' });
+            expect(testCell.prop('value')).toEqual("-");
+
             testCell.simulate('click');
             testCell = wrapper.find({ id: '00_cell' });
-
             expect(testCell.prop('value')).toEqual("*");
+        });
+
+        it('changes the value assigned to two clicked cells', () => {
+            testCell = wrapper.find({ id: '018_cell' });
+            testCell.simulate('click');
+
+            testCell = wrapper.find({ id: '019_cell' });
+            testCell.simulate('click');
+
+            testCell = wrapper.find({ id: '1420_cell' });
+            testCell.simulate('click');
+
+            const clickedCells = wrapper.find({ value: '*' });
+
+            expect(clickedCells).toHaveLength(3);
         });
     });
 });
