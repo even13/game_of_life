@@ -7,6 +7,7 @@ class App extends React.Component {
     state = {
       model: new Grid(30),
       coords: [],
+      playerTurn: 1,
     }
 
     componentDidUpdate() {
@@ -17,7 +18,7 @@ class App extends React.Component {
       const newArray = [...this.state.coords];
       newArray.push(coord);
       const updatedModel = this.state.model;
-      updatedModel.placeCells(newArray, 1);
+      updatedModel.placeCells(newArray, this.state.playerTurn);
 
       this.setState(() => ({
         model: updatedModel,
@@ -53,6 +54,14 @@ class App extends React.Component {
       }));
     }
 
+    togglePlayer = () => {
+        if (this.state.playerTurn === 1) {
+            this.setState({ playerTurn: 2 });
+        } else {
+            this.setState({ playerTurn: 1 });
+        }
+    }
+
     render() {
       return (
         <div className="App" data-test="component-app">
@@ -68,6 +77,13 @@ class App extends React.Component {
             data-test="evolution-button"
           >
             Click To Evolve
+          </button>
+          <button
+            type="button"
+            onClick={this.togglePlayer}
+            data-test="player-toggle"
+          >
+            Click To Toggle Player
           </button>
         </div>
       );

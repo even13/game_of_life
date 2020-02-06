@@ -8,3 +8,7 @@
     color: transparent;
     cursor: pointer;
 }
+
+.Cell:focus {
+    outline: none;
+}
