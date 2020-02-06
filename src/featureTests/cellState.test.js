@@ -10,22 +10,32 @@ Enzyme.configure({ adapter: new EnzymeAdapter() });
 describe('cellState', () => {
     let wrapper;
     let testGridModel = new Grid();
+    let empty;
+    let one;
+    let two;
 
     beforeEach(() => {
         wrapper = mount(<App />);
         wrapper.setState({ model: testGridModel });
+        empty = {value: '-', player: null}
+        one = {value: '*', player: 1}
+        two = {value: '*', player: 2}
     });
 
     describe("placing live cells from the browser", () => {
         let testCell;
 
+        beforeEach(() => {
+            wrapper = mount(<App />);
+        });
+
         it('changes the value assigned to the clicked cell', () => {
-            testCell = wrapper.find({ id: '00_cell' });
-            expect(testCell.prop('value')).toEqual("-");
+            testCell = wrapper.find({ id: '04_cell' });
+            expect(testCell.prop('cell')).toEqual(empty);
 
             testCell.simulate('click');
-            testCell = wrapper.find({ id: '00_cell' });
-            expect(testCell.prop('value')).toEqual("*");
+            testCell = wrapper.find({ id: '04_cell' });
+            expect(testCell.prop('cell')).toEqual(one);
         });
 
         it('changes the value assigned to two clicked cells', () => {
@@ -38,7 +48,8 @@ describe('cellState', () => {
             testCell = wrapper.find({ id: '1420_cell' });
             testCell.simulate('click');
 
-            const clickedCells = wrapper.find({ value: '*' });
+
+            const clickedCells = wrapper.find({ cell: one });
 
             expect(clickedCells).toHaveLength(3);
         });
@@ -49,16 +60,15 @@ describe('cellState', () => {
 
         it('changes the value assigned to the clicked cell', () => {
             testCell = wrapper.find({ id: '00_cell' });
-            expect(testCell.prop('value')).toEqual("-");
+            expect(testCell.prop('cell')).toEqual(empty);
 
             testCell.simulate('click');
             testCell = wrapper.find({ id: '00_cell' });
-            expect(testCell.prop('value')).toEqual("*");
+            expect(testCell.prop('cell')).toEqual(one);
 
             testCell.simulate('click');
             testCell = wrapper.find({ id: '00_cell' });
-            expect(testCell.prop('value')).toEqual("-");
-
+            expect(testCell.prop('cell')).toEqual(empty);
         });
 
     });

@@ -14,8 +14,8 @@ class Row extends React.Component {
                     coord={[i, this.props.yCoord]}
                     id={`${res.length}${this.props.yCoord}_cell`}
                     data-test='component-cell'
-                    isAlive={this.props.cells[i] === '*'}
-                    value={this.props.cells[i]} />
+                    isAlive={this.props.cells[i].value === '*'}
+                    cell={this.props.cells[i]} />
             );
         }
 

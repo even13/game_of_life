@@ -10,11 +10,17 @@ describe("<GridDisplay />", () => {
     let wrapper;
     let gridDisplayComponent;
     let testGridModel;
+    let empty;
+    let one;
+    let two;
 
     beforeEach(() => {
         testGridModel = new Grid(30);
         wrapper = setup(GridDisplay, { model: testGridModel });
         gridDisplayComponent = findByTestAttr(wrapper, 'component-grid-display');
+        empty = {value: '-', player: null}
+        one = {value: '*', player: 1}
+        two = {value: '*', player: 2}
     });
 
     it("renders without error", () => {
@@ -39,13 +45,13 @@ describe("<GridDisplay />", () => {
 
         it("creates an array of cells for each row of a 3 x 3 grid", () => {
             let test_grid = [
-                ['-', '-', '-'],
-                ['-', '*', '-'],
-                ['-', '-', '-']
+                [empty, empty, empty],
+                [empty, one, empty],
+                [empty, empty, empty]
             ]
 
             testGridModel = new Grid(3);
-            testGridModel.place_cells([[1, 1]]);
+            testGridModel.placeCells([[1, 1]]);
             wrapper = setup(GridDisplay, { model: testGridModel });
 
             expect(wrapper.find({ cells: test_grid[0] })).toHaveLength(2);
@@ -54,15 +60,15 @@ describe("<GridDisplay />", () => {
 
         it("creates an array of cells for each row of a 5 x 5 grid", () => {
             let test_grid = [
-                ['-', '-', '-', '-', '-'],
-                ['-', '-', '-', '-', '-'],
-                ['-', '-', '*', '-', '-'],
-                ['-', '-', '-', '-', '-'],
-                ['-', '-', '-', '-', '-'],
+                [empty, empty, empty, empty, empty],
+                [empty, empty, empty, empty, empty],
+                [empty, empty, one, empty, empty],
+                [empty, empty, empty, empty, empty],
+                [empty, empty, empty, empty, empty],
             ]
 
             testGridModel = new Grid(5);
-            testGridModel.place_cells([[2, 2]]);
+            testGridModel.placeCells([[2, 2]]);
             wrapper = setup(GridDisplay, { model: testGridModel });
 
             expect(wrapper.find({ cells: test_grid[0] })).toHaveLength(4);
@@ -71,18 +77,18 @@ describe("<GridDisplay />", () => {
 
         it("creates an array of cells for each row of an 8 x 8 grid", () => {
             let test_grid = [
-                ['-', '-', '-', '-', '-', '-', '-', '-'],
-                ['-', '-', '-', '*', '-', '-', '-', '-'],
-                ['-', '-', '-', '-', '-', '-', '-', '-'],
-                ['-', '-', '-', '-', '-', '-', '*', '-'],
-                ['-', '-', '-', '-', '-', '-', '-', '-'],
-                ['-', '-', '-', '-', '-', '-', '*', '-'],
-                ['-', '-', '-', '-', '-', '-', '-', '-'],
-                ['-', '-', '-', '-', '-', '-', '-', '-'],
+                [empty, empty, empty, empty, empty, empty, empty, empty],
+                [empty, empty, empty, one, empty, empty, empty, empty],
+                [empty, empty, empty, empty, empty, empty, empty, empty],
+                [empty, empty, empty, empty, empty, empty, one, empty],
+                [empty, empty, empty, empty, empty, empty, empty, empty],
+                [empty, empty, empty, empty, empty, empty, one, empty],
+                [empty, empty, empty, empty, empty, empty, empty, empty],
+                [empty, empty, empty, empty, empty, empty, empty, empty],
             ]
 
             testGridModel = new Grid(8);
-            testGridModel.place_cells([[3, 1], [6, 3], [6, 5]]);
+            testGridModel.placeCells([[3, 1], [6, 3], [6, 5]]);
             wrapper = setup(GridDisplay, { model: testGridModel });
             expect(wrapper.find({ cells: test_grid[0] })).toHaveLength(5);
             expect(wrapper.find({ cells: test_grid[1] })).toHaveLength(1);

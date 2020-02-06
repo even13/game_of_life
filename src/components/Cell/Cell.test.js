@@ -11,7 +11,7 @@ describe("<Cell />", () => {
     let CellComponent;
 
     beforeEach( () => {
-        wrapper = setup(Cell)
+        wrapper = setup(Cell, {cell: {value: '-', player: null}})
         CellComponent = findByTestAttr(wrapper, 'component-cell')
     })
 

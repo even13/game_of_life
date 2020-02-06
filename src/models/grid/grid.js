@@ -3,38 +3,43 @@ class Grid {
     constructor(gridSize = 30, initialCells = []) {
         this.initialCells = initialCells;
         this.isEvolved = false;
-        this.currentGrid = null;
+        this.currentGrid = Array(gridSize).fill(Array(gridSize).fill({value: '-', player: null}));
         this.gridSize = gridSize;
     }
     render = () => {
-        if (this.currentGrid == null) this.currentGrid = Array(this.gridSize).fill(Array(this.gridSize).fill('-'));
+        // if (this.currentGrid == null) this.currentGrid = ;
         return this.currentGrid;
     }
 
-    place_cells = (cellArray) => {
-        this.initialCells = cellArray;
-        this.updateGrid()
-
+    placeCells = (cellArray, player = 1) => {
+        this.initialCells = this.initialCells.concat(cellArray)
+        this.updateGrid(cellArray, player)
     }
 
-    removeCells = (cellArray) => {
+    removeCells = (cellArray, player = 1) => {
         const initialCells = [...this.initialCells]
         const updatedInitialCells = initialCells.filter(cell => !JSON.stringify(cellArray).includes(JSON.stringify(cell)))
         this.initialCells = updatedInitialCells
-        this.updateGrid()
+        this.updateGrid([], player)
     }
 
-    updateGrid = () => {
+    updateGrid = (cellArray, player) => {
         const newGrid = [];
         let newRow;
 
         for (let y = 0; y < this.gridSize; y++) {
             newRow = [];
+            // console.log('cel array', cellArray, 'init cells', this.initialCells)
             for (let x = 0; x < this.gridSize; x++) {
-                if (JSON.stringify(this.initialCells).includes(JSON.stringify([x, y]))) {
-                    newRow.push('*');
+                const playerAttr = this.currentGrid[y][x].player
+                // console.log(`${playerAttr}, ${[x, y]}`)
+                     
+                if (JSON.stringify(cellArray).includes(JSON.stringify([x, y]))) {
+                    newRow.push({value: '*', player: player});
+                } else if (JSON.stringify(this.initialCells).includes(JSON.stringify([x, y]))) {
+                    newRow.push({value: '*', player: playerAttr});
                 } else {
-                    newRow.push('-');
+                    newRow.push({value: '-', player: null});
                 }
             }
             newGrid.push(newRow);
@@ -45,16 +50,16 @@ class Grid {
     evolve = () => {
         const newGrid = [];
         const liveCells = [];
-
+        
         this.currentGrid.forEach((row, y) => {
             let newRow = [];
             row.forEach((elt, x) => {
                 let liveCellCount = 0;
                 for (var i = 0; i < this.neighbours(y, x).length; i++) {
-                    if (this.neighbours(y, x)[i] === "*") liveCellCount++;
+                    if (this.neighbours(y, x)[i].value === "*") liveCellCount++;
                 }
                 let newElt = this.newState(elt, liveCellCount);
-                if (newElt === '*') liveCells.push([x, y]);
+                if (newElt.value === '*') liveCells.push([x, y]);
                 newRow.push(newElt);
             });
             newGrid.push(newRow);
@@ -79,12 +84,12 @@ class Grid {
     }
 
     newState = (state, live_cell_count) => {
-        if ((live_cell_count === 2 && state === '*') || (live_cell_count === 3 && state === '*')) {
-            return '*'
-        } else if (live_cell_count === 3 && state === '-') {
-            return '*'
+        if ([2,3].includes(live_cell_count) && state.value === '*' ) {
+            return {value: '*', player: state.player}
+        } else if (live_cell_count === 3 && state.value === '-') {
+            return {value: '*', player: state.player || 1}
         } else {
-            return '-'
+            return {value: '-', player: null}
         }
     }
 
