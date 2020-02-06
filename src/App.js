@@ -5,24 +5,24 @@ import Grid from './models/grid/grid';
 
 class App extends React.Component {
     state = {
-        model: new Grid(30),
-        coords: []
+      model: new Grid(30),
+      coords: [],
     }
 
     componentDidUpdate() {
-        // console.log(this.state.coords)
+      // console.log(this.state.coords)
     }
 
     placeLiveCell = (coord) => {
-        const newArray = [...this.state.coords];
-        newArray.push(coord);
-        const updatedModel = this.state.model;
-        updatedModel.placeCells(newArray, 1)
+      const newArray = [...this.state.coords];
+      newArray.push(coord);
+      const updatedModel = this.state.model;
+      updatedModel.placeCells(newArray, 1);
 
-        this.setState(() => ({
-          model: updatedModel,
-          coords: newArray,
-        }));
+      this.setState(() => ({
+        model: updatedModel,
+        coords: newArray,
+      }));
     }
 
     placeDeadCell = (coord) => {
@@ -37,16 +37,20 @@ class App extends React.Component {
     }
 
     handleCellState = (coord, isClicked) => {
-      isClicked ? this.placeDeadCell(coord) : this.placeLiveCell(coord);
+      if (isClicked) {
+        this.placeDeadCell(coord);
+      } else {
+        this.placeLiveCell(coord);
+      }
     }
 
     evolve = () => {
-        let updatedModel = {...this.state.model};
-        updatedModel.evolve();
-        this.setState({ 
-            model: updatedModel,
-            coords: updatedModel.getLiveCellCoordinates(),
-        });
+      const updatedModel = { ...this.state.model };
+      updatedModel.evolve();
+      this.setState(() => ({
+        model: updatedModel,
+        coords: updatedModel.getLiveCellCoordinates(),
+      }));
     }
 
     render() {

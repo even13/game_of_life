@@ -10,11 +10,11 @@ describe('<Cell />', () => {
   let wrapper;
   let CellComponent;
 
-    beforeEach( () => {
-        wrapper = setup(Cell, {cell: {value: '-', player: null}})
-        CellComponent = findByTestAttr(wrapper, 'component-cell')
-    })
-  
+  beforeEach(() => {
+    wrapper = setup(Cell, { cell: { value: '-', player: null } });
+    CellComponent = findByTestAttr(wrapper, 'component-cell');
+  });
+
   it('renders without error', () => {
     expect(CellComponent).toHaveLength(1);
   });
