@@ -66,23 +66,15 @@ describe('Grid', () => {
     })
 
     describe('3 x 3 stripe', () => {
-        it('resurrects all cells after one evolution', () => {
-            let first_grid = [
-                ['-', '-', '-'],
-                ['*', '*', '*'],
-                ['-', '-', '-']
-            ]
-      
-            let second_grid = [
+        it('resurrects all cells after one evolution', () => {      
+            let test_grid = [
                 ['*', '*', '*'],
                 ['*', '*', '*'],
                 ['*', '*', '*']
             ]
             test_grid_instance.place_cells([[0, 1], [1,1], [2,1]])
-            console.log(test_grid_instance.render())
             test_grid_instance.evolve()
-            console.log(test_grid_instance.render())
-            expect(test_grid_instance.render()).toEqual(second_grid)
+            expect(test_grid_instance.render()).toEqual(test_grid)
         })
       
         it('kills all cells after two evolutions', () => {
@@ -128,6 +120,30 @@ describe('Grid', () => {
             test_grid_instance.evolve()
             test_grid_instance.evolve()
             expect(test_grid_instance.render()).toEqual(test_grid)
+        })
+
+        describe('removing cells', () => {
+            it("remove live cells placed by the user", () => {
+                test_grid_instance.place_cells([[1, 1]])
+                test_grid_instance.removeCells([[1, 1]])
+                test_grid = [
+                    ['-', '-', '-'],
+                    ['-', '-', '-'],
+                    ['-', '-', '-']
+                ]
+                expect(test_grid_instance.render()).toEqual(test_grid)
+            })
+
+            it("leaves 1 cell when user places 3 and removes 2", () => {
+                test_grid_instance.place_cells([[1, 1], [1, 2], [2, 1]])
+                test_grid_instance.removeCells([[1, 1], [2, 1]])
+                test_grid = [
+                    ['-', '-', '-'],
+                    ['-', '-', '-'],
+                    ['-', '*', '-']
+                ]
+                expect(test_grid_instance.render()).toEqual(test_grid)
+            })
         })
     
     })

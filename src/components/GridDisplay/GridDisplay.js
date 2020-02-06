@@ -1,35 +1,35 @@
-import React from 'react'
-import Row from '../Row/Row'
-import Grid from '../../models/grid/grid'
-
-const gridInstance = new Grid(30)
+import React from 'react';
+import Row from '../Row/Row';
 
 class GridDisplay extends React.Component {
-  state = {
-    data: gridInstance.render()
-  }
+    state = {
+        coords: []
+    }
 
-  renderGrid = () => {
-    const res = []
-    this.state.data.forEach((array, i) => {
-        res.push(
-          <Row
-            key={`${i}index`}
-            cells={array}
-            data-test='component-row' />
-        )
-    })
+    renderGrid = () => {
+        const res = []
+        const data = this.props.model.render();
+        for (let i = 0; i < data.length; i++) {
+            res.push(
+                <Row
+                    key={`${i}index`}
+                    onStateChange={this.props.onStateChange}
+                    yCoord={res.length}
+                    cells={data[res.length]}
+                    data-test='component-row'
+                    id={`${i}index`} />
+            )
+        }
+        return res
+    }
 
-    return res
-  }
-
-  render() {
-    return (
-      <div data-test='component-grid-display'>
-        {this.renderGrid()}
-      </div>
-    )
-  }
+    render() {
+        return (
+            <div data-test='component-grid-display'>
+                {this.renderGrid()}
+            </div>
+        );
+    }
 }
 
-export default GridDisplay
+export default GridDisplay;
