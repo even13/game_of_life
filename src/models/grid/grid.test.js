@@ -1,17 +1,17 @@
 import Grid from './grid';
 
 describe('grid', () => {
-  let test_grid;
-  let test_grid_instance;
+  let testGrid;
+  let testGridInstance;
 
   beforeEach(() => {
-    test_grid_instance = new Grid(3);
+    testGridInstance = new Grid(3);
   });
 
   it('initially shows an empty 30 x 30 grid', () => {
-    test_grid_instance = new Grid();
+    testGridInstance = new Grid();
 
-    expect(test_grid_instance.render()).toHaveLength(30);
+    expect(testGridInstance.render()).toHaveLength(30);
   });
 
   describe('#gridSize', () => {
@@ -22,59 +22,59 @@ describe('grid', () => {
   });
 
   it('can take a cell at 0,0', () => {
-    test_grid = [
+    testGrid = [
       ['*', '-', '-'],
       ['-', '-', '-'],
       ['-', '-', '-'],
     ];
 
-    test_grid_instance.place_cells([[0, 0]]);
-    expect(test_grid_instance.render()).toStrictEqual(test_grid);
+    testGridInstance.place_cells([[0, 0]]);
+    expect(testGridInstance.render()).toStrictEqual(testGrid);
   });
 
   it('can take a cell at 1,2', () => {
-    test_grid = [
+    testGrid = [
       ['-', '-', '-'],
       ['-', '-', '-'],
       ['-', '*', '-'],
     ];
 
-    test_grid_instance.place_cells([[1, 2]]);
-    expect(test_grid_instance.render()).toStrictEqual(test_grid);
+    testGridInstance.place_cells([[1, 2]]);
+    expect(testGridInstance.render()).toStrictEqual(testGrid);
   });
 
   it('can take a cell at 2,1 and 2,2', () => {
-    test_grid = [
+    testGrid = [
       ['-', '-', '-'],
       ['-', '-', '*'],
       ['-', '-', '*'],
     ];
 
-    test_grid_instance.place_cells([[2, 1], [2, 2]]);
-    expect(test_grid_instance.render()).toStrictEqual(test_grid);
+    testGridInstance.place_cells([[2, 1], [2, 2]]);
+    expect(testGridInstance.render()).toStrictEqual(testGrid);
   });
 
   it('can take a cell at [0, 1], [1,1], [2,1]', () => {
-    test_grid = [
+    testGrid = [
       ['-', '-', '-'],
       ['*', '*', '*'],
       ['-', '-', '-'],
     ];
 
-    test_grid_instance.place_cells([[0, 1], [1, 1], [2, 1]]);
-    expect(test_grid_instance.render()).toStrictEqual(test_grid);
+    testGridInstance.place_cells([[0, 1], [1, 1], [2, 1]]);
+    expect(testGridInstance.render()).toStrictEqual(testGrid);
   });
 
   describe('3 x 3 stripe', () => {
     it('resurrects all cells after one evolution', () => {
-      const test_grid = [
+      const testGrid = [
         ['*', '*', '*'],
         ['*', '*', '*'],
         ['*', '*', '*'],
       ];
-      test_grid_instance.place_cells([[0, 1], [1, 1], [2, 1]]);
-      test_grid_instance.evolve();
-      expect(test_grid_instance.render()).toStrictEqual(test_grid);
+      testGridInstance.place_cells([[0, 1], [1, 1], [2, 1]]);
+      testGridInstance.evolve();
+      expect(testGridInstance.render()).toStrictEqual(testGrid);
     });
 
     it('kills all cells after two evolutions', () => {
@@ -83,17 +83,17 @@ describe('grid', () => {
         ['-', '-', '-'],
         ['-', '-', '-'],
       ];
-      test_grid_instance.place_cells([[0, 1], [1, 1], [2, 1]]);
-      test_grid_instance.evolve();
-      test_grid_instance.evolve();
-      expect(test_grid_instance.render()).toStrictEqual(first_grid);
+      testGridInstance.place_cells([[0, 1], [1, 1], [2, 1]]);
+      testGridInstance.evolve();
+      testGridInstance.evolve();
+      expect(testGridInstance.render()).toStrictEqual(first_grid);
     });
   });
 
   describe('5 x 5 spinner', () => {
     it('rotates the strip by 90 deg after 1 evolution', () => {
-      test_grid_instance = new Grid(5);
-      test_grid = [
+      testGridInstance = new Grid(5);
+      testGrid = [
         ['-', '-', '-', '-', '-'],
         ['-', '-', '-', '-', '-'],
         ['-', '*', '*', '*', '-'],
@@ -101,14 +101,14 @@ describe('grid', () => {
         ['-', '-', '-', '-', '-'],
       ];
 
-      test_grid_instance.place_cells([[2, 1], [2, 2], [2, 3]]);
-      test_grid_instance.evolve();
-      expect(test_grid_instance.render()).toStrictEqual(test_grid);
+      testGridInstance.place_cells([[2, 1], [2, 2], [2, 3]]);
+      testGridInstance.evolve();
+      expect(testGridInstance.render()).toStrictEqual(testGrid);
     });
 
     it('rotates the strip by 180 deg after 2 evolutions', () => {
-      test_grid_instance = new Grid(5);
-      test_grid = [
+      testGridInstance = new Grid(5);
+      testGrid = [
         ['-', '-', '-', '-', '-'],
         ['-', '-', '*', '-', '-'],
         ['-', '-', '*', '-', '-'],
@@ -116,33 +116,33 @@ describe('grid', () => {
         ['-', '-', '-', '-', '-'],
       ];
 
-      test_grid_instance.place_cells([[2, 1], [2, 2], [2, 3]]);
-      test_grid_instance.evolve();
-      test_grid_instance.evolve();
-      expect(test_grid_instance.render()).toStrictEqual(test_grid);
+      testGridInstance.place_cells([[2, 1], [2, 2], [2, 3]]);
+      testGridInstance.evolve();
+      testGridInstance.evolve();
+      expect(testGridInstance.render()).toStrictEqual(testGrid);
     });
 
     describe('removing cells', () => {
       it('remove live cells placed by the user', () => {
-        test_grid_instance.place_cells([[1, 1]]);
-        test_grid_instance.removeCells([[1, 1]]);
-        test_grid = [
+        testGridInstance.place_cells([[1, 1]]);
+        testGridInstance.removeCells([[1, 1]]);
+        testGrid = [
           ['-', '-', '-'],
           ['-', '-', '-'],
           ['-', '-', '-'],
         ];
-        expect(test_grid_instance.render()).toStrictEqual(test_grid);
+        expect(testGridInstance.render()).toStrictEqual(testGrid);
       });
 
       it('leaves 1 cell when user places 3 and removes 2', () => {
-        test_grid_instance.place_cells([[1, 1], [1, 2], [2, 1]]);
-        test_grid_instance.removeCells([[1, 1], [2, 1]]);
-        test_grid = [
+        testGridInstance.place_cells([[1, 1], [1, 2], [2, 1]]);
+        testGridInstance.removeCells([[1, 1], [2, 1]]);
+        testGrid = [
           ['-', '-', '-'],
           ['-', '-', '-'],
           ['-', '*', '-'],
         ];
-        expect(test_grid_instance.render()).toStrictEqual(test_grid);
+        expect(testGridInstance.render()).toStrictEqual(testGrid);
       });
     });
   });
