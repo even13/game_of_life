@@ -3,6 +3,7 @@ import Enzyme, { mount } from 'enzyme';
 import EnzymeAdapter from 'enzyme-adapter-react-16';
 import App from '../App';
 import { findByTestAttr } from '../test-helper';
+
 import Grid from '../models/grid/grid';
 
 Enzyme.configure({ adapter: new EnzymeAdapter() });
@@ -42,4 +43,5 @@ describe('evolvingGrid', () => {
         evolveButton.simulate('click');
         expect(wrapper.state('coords')).toEqual(testGridModel.getLiveCellCoordinates());
     });
+
 });

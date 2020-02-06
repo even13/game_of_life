@@ -4,6 +4,7 @@ import Classes from './Row.module.css';
 
 class Row extends React.Component {
     renderCells = () => {
+
         const res = [];
         const rowLength = this.props.cells.length;
         for (let i = 0; i < rowLength; i++) {
@@ -19,17 +20,18 @@ class Row extends React.Component {
             );
         }
 
-        return res;
+      return res;
     }
 
     render() {
-        return (
-            <div
-                className={Classes.Row}
-                data-test='component-row'>
-                {this.renderCells()}
-            </div>
-        );
+      return (
+        <div
+          className={Classes.Row}
+          data-test="component-row"
+        >
+          {this.renderCells()}
+        </div>
+      );
     }
 }
 

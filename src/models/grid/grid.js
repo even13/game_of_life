@@ -1,5 +1,5 @@
 class Grid {
-
+  
     constructor(gridSize = 30, initialCells = []) {
         this.initialCells = initialCells;
         this.isEvolved = false;
@@ -44,7 +44,7 @@ class Grid {
             }
             newGrid.push(newRow);
         }
-        this.currentGrid = newGrid;
+      this.currentGrid = newGrid;
     }
 
     evolve = () => {
@@ -69,18 +69,18 @@ class Grid {
     }
 
     neighbours = (x, y) => {
-        let size = this.currentGrid.length;
+      const size = this.currentGrid.length;
 
-        return [
-            this.currentGrid[(size + (x - 1)) % size][(size + (y - 1)) % size],
-            this.currentGrid[(size + x) % size][(size + (y - 1)) % size],
-            this.currentGrid[(size + (x + 1)) % size][(size + (y - 1)) % size],
-            this.currentGrid[(size + (x - 1)) % size][(size + y) % size],
-            this.currentGrid[(size + (x + 1)) % size][(size + y) % size],
-            this.currentGrid[(size + (x - 1)) % size][(size + (y + 1)) % size],
-            this.currentGrid[(size + x) % size][(size + (y + 1)) % size],
-            this.currentGrid[(size + (x + 1)) % size][(size + (y + 1)) % size],
-        ];
+      return [
+        this.currentGrid[(size + (x - 1)) % size][(size + (y - 1)) % size],
+        this.currentGrid[(size + x) % size][(size + (y - 1)) % size],
+        this.currentGrid[(size + (x + 1)) % size][(size + (y - 1)) % size],
+        this.currentGrid[(size + (x - 1)) % size][(size + y) % size],
+        this.currentGrid[(size + (x + 1)) % size][(size + y) % size],
+        this.currentGrid[(size + (x - 1)) % size][(size + (y + 1)) % size],
+        this.currentGrid[(size + x) % size][(size + (y + 1)) % size],
+        this.currentGrid[(size + (x + 1)) % size][(size + (y + 1)) % size],
+      ];
     }
 
     newState = (state, live_cell_count) => {

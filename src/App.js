@@ -19,29 +19,25 @@ class App extends React.Component {
         const updatedModel = this.state.model;
         updatedModel.placeCells(newArray, 1)
 
-        this.setState(() => {
-            return {
-                model: updatedModel,
-                coords: newArray,
-            }
-        });
+        this.setState(() => ({
+          model: updatedModel,
+          coords: newArray,
+        }));
     }
 
     placeDeadCell = (coord) => {
-        const model = this.state.model
-        const coords = [...this.state.coords]
-        const updatedCords= coords.filter(existingCoord => !JSON.stringify(coord).includes(JSON.stringify(existingCoord)))
-        model.removeCells(coord)
-        this.setState(() => {
-            return {
-                model: model,
-                coords: updatedCords,
-            }
-        });
+      const { model } = this.state;
+      const coords = [...this.state.coords];
+      const updatedCords = coords.filter((existingCoord) => !JSON.stringify(coord).includes(JSON.stringify(existingCoord)));
+      model.removeCells(coord);
+      this.setState(() => ({
+        model,
+        coords: updatedCords,
+      }));
     }
 
     handleCellState = (coord, isClicked) => {
-        isClicked ? this.placeDeadCell(coord) : this.placeLiveCell(coord) 
+      isClicked ? this.placeDeadCell(coord) : this.placeLiveCell(coord);
     }
 
     evolve = () => {
@@ -54,19 +50,24 @@ class App extends React.Component {
     }
 
     render() {
-        return (
-            <div className="App" data-test='component-app'>
-                <GridDisplay
-                    data-test='component-grid-display'
-                    model={this.state.model}
-                    onStateChange={this.handleCellState} />
+      return (
+        <div className="App" data-test="component-app">
+          <GridDisplay
+            data-test="component-grid-display"
+            model={this.state.model}
+            onStateChange={this.handleCellState}
+          />
 
-                <button 
-                    onClick={this.evolve}
-                    data-test='evolution-button'>Click To Evolve</button>
-            </div>
-        );
+          <button
+            type="button"
+            onClick={this.evolve}
+            data-test="evolution-button"
+          >
+            Click To Evolve
+          </button>
+        </div>
+      );
     }
-};
+}
 
 export default App;
