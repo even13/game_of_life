@@ -7,14 +7,14 @@ class Cell extends React.Component {
     }
 
     render() {
-        const color = this.props.value === "*" ? 'black' : 'LightGray'
+        const color = this.props.cell.value === "*" ? 'black' : 'LightGray'
         return (
             <div
                 style={{backgroundColor: color}}
                 className={Classes.Cell}
                 onClick={this.handleClick}
                 data-test='component-cell'>
-                    {this.props.value.value}
+                    {this.props.cell.value}
                 </div>
         );
     }

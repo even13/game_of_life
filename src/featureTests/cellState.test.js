@@ -27,11 +27,11 @@ describe('cellState', () => {
 
         it('changes the value assigned to the clicked cell', () => {
             testCell = wrapper.find({ id: '00_cell' });
-            expect(testCell.prop('value')).toEqual(empty);
+            expect(testCell.prop('cell')).toEqual(empty);
 
             testCell.simulate('click');
             testCell = wrapper.find({ id: '00_cell' });
-            expect(testCell.prop('value')).toEqual(one);
+            expect(testCell.prop('cell')).toEqual(one);
         });
 
         it('changes the value assigned to two clicked cells', () => {
@@ -44,7 +44,7 @@ describe('cellState', () => {
             testCell = wrapper.find({ id: '1420_cell' });
             testCell.simulate('click');
 
-            const clickedCells = wrapper.find({ value: one });
+            const clickedCells = wrapper.find({ cell: one });
 
             expect(clickedCells).toHaveLength(3);
         });
@@ -55,15 +55,15 @@ describe('cellState', () => {
 
         it('changes the value assigned to the clicked cell', () => {
             testCell = wrapper.find({ id: '00_cell' });
-            expect(testCell.prop('value')).toEqual(empty);
+            expect(testCell.prop('cell')).toEqual(empty);
 
             testCell.simulate('click');
             testCell = wrapper.find({ id: '00_cell' });
-            expect(testCell.prop('value')).toEqual(one);
+            expect(testCell.prop('cell')).toEqual(one);
 
             testCell.simulate('click');
             testCell = wrapper.find({ id: '00_cell' });
-            expect(testCell.prop('value')).toEqual(empty);
+            expect(testCell.prop('cell')).toEqual(empty);
         });
 
     });

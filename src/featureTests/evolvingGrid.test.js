@@ -28,13 +28,13 @@ describe('evolvingGrid', () => {
     it('rotates a spinner by 90 degrees after one evolution', () => {
         const evolveButton = findByTestAttr(wrapper, 'evolution-button');
         evolveButton.simulate('click');
-        expect(wrapper.find({ id: '21_cell' }).prop('value')).toEqual(one);
-        expect(wrapper.find({ id: '12_cell' }).prop('value')).toEqual(empty);
+        expect(wrapper.find({ id: '21_cell' }).prop('cell')).toEqual(one);
+        expect(wrapper.find({ id: '12_cell' }).prop('cell')).toEqual(empty);
         
-        expect(wrapper.find({ id: '22_cell' }).prop('value')).toEqual(one);
+        expect(wrapper.find({ id: '22_cell' }).prop('cell')).toEqual(one);
         
-        expect(wrapper.find({ id: '23_cell' }).prop('value')).toEqual(one);
-        expect(wrapper.find({ id: '32_cell' }).prop('value')).toEqual(empty);
+        expect(wrapper.find({ id: '23_cell' }).prop('cell')).toEqual(one);
+        expect(wrapper.find({ id: '32_cell' }).prop('cell')).toEqual(empty);
     });
     
     it('refreshes coordinates after first evolution', () => {
