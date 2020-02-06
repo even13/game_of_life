@@ -5,8 +5,12 @@ import Grid from './models/grid/grid';
 
 class App extends React.Component {
     state = {
-        model: new Grid(50),
+        model: new Grid(30),
         coords: []
+    }
+
+    componentDidUpdate() {
+        // console.log(this.state.coords)
     }
 
     placeLiveCell = (coord) => {
@@ -45,7 +49,7 @@ class App extends React.Component {
         updatedModel.evolve();
         this.setState({ 
             model: updatedModel,
-            coords: [],
+            coords: updatedModel.getLiveCellCoordinates(),
         });
     }
 

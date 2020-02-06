@@ -44,6 +44,7 @@ class Grid {
 
     evolve = () => {
         const newGrid = [];
+        const liveCells = [];
 
         this.currentGrid.forEach((row, y) => {
             let newRow = [];
@@ -53,10 +54,12 @@ class Grid {
                     if (this.neighbours(y, x)[i] === "*") liveCellCount++;
                 }
                 let newElt = this.newState(elt, liveCellCount);
+                if (newElt === '*') liveCells.push([x, y]);
                 newRow.push(newElt);
             });
             newGrid.push(newRow);
         });
+        this.initialCells = liveCells;
         this.currentGrid = newGrid;
     }
 
@@ -83,6 +86,10 @@ class Grid {
         } else {
             return '-'
         }
+    }
+
+    getLiveCellCoordinates = () => {
+        return this.initialCells;
     }
 }
 
