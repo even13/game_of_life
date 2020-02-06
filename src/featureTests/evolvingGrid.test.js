@@ -13,6 +13,7 @@ describe('evolvingGrid', () => {
 
     beforeEach(() => {
         wrapper = mount(<App />);
+        wrapper.setState({ model: testGridModel });
         wrapper.find({ id: '12_cell' }).simulate('click');
         wrapper.find({ id: '22_cell' }).simulate('click');
         wrapper.find({ id: '32_cell' }).simulate('click');
@@ -30,10 +31,9 @@ describe('evolvingGrid', () => {
         expect(wrapper.find({ id: '32_cell' }).prop('value')).toEqual('-');
     });
     
-    it('clears the selection after first evolution', () => {
+    it('refreshes coordinates after first evolution', () => {
         const evolveButton = findByTestAttr(wrapper, 'evolution-button');
         evolveButton.simulate('click');
-
         expect(wrapper.state('coords')).toEqual(testGridModel.getLiveCellCoordinates());
     });
 });

@@ -10,7 +10,7 @@ class App extends React.Component {
     }
 
     componentDidUpdate() {
-        console.log(this.state.coords)
+        // console.log(this.state.coords)
     }
 
     placeLiveCell = (coord) => {
