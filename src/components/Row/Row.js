@@ -4,20 +4,21 @@ import Classes from './Row.module.css';
 
 class Row extends React.Component {
     renderCells = () => {
-      const res = [];
-      const rowLength = this.props.cells.length;
-      for (let i = 0; i < rowLength; i++) {
-        res.push(
-          <Cell
-            key={`${res.length}${this.props.yCoord}_cell`}
-            onClick={this.props.onStateChange}
-            coord={[i, this.props.yCoord]}
-            id={`${res.length}${this.props.yCoord}_cell`}
-            data-test="component-cell"
-            value={this.props.cells[i]}
-          />,
-        );
-      }
+
+        const res = [];
+        const rowLength = this.props.cells.length;
+        for (let i = 0; i < rowLength; i++) {
+            res.push(
+                <Cell
+                    key={`${res.length}${this.props.yCoord}_cell`}
+                    onClick={this.props.onStateChange}
+                    coord={[i, this.props.yCoord]}
+                    id={`${res.length}${this.props.yCoord}_cell`}
+                    data-test='component-cell'
+                    isAlive={this.props.cells[i].value === '*'}
+                    cell={this.props.cells[i]} />
+            );
+        }
 
       return res;
     }
