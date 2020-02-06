@@ -69,12 +69,7 @@ describe('cellState', () => {
             testCell.simulate('click');
             testCell = wrapper.find({ id: '00_cell' });
             expect(testCell.prop('cell')).toEqual(empty);
+
         });
-
-
-      testCell.simulate('click');
-      testCell = wrapper.find({ id: '00_cell' });
-      expect(testCell.prop('value')).toStrictEqual('-');
     });
-  });
 });

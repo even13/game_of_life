@@ -96,5 +96,4 @@ describe("<GridDisplay />", () => {
             expect(wrapper.find({ cells: test_grid[3] })).toHaveLength(2);
         });
     });
-  });
 });
