@@ -2,10 +2,6 @@ import React from 'react';
 import Row from '../Row/Row';
 
 class GridDisplay extends React.Component {
-    state = {
-        coords: []
-    }
-
     renderGrid = () => {
         const res = []
         const data = this.props.model.render();

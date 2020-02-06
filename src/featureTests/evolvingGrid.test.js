@@ -7,7 +7,7 @@ import Grid from '../models/grid/grid';
 
 Enzyme.configure({ adapter: new EnzymeAdapter() });
 
-describe('cellState', () => {
+describe('evolvingGrid', () => {
     let wrapper;
     let testGridModel = new Grid(5);
 
@@ -34,6 +34,6 @@ describe('cellState', () => {
         const evolveButton = findByTestAttr(wrapper, 'evolution-button');
         evolveButton.simulate('click');
 
-        expect(wrapper.state('coords')).toEqual([]);
+        expect(wrapper.state('coords')).toEqual(testGridModel.getLiveCellCoordinates());
     });
 });

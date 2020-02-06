@@ -2,17 +2,8 @@ import React from 'react';
 import Classes from './Cell.module.css';
 
 class Cell extends React.Component {
-    state = {
-        isClicked: false
-    }
-
     handleClick = () => {
-        this.setState((prevState) => {
-            return {
-                isClicked: !prevState.isClicked
-            }
-        })
-        this.props.onClick(this.props.coord, this.state.isClicked)
+        this.props.onClick(this.props.coord, this.props.isAlive)
     }
 
     render() {
@@ -23,9 +14,7 @@ class Cell extends React.Component {
                 className={Classes.Cell}
                 onClick={this.handleClick}
                 data-test='component-cell'>
-                    <div>
-                        {this.props.value}
-                    </div>
+                    {this.props.value}
                 </div>
         );
     }
