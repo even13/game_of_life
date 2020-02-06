@@ -34,4 +34,10 @@ describe("<App />", () => {
             expect(gridDisplayComponent.prop('model')).toEqual(testGridModel);
         });
     });
+
+    it('renders a button', () => {
+        const button = findByTestAttr(wrapper, 'evolution-button');
+
+        expect(button).toHaveLength(1);
+    })
 });

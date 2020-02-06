@@ -30,6 +30,8 @@ class App extends React.Component {
                     data-test='component-grid-display'
                     model={this.state.model}
                     onStateChange={this.changeState} />
+
+                <button data-test='evolution-button'>Click To Evolve</button>
             </div>
         );
     }
