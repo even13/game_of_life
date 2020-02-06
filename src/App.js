@@ -9,6 +9,10 @@ class App extends React.Component {
         coords: []
     }
 
+    componentDidUpdate() {
+        console.log(this.state.coords)
+    }
+
     placeLiveCell = (coord) => {
         const newArray = [...this.state.coords];
         newArray.push(coord);
