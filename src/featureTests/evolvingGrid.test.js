@@ -10,8 +10,14 @@ Enzyme.configure({ adapter: new EnzymeAdapter() });
 describe('evolvingGrid', () => {
     let wrapper;
     let testGridModel = new Grid(5);
+    let empty;
+    let one;
+    let two;
 
     beforeEach(() => {
+        empty = {value: '-', player: null}
+        one = {value: '*', player: 1}
+        two = {value: '*', player: 2}
         wrapper = mount(<App />);
         wrapper.setState({ model: testGridModel });
         wrapper.find({ id: '12_cell' }).simulate('click');
@@ -22,13 +28,13 @@ describe('evolvingGrid', () => {
     it('rotates a spinner by 90 degrees after one evolution', () => {
         const evolveButton = findByTestAttr(wrapper, 'evolution-button');
         evolveButton.simulate('click');
-        expect(wrapper.find({ id: '21_cell' }).prop('value')).toEqual('*');
-        expect(wrapper.find({ id: '12_cell' }).prop('value')).toEqual('-');
+        expect(wrapper.find({ id: '21_cell' }).prop('value')).toEqual(one);
+        expect(wrapper.find({ id: '12_cell' }).prop('value')).toEqual(empty);
         
-        expect(wrapper.find({ id: '22_cell' }).prop('value')).toEqual('*');
+        expect(wrapper.find({ id: '22_cell' }).prop('value')).toEqual(one);
         
-        expect(wrapper.find({ id: '23_cell' }).prop('value')).toEqual('*');
-        expect(wrapper.find({ id: '32_cell' }).prop('value')).toEqual('-');
+        expect(wrapper.find({ id: '23_cell' }).prop('value')).toEqual(one);
+        expect(wrapper.find({ id: '32_cell' }).prop('value')).toEqual(empty);
     });
     
     it('refreshes coordinates after first evolution', () => {

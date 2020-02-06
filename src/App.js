@@ -17,7 +17,7 @@ class App extends React.Component {
         const newArray = [...this.state.coords];
         newArray.push(coord);
         const updatedModel = this.state.model;
-        updatedModel.place_cells(newArray)
+        updatedModel.place_cells(newArray, 1)
 
         this.setState(() => {
             return {

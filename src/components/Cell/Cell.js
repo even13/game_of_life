@@ -14,7 +14,7 @@ class Cell extends React.Component {
                 className={Classes.Cell}
                 onClick={this.handleClick}
                 data-test='component-cell'>
-                    {this.props.value}
+                    {this.props.value.value}
                 </div>
         );
     }

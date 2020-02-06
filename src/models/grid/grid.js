@@ -7,24 +7,24 @@ class Grid {
         this.gridSize = gridSize;
     }
     render = () => {
-        if (this.currentGrid == null) this.currentGrid = Array(this.gridSize).fill(Array(this.gridSize).fill('-'));
+        if (this.currentGrid == null) this.currentGrid = Array(this.gridSize).fill(Array(this.gridSize).fill({value: '-', player: null}));
         return this.currentGrid;
     }
 
-    place_cells = (cellArray) => {
+    place_cells = (cellArray, player = 1) => {
         this.initialCells = cellArray;
-        this.updateGrid()
+        this.updateGrid(player)
 
     }
 
-    removeCells = (cellArray) => {
+    removeCells = (cellArray, player = 1) => {
         const initialCells = [...this.initialCells]
         const updatedInitialCells = initialCells.filter(cell => !JSON.stringify(cellArray).includes(JSON.stringify(cell)))
         this.initialCells = updatedInitialCells
-        this.updateGrid()
+        this.updateGrid(player)
     }
 
-    updateGrid = () => {
+    updateGrid = (player) => {
         const newGrid = [];
         let newRow;
 
@@ -32,9 +32,9 @@ class Grid {
             newRow = [];
             for (let x = 0; x < this.gridSize; x++) {
                 if (JSON.stringify(this.initialCells).includes(JSON.stringify([x, y]))) {
-                    newRow.push('*');
+                    newRow.push({value: '*', player: player});
                 } else {
-                    newRow.push('-');
+                    newRow.push({value: '-', player: null});
                 }
             }
             newGrid.push(newRow);
@@ -51,10 +51,10 @@ class Grid {
             row.forEach((elt, x) => {
                 let liveCellCount = 0;
                 for (var i = 0; i < this.neighbours(y, x).length; i++) {
-                    if (this.neighbours(y, x)[i] === "*") liveCellCount++;
+                    if (this.neighbours(y, x)[i].value === "*") liveCellCount++;
                 }
                 let newElt = this.newState(elt, liveCellCount);
-                if (newElt === '*') liveCells.push([x, y]);
+                if (newElt.value === '*') liveCells.push([x, y]);
                 newRow.push(newElt);
             });
             newGrid.push(newRow);
@@ -79,12 +79,12 @@ class Grid {
     }
 
     newState = (state, live_cell_count) => {
-        if ((live_cell_count === 2 && state === '*') || (live_cell_count === 3 && state === '*')) {
-            return '*'
-        } else if (live_cell_count === 3 && state === '-') {
-            return '*'
+        if ([2,3].includes(live_cell_count) && state.value === '*' ) {
+            return {value: '*', player: state.player}
+        } else if (live_cell_count === 3 && state.value === '-') {
+            return {value: '*', player: state.player || 1}
         } else {
-            return '-'
+            return {value: '-', player: null}
         }
     }
 
