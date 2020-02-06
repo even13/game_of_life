@@ -2,9 +2,9 @@ import React from 'react';
 import Row from '../Row/Row';
 
 class GridDisplay extends React.Component {
-    state = {
-      coords: [],
-    }
+  // state = {
+  //   coords: [],
+  // }
 
     renderGrid = () => {
       const res = [];

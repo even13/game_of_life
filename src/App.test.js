@@ -1,5 +1,5 @@
-import React from 'react';
-import Enzyme, { mount } from 'enzyme';
+// import React from 'react';
+import Enzyme from 'enzyme';
 import EnzymeAdapter from 'enzyme-adapter-react-16';
 import App from './App';
 import { setup, findByTestAttr } from './test-helper';

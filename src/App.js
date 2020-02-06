@@ -55,6 +55,7 @@ class App extends React.Component {
           />
 
           <button
+            type="button"
             onClick={this.evolve}
             data-test="evolution-button"
           >

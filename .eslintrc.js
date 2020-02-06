@@ -33,6 +33,9 @@ module.exports = {
     "jest/valid-expect": "error",
     "react/jsx-props-no-spreading": "off",
     "no-plusplus": "off",
-    "max-len": ["error", { "code": 150 }]
+    "max-len": ["error", { "code": 150 }],
+    "react/destructuring-assignment": "off",
+    "react/prop-types": "off",
+    "react/state-in-constructor": "off"
   },
 };
