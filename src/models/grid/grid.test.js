@@ -33,8 +33,7 @@ describe('Grid', () => {
             [empty, empty, empty],
             [empty, empty, empty]
         ]
-
-        test_grid_instance.place_cells([[0,0]])
+        test_grid_instance.placeCells([[0,0]])
         expect(test_grid_instance.render()).toEqual(test_grid)
     })
 
@@ -45,7 +44,7 @@ describe('Grid', () => {
             [empty, one, empty]
         ]
 
-        test_grid_instance.place_cells([[1,2]])
+        test_grid_instance.placeCells([[1,2]])
         expect(test_grid_instance.render()).toEqual(test_grid)
     })
 
@@ -56,7 +55,7 @@ describe('Grid', () => {
             [empty, empty, one]
         ]
 
-        test_grid_instance.place_cells([[2,1], [2,2]])
+        test_grid_instance.placeCells([[2,1], [2,2]])
         expect(test_grid_instance.render()).toEqual(test_grid)
     })
 
@@ -67,7 +66,7 @@ describe('Grid', () => {
             [empty, empty, empty]
         ]
 
-        test_grid_instance.place_cells([[0, 1], [1,1], [2,1]])
+        test_grid_instance.placeCells([[0, 1], [1,1], [2,1]])
         expect(test_grid_instance.render()).toEqual(test_grid)
     })
 
@@ -78,7 +77,7 @@ describe('Grid', () => {
                 [one, one, one],
                 [one, one, one]
             ]
-            test_grid_instance.place_cells([[0, 1], [1,1], [2,1]])
+            test_grid_instance.placeCells([[0, 1], [1,1], [2,1]])
             test_grid_instance.evolve()
             expect(test_grid_instance.render()).toEqual(test_grid)
         })
@@ -89,7 +88,7 @@ describe('Grid', () => {
                 [empty, empty, empty],
                 [empty, empty, empty]
             ]
-            test_grid_instance.place_cells([[0, 1], [1,1], [2,1]])
+            test_grid_instance.placeCells([[0, 1], [1,1], [2,1]])
             test_grid_instance.evolve()
             test_grid_instance.evolve()
             expect(test_grid_instance.render()).toEqual(first_grid)
@@ -107,7 +106,7 @@ describe('Grid', () => {
                 [empty, empty, empty, empty, empty],
             ]
 
-            test_grid_instance.place_cells([[2, 1], [2, 2], [2, 3]])
+            test_grid_instance.placeCells([[2, 1], [2, 2], [2, 3]])
             test_grid_instance.evolve()
             expect(test_grid_instance.render()).toEqual(test_grid)
         })
@@ -122,7 +121,7 @@ describe('Grid', () => {
                 [empty, empty, empty, empty, empty],
             ]
 
-            test_grid_instance.place_cells([[2, 1], [2, 2], [2, 3]])
+            test_grid_instance.placeCells([[2, 1], [2, 2], [2, 3]])
             test_grid_instance.evolve()
             test_grid_instance.evolve()
             expect(test_grid_instance.render()).toEqual(test_grid)
@@ -130,7 +129,7 @@ describe('Grid', () => {
 
         describe('removing cells', () => {
             it("remove live cells placed by the user", () => {
-                test_grid_instance.place_cells([[1, 1]])
+                test_grid_instance.placeCells([[1, 1]])
                 test_grid_instance.removeCells([[1, 1]])
                 test_grid = [
                     [empty, empty, empty],
@@ -141,33 +140,30 @@ describe('Grid', () => {
             })
 
             it("leaves 1 cell when user places 3 and removes 2", () => {
-            
-                test_grid_instance.place_cells([[1, 1], [1, 2], [2, 1]])
-                console.log("before", test_grid_instance.render())
+                test_grid_instance.placeCells([[1, 1], [1, 2], [2, 1]])
                 test_grid_instance.removeCells([[1, 1], [2, 1]])
+                console.log(test_grid_instance.render())
                 test_grid = [
                     [empty, empty, empty],
                     [empty, empty, empty],
                     [empty, one, empty],
                 ]
-                console.log("after", test_grid_instance.render())
                 expect(test_grid_instance.render()).toEqual(test_grid)
             })
+        })    
+    })
+
+    describe('selecting two players', () => {
+        it("lets players place 2 types of cells", () => {
+            test_grid_instance.placeCells([[1, 1]])
+            test_grid_instance.placeCells([[2, 2]], 2)
+
+            test_grid = [
+                [empty, empty, empty],
+                [empty, one, empty],
+                [empty, empty, two],
+            ]
+            expect(test_grid_instance.render()).toEqual(test_grid)
         })
-
-        // describe('selecting two players', () => {
-        //     it("lets players place 2 types of cells", () => {
-        //         test_grid_instance.place_cells([[1, 1]])
-        //         test_grid_instance.place_cells([[2, 2]], 2)
-
-        //         test_grid = [
-        //             [empty, empty, empty],
-        //             [empty, one, empty],
-        //             [empty, empty, two],
-        //         ]
-        //         expect(test_grid_instance.render()).toEqual(test_grid)
-        //     })
-        // })
-    
     })
 })

@@ -3,36 +3,41 @@ class Grid {
     constructor(gridSize = 30, initialCells = []) {
         this.initialCells = initialCells;
         this.isEvolved = false;
-        this.currentGrid = null;
+        this.currentGrid = Array(gridSize).fill(Array(gridSize).fill({value: '-', player: null}));
         this.gridSize = gridSize;
     }
     render = () => {
-        if (this.currentGrid == null) this.currentGrid = Array(this.gridSize).fill(Array(this.gridSize).fill({value: '-', player: null}));
+        // if (this.currentGrid == null) this.currentGrid = ;
         return this.currentGrid;
     }
 
-    place_cells = (cellArray, player = 1) => {
-        this.initialCells = cellArray;
-        this.updateGrid(player)
-
+    placeCells = (cellArray, player = 1) => {
+        this.initialCells = this.initialCells.concat(cellArray)
+        this.updateGrid(cellArray, player)
     }
 
     removeCells = (cellArray, player = 1) => {
         const initialCells = [...this.initialCells]
         const updatedInitialCells = initialCells.filter(cell => !JSON.stringify(cellArray).includes(JSON.stringify(cell)))
         this.initialCells = updatedInitialCells
-        this.updateGrid(player)
+        this.updateGrid([], player)
     }
 
-    updateGrid = (player) => {
+    updateGrid = (cellArray, player) => {
         const newGrid = [];
         let newRow;
 
         for (let y = 0; y < this.gridSize; y++) {
             newRow = [];
+            // console.log('cel array', cellArray, 'init cells', this.initialCells)
             for (let x = 0; x < this.gridSize; x++) {
-                if (JSON.stringify(this.initialCells).includes(JSON.stringify([x, y]))) {
+                const playerAttr = this.currentGrid[y][x].player
+                // console.log(`${playerAttr}, ${[x, y]}`)
+                     
+                if (JSON.stringify(cellArray).includes(JSON.stringify([x, y]))) {
                     newRow.push({value: '*', player: player});
+                } else if (JSON.stringify(this.initialCells).includes(JSON.stringify([x, y]))) {
+                    newRow.push({value: '*', player: playerAttr});
                 } else {
                     newRow.push({value: '-', player: null});
                 }
@@ -45,7 +50,7 @@ class Grid {
     evolve = () => {
         const newGrid = [];
         const liveCells = [];
-
+        
         this.currentGrid.forEach((row, y) => {
             let newRow = [];
             row.forEach((elt, x) => {

@@ -25,12 +25,16 @@ describe('cellState', () => {
     describe("placing live cells from the browser", () => {
         let testCell;
 
+        beforeEach(() => {
+            wrapper = mount(<App />);
+        });
+
         it('changes the value assigned to the clicked cell', () => {
-            testCell = wrapper.find({ id: '00_cell' });
+            testCell = wrapper.find({ id: '04_cell' });
             expect(testCell.prop('cell')).toEqual(empty);
 
             testCell.simulate('click');
-            testCell = wrapper.find({ id: '00_cell' });
+            testCell = wrapper.find({ id: '04_cell' });
             expect(testCell.prop('cell')).toEqual(one);
         });
 
@@ -43,6 +47,7 @@ describe('cellState', () => {
 
             testCell = wrapper.find({ id: '1420_cell' });
             testCell.simulate('click');
+
 
             const clickedCells = wrapper.find({ cell: one });
 

@@ -51,7 +51,7 @@ describe("<GridDisplay />", () => {
             ]
 
             testGridModel = new Grid(3);
-            testGridModel.place_cells([[1, 1]]);
+            testGridModel.placeCells([[1, 1]]);
             wrapper = setup(GridDisplay, { model: testGridModel });
 
             expect(wrapper.find({ cells: test_grid[0] })).toHaveLength(2);
@@ -68,7 +68,7 @@ describe("<GridDisplay />", () => {
             ]
 
             testGridModel = new Grid(5);
-            testGridModel.place_cells([[2, 2]]);
+            testGridModel.placeCells([[2, 2]]);
             wrapper = setup(GridDisplay, { model: testGridModel });
 
             expect(wrapper.find({ cells: test_grid[0] })).toHaveLength(4);
@@ -88,7 +88,7 @@ describe("<GridDisplay />", () => {
             ]
 
             testGridModel = new Grid(8);
-            testGridModel.place_cells([[3, 1], [6, 3], [6, 5]]);
+            testGridModel.placeCells([[3, 1], [6, 3], [6, 5]]);
             wrapper = setup(GridDisplay, { model: testGridModel });
             expect(wrapper.find({ cells: test_grid[0] })).toHaveLength(5);
             expect(wrapper.find({ cells: test_grid[1] })).toHaveLength(1);
