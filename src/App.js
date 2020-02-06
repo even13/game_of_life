@@ -5,7 +5,7 @@ import Grid from './models/grid/grid';
 
 class App extends React.Component {
     state = {
-        model: new Grid(),
+        model: new Grid(50),
         coords: []
     }
 
@@ -26,7 +26,10 @@ class App extends React.Component {
     evolve = () => {
         let updatedModel = {...this.state.model};
         updatedModel.evolve();
-        this.setState({ model: updatedModel });
+        this.setState({ 
+            model: updatedModel,
+            coords: [],
+        });
     }
 
     render() {

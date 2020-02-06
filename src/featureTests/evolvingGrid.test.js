@@ -13,23 +13,14 @@ describe('cellState', () => {
 
     beforeEach(() => {
         wrapper = mount(<App />);
-        wrapper.setState({ model: testGridModel });
+        wrapper.find({ id: '12_cell' }).simulate('click');
+        wrapper.find({ id: '22_cell' }).simulate('click');
+        wrapper.find({ id: '32_cell' }).simulate('click');
     });
-
-    it('rotates a spinner by 90 degrees', () => {
-        let test_grid = [
-            ['-', '-', '-', '-', '-'],
-            ['-', '-', '*', '-', '-'],
-            ['-', '-', '*', '-', '-'],
-            ['-', '-', '*', '-', '-'],
-            ['-', '-', '-', '-', '-'],
-        ];
-
-        testGridModel.place_cells([[1, 2], [2, 2], [3, 2]]);
-        wrapper.setState({ model: testGridModel });
+    
+    it('rotates a spinner by 90 degrees after one evolution', () => {
         const evolveButton = findByTestAttr(wrapper, 'evolution-button');
         evolveButton.simulate('click');
-
         expect(wrapper.find({ id: '21_cell' }).prop('value')).toEqual('*');
         expect(wrapper.find({ id: '12_cell' }).prop('value')).toEqual('-');
         
@@ -37,5 +28,12 @@ describe('cellState', () => {
         
         expect(wrapper.find({ id: '23_cell' }).prop('value')).toEqual('*');
         expect(wrapper.find({ id: '32_cell' }).prop('value')).toEqual('-');
+    });
+    
+    it('clears the selection after first evolution', () => {
+        const evolveButton = findByTestAttr(wrapper, 'evolution-button');
+        evolveButton.simulate('click');
+
+        expect(wrapper.state('coords')).toEqual([]);
     });
 });
