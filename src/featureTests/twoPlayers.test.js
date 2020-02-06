@@ -28,7 +28,6 @@ describe('twoPlayers', () => {
         testCell.simulate('click');
         testCell = wrapper.find({ id: '018_cell' });
 
-        expect(testCell.prop('cell').player).toEqual(1)
         
         const playerToggle = findByTestAttr(wrapper, 'player-toggle');
         playerToggle.simulate('click');
@@ -36,7 +35,8 @@ describe('twoPlayers', () => {
         let testCell2 = wrapper.find({ id: '99_cell' });
         testCell2.simulate('click');
         testCell2 = wrapper.find({ id: '99_cell' });
-
+        
+        expect(testCell.prop('cell').player).toEqual(1)
         expect(testCell2.prop('cell').player).toEqual(2)
     });
 });

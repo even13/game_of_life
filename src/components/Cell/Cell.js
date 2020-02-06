@@ -18,7 +18,7 @@ class Cell extends React.Component {
         onKeyDown={this.handleClick}
         data-test="component-cell"
       >
-        {this.props.cell.value}
+        {this.props.cell.player}
       </div>
     );
   }
