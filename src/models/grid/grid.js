@@ -1,88 +1,86 @@
 class Grid {
+  constructor(gridSize = 30, initialCells = []) {
+    this.initialCells = initialCells;
+    this.isEvolved = false;
+    this.currentGrid = null;
+    this.gridSize = gridSize;
+  }
 
-    constructor(gridSize = 30, initialCells = []) {
-        this.initialCells = initialCells;
-        this.isEvolved = false;
-        this.currentGrid = null;
-        this.gridSize = gridSize;
-    }
     render = () => {
-        if (this.currentGrid == null) this.currentGrid = Array(this.gridSize).fill(Array(this.gridSize).fill('-'));
-        return this.currentGrid;
+      if (this.currentGrid == null) this.currentGrid = Array(this.gridSize).fill(Array(this.gridSize).fill('-'));
+      return this.currentGrid;
     }
 
     place_cells = (cellArray) => {
-        this.initialCells = cellArray;
-        this.updateGrid()
-
+      this.initialCells = cellArray;
+      this.updateGrid();
     }
 
     removeCells = (cellArray) => {
-        const initialCells = [...this.initialCells]
-        const updatedInitialCells = initialCells.filter(cell => !JSON.stringify(cellArray).includes(JSON.stringify(cell)))
-        this.initialCells = updatedInitialCells
-        this.updateGrid()
+      const initialCells = [...this.initialCells];
+      const updatedInitialCells = initialCells.filter((cell) => !JSON.stringify(cellArray).includes(JSON.stringify(cell)));
+      this.initialCells = updatedInitialCells;
+      this.updateGrid();
     }
 
     updateGrid = () => {
-        const newGrid = [];
-        let newRow;
+      const newGrid = [];
+      let newRow;
 
-        for (let y = 0; y < this.gridSize; y++) {
-            newRow = [];
-            for (let x = 0; x < this.gridSize; x++) {
-                if (JSON.stringify(this.initialCells).includes(JSON.stringify([x, y]))) {
-                    newRow.push('*');
-                } else {
-                    newRow.push('-');
-                }
-            }
-            newGrid.push(newRow);
+      for (let y = 0; y < this.gridSize; y++) {
+        newRow = [];
+        for (let x = 0; x < this.gridSize; x++) {
+          if (JSON.stringify(this.initialCells).includes(JSON.stringify([x, y]))) {
+            newRow.push('*');
+          } else {
+            newRow.push('-');
+          }
         }
-        this.currentGrid = newGrid;
+        newGrid.push(newRow);
+      }
+      this.currentGrid = newGrid;
     }
 
     evolve = () => {
-        const newGrid = [];
+      const newGrid = [];
 
-        this.currentGrid.forEach((row, y) => {
-            let newRow = [];
-            row.forEach((elt, x) => {
-                let liveCellCount = 0;
-                for (var i = 0; i < this.neighbours(y, x).length; i++) {
-                    if (this.neighbours(y, x)[i] === "*") liveCellCount++;
-                }
-                let newElt = this.newState(elt, liveCellCount);
-                newRow.push(newElt);
-            });
-            newGrid.push(newRow);
+      this.currentGrid.forEach((row, y) => {
+        const newRow = [];
+        row.forEach((elt, x) => {
+          let liveCellCount = 0;
+          for (let i = 0; i < this.neighbours(y, x).length; i++) {
+            if (this.neighbours(y, x)[i] === '*') liveCellCount++;
+          }
+          const newElt = this.newState(elt, liveCellCount);
+          newRow.push(newElt);
         });
-        this.currentGrid = newGrid;
+        newGrid.push(newRow);
+      });
+      this.currentGrid = newGrid;
     }
 
     neighbours = (x, y) => {
-        let size = this.currentGrid.length;
+      const size = this.currentGrid.length;
 
-        return [
-            this.currentGrid[(size + (x - 1)) % size][(size + (y - 1)) % size],
-            this.currentGrid[(size + x) % size][(size + (y - 1)) % size],
-            this.currentGrid[(size + (x + 1)) % size][(size + (y - 1)) % size],
-            this.currentGrid[(size + (x - 1)) % size][(size + y) % size],
-            this.currentGrid[(size + (x + 1)) % size][(size + y) % size],
-            this.currentGrid[(size + (x - 1)) % size][(size + (y + 1)) % size],
-            this.currentGrid[(size + x) % size][(size + (y + 1)) % size],
-            this.currentGrid[(size + (x + 1)) % size][(size + (y + 1)) % size],
-        ];
+      return [
+        this.currentGrid[(size + (x - 1)) % size][(size + (y - 1)) % size],
+        this.currentGrid[(size + x) % size][(size + (y - 1)) % size],
+        this.currentGrid[(size + (x + 1)) % size][(size + (y - 1)) % size],
+        this.currentGrid[(size + (x - 1)) % size][(size + y) % size],
+        this.currentGrid[(size + (x + 1)) % size][(size + y) % size],
+        this.currentGrid[(size + (x - 1)) % size][(size + (y + 1)) % size],
+        this.currentGrid[(size + x) % size][(size + (y + 1)) % size],
+        this.currentGrid[(size + (x + 1)) % size][(size + (y + 1)) % size],
+      ];
     }
 
     newState = (state, live_cell_count) => {
-        if ((live_cell_count === 2 && state === '*') || (live_cell_count === 3 && state === '*')) {
-            return '*'
-        } else if (live_cell_count === 3 && state === '-') {
-            return '*'
-        } else {
-            return '-'
-        }
+      if ((live_cell_count === 2 && state === '*') || (live_cell_count === 3 && state === '*')) {
+        return '*';
+      } if (live_cell_count === 3 && state === '-') {
+        return '*';
+      }
+      return '-';
     }
 }
 

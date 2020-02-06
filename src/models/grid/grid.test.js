@@ -78,7 +78,7 @@ describe('grid', () => {
     });
 
     it('kills all cells after two evolutions', () => {
-      const first_grid = [
+      const firstGrid = [
         ['-', '-', '-'],
         ['-', '-', '-'],
         ['-', '-', '-'],
@@ -86,7 +86,7 @@ describe('grid', () => {
       testGridInstance.place_cells([[0, 1], [1, 1], [2, 1]]);
       testGridInstance.evolve();
       testGridInstance.evolve();
-      expect(testGridInstance.render()).toStrictEqual(first_grid);
+      expect(testGridInstance.render()).toStrictEqual(firstGrid);
     });
   });
 

@@ -1,4 +1,5 @@
 module.exports = {
+  parser: "babel-eslint",
   env: {
     browser: true,
     es6: true,
@@ -7,7 +8,6 @@ module.exports = {
     'plugin:react/recommended',
     'eslint-config-airbnb',
     'plugin:jest/recommended',
-
   ],
   globals: {
     Atomics: 'readonly',
