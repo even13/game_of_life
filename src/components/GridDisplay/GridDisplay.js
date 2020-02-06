@@ -9,7 +9,6 @@ class GridDisplay extends React.Component {
     renderGrid = () => {
         const res = []
         const data = this.props.model.render();
-
         for (let i = 0; i < data.length; i++) {
             res.push(
                 <Row

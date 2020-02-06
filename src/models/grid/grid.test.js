@@ -121,6 +121,30 @@ describe('Grid', () => {
             test_grid_instance.evolve()
             expect(test_grid_instance.render()).toEqual(test_grid)
         })
+
+        describe('removing cells', () => {
+            it("remove live cells placed by the user", () => {
+                test_grid_instance.place_cells([[1, 1]])
+                test_grid_instance.removeCells([[1, 1]])
+                test_grid = [
+                    ['-', '-', '-'],
+                    ['-', '-', '-'],
+                    ['-', '-', '-']
+                ]
+                expect(test_grid_instance.render()).toEqual(test_grid)
+            })
+
+            it("leaves 1 cell when user places 3 and removes 2", () => {
+                test_grid_instance.place_cells([[1, 1], [1, 2], [2, 1]])
+                test_grid_instance.removeCells([[1, 1], [2, 1]])
+                test_grid = [
+                    ['-', '-', '-'],
+                    ['-', '-', '-'],
+                    ['-', '*', '-']
+                ]
+                expect(test_grid_instance.render()).toEqual(test_grid)
+            })
+        })
     
     })
 })

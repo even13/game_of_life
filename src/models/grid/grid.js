@@ -13,6 +13,18 @@ class Grid {
 
     place_cells = (cellArray) => {
         this.initialCells = cellArray;
+        this.updateGrid()
+
+    }
+
+    removeCells = (cellArray) => {
+        const initialCells = [...this.initialCells]
+        const updatedInitialCells = initialCells.filter(cell => !JSON.stringify(cellArray).includes(JSON.stringify(cell)))
+        this.initialCells = updatedInitialCells
+        this.updateGrid()
+    }
+
+    updateGrid = () => {
         const newGrid = [];
         let newRow;
 
