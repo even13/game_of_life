@@ -9,7 +9,7 @@ class App extends React.Component {
         coords: []
     }
 
-    changeState = (coord) => {
+    placeLiveCell = (coord) => {
         const newArray = [...this.state.coords];
         newArray.push(coord);
         const updatedModel = this.state.model;
@@ -21,6 +21,20 @@ class App extends React.Component {
                 model: updatedModel,
             }
         });
+    }
+
+    placeDeadCell = (coord) => {
+        const model = this.state.model
+        model.removeCells(coord)
+        this.setState(() => {
+            return {
+                model: model,
+            }
+        });
+    }
+
+    handleCellState = (coord, isClicked) => {
+        isClicked ? this.placeDeadCell(coord) : this.placeLiveCell(coord) 
     }
 
     evolve = () => {
@@ -38,7 +52,7 @@ class App extends React.Component {
                 <GridDisplay
                     data-test='component-grid-display'
                     model={this.state.model}
-                    onStateChange={this.changeState} />
+                    onStateChange={this.handleCellState} />
 
                 <button 
                     onClick={this.evolve}

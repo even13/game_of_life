@@ -43,4 +43,23 @@ describe('cellState', () => {
             expect(clickedCells).toHaveLength(3);
         });
     });
+
+    describe("removes live cells from the browser", () => {
+        let testCell;
+
+        it('changes the value assigned to the clicked cell', () => {
+            testCell = wrapper.find({ id: '00_cell' });
+            expect(testCell.prop('value')).toEqual("-");
+
+            testCell.simulate('click');
+            testCell = wrapper.find({ id: '00_cell' });
+            expect(testCell.prop('value')).toEqual("*");
+
+            testCell.simulate('click');
+            testCell = wrapper.find({ id: '00_cell' });
+            expect(testCell.prop('value')).toEqual("-");
+
+        });
+
+    });
 });
