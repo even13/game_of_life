@@ -29,6 +29,10 @@ module.exports = {
     "jest/no-focused-tests": "error",
     "jest/no-identical-title": "error",
     "jest/prefer-to-have-length": "warn",
-    "jest/valid-expect": "error"
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "jest/valid-expect": "error",
+    "react/jsx-props-no-spreading": "off",
+    "no-plusplus": "off",
+    "max-len": ["error", { "code": 150 }]
   },
 };

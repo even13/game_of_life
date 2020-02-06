@@ -67,14 +67,14 @@ describe('grid', () => {
 
   describe('3 x 3 stripe', () => {
     it('resurrects all cells after one evolution', () => {
-      const testGrid = [
+      const myGrid = [
         ['*', '*', '*'],
         ['*', '*', '*'],
         ['*', '*', '*'],
       ];
       testGridInstance.place_cells([[0, 1], [1, 1], [2, 1]]);
       testGridInstance.evolve();
-      expect(testGridInstance.render()).toStrictEqual(testGrid);
+      expect(testGridInstance.render()).toStrictEqual(myGrid);
     });
 
     it('kills all cells after two evolutions', () => {
