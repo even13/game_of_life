@@ -1,6 +1,6 @@
 import Grid from './grid';
 
-describe('Grid', () => {
+describe('grid', () => {
   let test_grid;
   let test_grid_instance;
 
@@ -11,13 +11,13 @@ describe('Grid', () => {
   it('initially shows an empty 30 x 30 grid', () => {
     test_grid_instance = new Grid();
 
-    expect(test_grid_instance.render().length).toEqual(30);
+    expect(test_grid_instance.render()).toHaveLength(30);
   });
 
   describe('#gridSize', () => {
     it('shows a grid of dimensions #gridSize x #gridSize', () => {
       const thirtyGrid = new Grid(35);
-      expect(thirtyGrid.render().length).toBe(35);
+      expect(thirtyGrid.render()).toHaveLength(35);
     });
   });
 
@@ -29,7 +29,7 @@ describe('Grid', () => {
     ];
 
     test_grid_instance.place_cells([[0, 0]]);
-    expect(test_grid_instance.render()).toEqual(test_grid);
+    expect(test_grid_instance.render()).toStrictEqual(test_grid);
   });
 
   it('can take a cell at 1,2', () => {
@@ -40,7 +40,7 @@ describe('Grid', () => {
     ];
 
     test_grid_instance.place_cells([[1, 2]]);
-    expect(test_grid_instance.render()).toEqual(test_grid);
+    expect(test_grid_instance.render()).toStrictEqual(test_grid);
   });
 
   it('can take a cell at 2,1 and 2,2', () => {
@@ -51,10 +51,10 @@ describe('Grid', () => {
     ];
 
     test_grid_instance.place_cells([[2, 1], [2, 2]]);
-    expect(test_grid_instance.render()).toEqual(test_grid);
+    expect(test_grid_instance.render()).toStrictEqual(test_grid);
   });
 
-  it('it can take a cell at [0, 1], [1,1], [2,1]', () => {
+  it('can take a cell at [0, 1], [1,1], [2,1]', () => {
     test_grid = [
       ['-', '-', '-'],
       ['*', '*', '*'],
@@ -62,7 +62,7 @@ describe('Grid', () => {
     ];
 
     test_grid_instance.place_cells([[0, 1], [1, 1], [2, 1]]);
-    expect(test_grid_instance.render()).toEqual(test_grid);
+    expect(test_grid_instance.render()).toStrictEqual(test_grid);
   });
 
   describe('3 x 3 stripe', () => {
@@ -74,7 +74,7 @@ describe('Grid', () => {
       ];
       test_grid_instance.place_cells([[0, 1], [1, 1], [2, 1]]);
       test_grid_instance.evolve();
-      expect(test_grid_instance.render()).toEqual(test_grid);
+      expect(test_grid_instance.render()).toStrictEqual(test_grid);
     });
 
     it('kills all cells after two evolutions', () => {
@@ -86,7 +86,7 @@ describe('Grid', () => {
       test_grid_instance.place_cells([[0, 1], [1, 1], [2, 1]]);
       test_grid_instance.evolve();
       test_grid_instance.evolve();
-      expect(test_grid_instance.render()).toEqual(first_grid);
+      expect(test_grid_instance.render()).toStrictEqual(first_grid);
     });
   });
 
@@ -103,7 +103,7 @@ describe('Grid', () => {
 
       test_grid_instance.place_cells([[2, 1], [2, 2], [2, 3]]);
       test_grid_instance.evolve();
-      expect(test_grid_instance.render()).toEqual(test_grid);
+      expect(test_grid_instance.render()).toStrictEqual(test_grid);
     });
 
     it('rotates the strip by 180 deg after 2 evolutions', () => {
@@ -119,7 +119,7 @@ describe('Grid', () => {
       test_grid_instance.place_cells([[2, 1], [2, 2], [2, 3]]);
       test_grid_instance.evolve();
       test_grid_instance.evolve();
-      expect(test_grid_instance.render()).toEqual(test_grid);
+      expect(test_grid_instance.render()).toStrictEqual(test_grid);
     });
 
     describe('removing cells', () => {
@@ -131,7 +131,7 @@ describe('Grid', () => {
           ['-', '-', '-'],
           ['-', '-', '-'],
         ];
-        expect(test_grid_instance.render()).toEqual(test_grid);
+        expect(test_grid_instance.render()).toStrictEqual(test_grid);
       });
 
       it('leaves 1 cell when user places 3 and removes 2', () => {
@@ -142,7 +142,7 @@ describe('Grid', () => {
           ['-', '-', '-'],
           ['-', '*', '-'],
         ];
-        expect(test_grid_instance.render()).toEqual(test_grid);
+        expect(test_grid_instance.render()).toStrictEqual(test_grid);
       });
     });
   });

@@ -27,11 +27,11 @@ describe('<App />', () => {
     expect(gridDisplayComponent).toHaveLength(1);
   });
 
-  describe('GridDisplay', () => {
+  describe('gridDisplay', () => {
     it('is assigned a grid model', () => {
       const gridDisplayComponent = findByTestAttr(wrapper, 'component-grid-display');
 
-      expect(gridDisplayComponent.prop('model')).toEqual(testGridModel);
+      expect(gridDisplayComponent.prop('model')).toStrictEqual(testGridModel);
     });
   });
 

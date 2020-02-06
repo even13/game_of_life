@@ -21,11 +21,11 @@ describe('cellState', () => {
 
     it('changes the value assigned to the clicked cell', () => {
       testCell = wrapper.find({ id: '00_cell' });
-      expect(testCell.prop('value')).toEqual('-');
+      expect(testCell.prop('value')).toStrictEqual('-');
 
       testCell.simulate('click');
       testCell = wrapper.find({ id: '00_cell' });
-      expect(testCell.prop('value')).toEqual('*');
+      expect(testCell.prop('value')).toStrictEqual('*');
     });
 
     it('changes the value assigned to two clicked cells', () => {
@@ -49,15 +49,15 @@ describe('cellState', () => {
 
     it('changes the value assigned to the clicked cell', () => {
       testCell = wrapper.find({ id: '00_cell' });
-      expect(testCell.prop('value')).toEqual('-');
+      expect(testCell.prop('value')).toStrictEqual('-');
 
       testCell.simulate('click');
       testCell = wrapper.find({ id: '00_cell' });
-      expect(testCell.prop('value')).toEqual('*');
+      expect(testCell.prop('value')).toStrictEqual('*');
 
       testCell.simulate('click');
       testCell = wrapper.find({ id: '00_cell' });
-      expect(testCell.prop('value')).toEqual('-');
+      expect(testCell.prop('value')).toStrictEqual('-');
     });
   });
 });

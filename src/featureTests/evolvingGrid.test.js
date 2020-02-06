@@ -21,19 +21,19 @@ describe('cellState', () => {
   it('rotates a spinner by 90 degrees after one evolution', () => {
     const evolveButton = findByTestAttr(wrapper, 'evolution-button');
     evolveButton.simulate('click');
-    expect(wrapper.find({ id: '21_cell' }).prop('value')).toEqual('*');
-    expect(wrapper.find({ id: '12_cell' }).prop('value')).toEqual('-');
+    expect(wrapper.find({ id: '21_cell' }).prop('value')).toStrictEqual('*');
+    expect(wrapper.find({ id: '12_cell' }).prop('value')).toStrictEqual('-');
 
-    expect(wrapper.find({ id: '22_cell' }).prop('value')).toEqual('*');
+    expect(wrapper.find({ id: '22_cell' }).prop('value')).toStrictEqual('*');
 
-    expect(wrapper.find({ id: '23_cell' }).prop('value')).toEqual('*');
-    expect(wrapper.find({ id: '32_cell' }).prop('value')).toEqual('-');
+    expect(wrapper.find({ id: '23_cell' }).prop('value')).toStrictEqual('*');
+    expect(wrapper.find({ id: '32_cell' }).prop('value')).toStrictEqual('-');
   });
 
   it('clears the selection after first evolution', () => {
     const evolveButton = findByTestAttr(wrapper, 'evolution-button');
     evolveButton.simulate('click');
 
-    expect(wrapper.state('coords')).toEqual([]);
+    expect(wrapper.state('coords')).toStrictEqual([]);
   });
 });
