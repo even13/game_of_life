@@ -12,15 +12,21 @@ class App extends React.Component {
     changeState = (coord) => {
         const newArray = [...this.state.coords];
         newArray.push(coord);
-        const newGrid = new Grid();
-        newGrid.place_cells(newArray);
+        const updatedModel = this.state.model;
+        updatedModel.place_cells(newArray)
 
         this.setState(() => {
             return {
                 coords: newArray,
-                model: newGrid
+                model: updatedModel,
             }
         });
+    }
+
+    evolve = () => {
+        let updatedModel = {...this.state.model};
+        updatedModel.evolve();
+        this.setState({ model: updatedModel });
     }
 
     render() {
@@ -31,7 +37,9 @@ class App extends React.Component {
                     model={this.state.model}
                     onStateChange={this.changeState} />
 
-                <button data-test='evolution-button'>Click To Evolve</button>
+                <button 
+                    onClick={this.evolve}
+                    data-test='evolution-button'>Click To Evolve</button>
             </div>
         );
     }

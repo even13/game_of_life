@@ -39,5 +39,5 @@ describe("<App />", () => {
         const button = findByTestAttr(wrapper, 'evolution-button');
 
         expect(button).toHaveLength(1);
-    })
+    });
 });
