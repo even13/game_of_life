@@ -17,18 +17,21 @@ class App extends React.Component {
 
         this.setState(() => {
             return {
-                coords: newArray,
                 model: updatedModel,
+                coords: newArray,
             }
         });
     }
 
     placeDeadCell = (coord) => {
         const model = this.state.model
+        const coords = [...this.state.coords]
+        const updatedCords= coords.filter(existingCoord => !JSON.stringify(coord).includes(JSON.stringify(existingCoord)))
         model.removeCells(coord)
         this.setState(() => {
             return {
                 model: model,
+                coords: updatedCords,
             }
         });
     }
