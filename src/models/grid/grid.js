@@ -53,10 +53,18 @@ class Grid {
         const newRow = [];
         row.forEach((elt, x) => {
           let liveCellCount = 0;
+          let player1CellCount = 0;
+          let player2CellCount = 0;
+
           for (let i = 0; i < this.neighbours(y, x).length; i++) {
             if (this.neighbours(y, x)[i].value === '*') liveCellCount++;
+            if (this.neighbours(y, x)[i].player === 1) player1CellCount++;
+            if (this.neighbours(y, x)[i].player === 2) player2CellCount++;
           }
-          const newElt = this.newState(elt, liveCellCount);
+          let nextCellOwner = player1CellCount > player2CellCount ? 1 : 
+            player2CellCount > player1CellCount ? 2 : null
+
+          const newElt = this.newState(elt, liveCellCount, nextCellOwner);
           if (newElt.value === '*') liveCells.push([x, y]);
           newRow.push(newElt);
         });
@@ -81,11 +89,11 @@ class Grid {
       ];
     }
 
-    newState = (state, liveCellCount) => {
+    newState = (state, liveCellCount, nextCellOwner) => {
       if ([2, 3].includes(liveCellCount) && state.value === '*') {
         return { value: '*', player: state.player };
       } if (liveCellCount === 3 && state.value === '-') {
-        return { value: '*', player: state.player || 1 };
+        return { value: '*', player: nextCellOwner};
       }
       return { value: '-', player: null };
     }
