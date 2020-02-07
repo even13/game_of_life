@@ -21,6 +21,28 @@ class Grid {
       this.updateGrid([], player);
     }
 
+    placeFlag = (cellArray) => {
+      let updatedCurrentGrid = [...this.currentGrid]
+      // for (let y = 0; y < this.gridSize; y++) {
+      //   for (let x = 0; x < this.gridSize; x++) {
+          
+      //   }
+      // }
+
+      updatedCurrentGrid = updatedCurrentGrid.map((row, y) => {
+        return row.map((cell, x) => {
+          if (y === 0 && x === 0) {
+            return { value: 'f', player: null}
+          } else {
+            return cell
+          }
+        })
+      })
+
+      this.currentGrid = updatedCurrentGrid
+      console.log(this.currentGrid[2][1], this.currentGrid[1][1], this.currentGrid[0][1])
+    }
+
     updateGrid = (cellArray, player) => {
       const newGrid = [];
       let newRow;
