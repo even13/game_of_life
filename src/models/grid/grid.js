@@ -1,6 +1,6 @@
 class Grid {
-  constructor(gridSize = 30, initialCells = []) {
-    this.initialCells = initialCells;
+  constructor(gridSize = 30, currentLiveCells = []) {
+    this.currentLiveCells = currentLiveCells;
     this.isEvolved = false;
     this.currentGrid = Array(gridSize).fill(Array(gridSize).fill({ value: '-', player: null }));
     this.gridSize = gridSize;
@@ -10,14 +10,14 @@ class Grid {
 
 
     placeCells = (cellArray, player = 1) => {
-      this.initialCells = this.initialCells.concat(cellArray);
+      this.currentLiveCells = this.currentLiveCells.concat(cellArray);
       this.updateGrid(cellArray, player);
     }
 
     removeCells = (cellArray, player = 1) => {
-      const initialCells = [...this.initialCells];
-      const updatedInitialCells = initialCells.filter((cell) => !JSON.stringify(cellArray).includes(JSON.stringify(cell)));
-      this.initialCells = updatedInitialCells;
+      const currentLiveCells = [...this.currentLiveCells];
+      const updatedCurrentLiveCells = currentLiveCells.filter((cell) => !JSON.stringify(cellArray).includes(JSON.stringify(cell)));
+      this.currentLiveCells = updatedCurrentLiveCells;
       this.updateGrid([], player);
     }
 
@@ -27,14 +27,14 @@ class Grid {
 
       for (let y = 0; y < this.gridSize; y++) {
         newRow = [];
-        // console.log('cel array', cellArray, 'init cells', this.initialCells)
+        // console.log('cel array', cellArray, 'init cells', this.currentLiveCells)
         for (let x = 0; x < this.gridSize; x++) {
           const playerAttr = this.currentGrid[y][x].player;
           // console.log(`${playerAttr}, ${[x, y]}`)
 
           if (JSON.stringify(cellArray).includes(JSON.stringify([x, y]))) {
             newRow.push({ value: '*', player });
-          } else if (JSON.stringify(this.initialCells).includes(JSON.stringify([x, y]))) {
+          } else if (JSON.stringify(this.currentLiveCells).includes(JSON.stringify([x, y]))) {
             newRow.push({ value: '*', player: playerAttr });
           } else {
             newRow.push({ value: '-', player: null });
@@ -62,7 +62,7 @@ class Grid {
         });
         newGrid.push(newRow);
       });
-      this.initialCells = liveCells;
+      this.currentLiveCells = liveCells;
       this.currentGrid = newGrid;
     }
 
@@ -90,7 +90,7 @@ class Grid {
       return { value: '-', player: null };
     }
 
-    getLiveCellCoordinates = () => this.initialCells
+    getLiveCellCoordinates = () => this.currentLiveCells
 }
 
 export default Grid;

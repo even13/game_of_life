@@ -5,7 +5,7 @@ import Grid from './models/grid/grid';
 
 class App extends React.Component {
     state = {
-      model: new Grid(50),
+      model: new Grid(30),
       coords: [],
       playerTurn: 1,
     }
@@ -15,17 +15,15 @@ class App extends React.Component {
     }
 
     placeLiveCell = (coord) => {
-        const newArray = [...this.state.coords];
-        newArray.push(coord);
-        const updatedModel = this.state.model;
-        const stateClone = {...this.state};
-        const playerTurn = this.state.playerTurn === 1 ? 1 : 2;
-        updatedModel.placeCells(newArray, playerTurn);
+      const updatedCoords = [...this.state.coords];
+      updatedCoords.push(coord);
+      const updatedModel = this.state.model;
+      updatedModel.placeCells([coord], this.state.playerTurn);
 
-        this.setState(() => ({
-            model: updatedModel,
-            coords: newArray,
-        }));
+      this.setState(() => ({
+        model: updatedModel,
+        coords: updatedCoords,
+      }));
     }
 
     placeDeadCell = (coord) => {
@@ -57,11 +55,11 @@ class App extends React.Component {
     }
 
     togglePlayer = () => {
-        if (this.state.playerTurn === 1) {
-            this.setState({ playerTurn: 2 });
-        } else {
-            this.setState({ playerTurn: 1 });
-        }
+      if (this.state.playerTurn === 1) {
+        this.setState({ playerTurn: 2 });
+      } else {
+        this.setState({ playerTurn: 1 });
+      }
     }
 
     render() {

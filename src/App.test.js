@@ -39,13 +39,13 @@ describe('<App />', () => {
     const button = findByTestAttr(wrapper, 'evolution-button');
 
     expect(button).toHaveLength(1);
-    expect(button.text()).toEqual('Click To Evolve')
+    expect(button.text()).toEqual('Click To Evolve');
   });
 
   it('renders a player-toggle button', () => {
     const button = findByTestAttr(wrapper, 'player-toggle');
 
     expect(button).toHaveLength(1);
-    expect(button.text()).toEqual('Click To Toggle Player')
+    expect(button.text()).toEqual('Click To Toggle Player');
   });
 });
