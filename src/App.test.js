@@ -48,4 +48,11 @@ describe('<App />', () => {
     expect(button).toHaveLength(1);
     expect(button.text()).toEqual('Click To Toggle Player');
   });
+
+  it('renders a run button', () => {
+    const button = findByTestAttr(wrapper, 'run-button');
+
+    expect(button).toHaveLength(1);
+    expect(button.text()).toEqual('Click To Run');
+  });
 });

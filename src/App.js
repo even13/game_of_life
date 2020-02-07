@@ -71,7 +71,13 @@ class App extends React.Component {
             playerTurn={this.state.playerTurn}
             onStateChange={this.handleCellState}
           />
-
+          <button
+            type="button"
+            onClick={this.evolve}
+            data-test="run-button"
+          >
+            Click To Run
+          </button>
           <button
             type="button"
             onClick={this.evolve}
