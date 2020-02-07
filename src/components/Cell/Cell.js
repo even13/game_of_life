@@ -3,7 +3,9 @@ import Classes from './Cell.module.css';
 
 class Cell extends React.Component {
   handleClick = () => {
-    this.props.onClick(this.props.coord, this.props.isAlive);
+    if ([this.props.playerTurn, null].includes(this.props.cell.player)) {
+      this.props.onClick(this.props.coord, this.props.isAlive);
+    }
   }
 
   render() {

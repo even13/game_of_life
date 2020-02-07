@@ -68,6 +68,7 @@ class App extends React.Component {
           <GridDisplay
             data-test="component-grid-display"
             model={this.state.model}
+            playerTurn={this.state.playerTurn}
             onStateChange={this.handleCellState}
           />
 

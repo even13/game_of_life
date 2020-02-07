@@ -12,6 +12,7 @@ class GridDisplay extends React.Component {
             onStateChange={this.props.onStateChange}
             yCoord={res.length}
             cells={data[res.length]}
+            playerTurn={this.props.playerTurn}
             data-test="component-row"
             id={`${i}index`}
           />,

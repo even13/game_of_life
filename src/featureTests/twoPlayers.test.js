@@ -10,26 +10,22 @@ Enzyme.configure({ adapter: new EnzymeAdapter() });
 describe('twoPlayers', () => {
   let wrapper;
   let testCell;
+  let testCell2;
+  let playerToggle;
   const testGridModel = new Grid();
-  let empty;
-  let one;
-  let two;
 
   beforeEach(() => {
     wrapper = mount(<App />);
     wrapper.setState({ model: testGridModel });
-    empty = { value: '-', player: null };
-    one = { value: '*', player: 1 };
-    two = { value: '*', player: 2 };
   });
 
   it('lets players place two types of cells on the grid', () => {
     testCell = wrapper.find({ id: '018_cell' });
-    let testCell2 = wrapper.find({ id: '99_cell' });
+    testCell2 = wrapper.find({ id: '99_cell' });
 
     testCell.simulate('click');
 
-    const playerToggle = findByTestAttr(wrapper, 'player-toggle');
+    playerToggle = findByTestAttr(wrapper, 'player-toggle');
     playerToggle.simulate('click');
 
     testCell2.simulate('click');
@@ -39,5 +35,20 @@ describe('twoPlayers', () => {
 
     expect(testCell.prop('cell').player).toEqual(1);
     expect(testCell2.prop('cell').player).toEqual(2);
+  });
+
+  it('prevents player 2 from removing a cell placed by player 1', () => {
+    testCell = wrapper.find({ id: '2020_cell' });
+
+    testCell.simulate('click');
+
+    playerToggle = findByTestAttr(wrapper, 'player-toggle');
+    playerToggle.simulate('click');
+
+    testCell.simulate('click');
+
+    testCell = wrapper.find({ id: '2020_cell' });
+    expect(testCell.prop('cell').player).toEqual(1);
+    expect(testCell.prop('cell').value).toEqual('*');
   });
 });

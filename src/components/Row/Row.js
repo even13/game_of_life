@@ -16,6 +16,7 @@ class Row extends React.Component {
             data-test="component-cell"
             isAlive={this.props.cells[i].value === '*'}
             cell={this.props.cells[i]}
+            playerTurn={this.props.playerTurn}
           />,
         );
       }
