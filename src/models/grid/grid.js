@@ -61,8 +61,7 @@ class Grid {
             if (this.neighbours(y, x)[i].player === 1) player1CellCount++;
             if (this.neighbours(y, x)[i].player === 2) player2CellCount++;
           }
-          let nextCellOwner = player1CellCount > player2CellCount ? 1 : 
-            player2CellCount > player1CellCount ? 2 : null
+          const nextCellOwner = this.determineNextCellOwner(player1CellCount, player2CellCount);
 
           const newElt = this.newState(elt, liveCellCount, nextCellOwner);
           if (newElt.value === '*') liveCells.push([x, y]);
@@ -93,9 +92,20 @@ class Grid {
       if ([2, 3].includes(liveCellCount) && state.value === '*') {
         return { value: '*', player: state.player };
       } if (liveCellCount === 3 && state.value === '-') {
-        return { value: '*', player: nextCellOwner};
+        return { value: '*', player: nextCellOwner };
       }
       return { value: '-', player: null };
+    }
+
+    determineNextCellOwner = (player1CellCount, player2CellCount) => {
+      if (player1CellCount > player2CellCount) {
+        return 1;
+      }
+      if (player2CellCount > player1CellCount) {
+        return 2;
+      }
+
+      return null;
     }
 
     getLiveCellCoordinates = () => this.currentLiveCells
