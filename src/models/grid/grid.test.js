@@ -154,7 +154,7 @@ describe('Grid', () => {
 
   describe('selecting two players', () => {
     it('lets players place 2 types of cells', () => {
-      testGridInstance.placeCells([[1, 1]]);
+      testGridInstance.placeCells([[1, 1]], 1);
       testGridInstance.placeCells([[2, 2]], 2);
 
       testGrid = [

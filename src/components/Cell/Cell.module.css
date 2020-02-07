@@ -5,6 +5,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    color: transparent;
+    color: white;
     cursor: pointer;
+}
+
+.Cell:focus {
+    outline: none;
 }
