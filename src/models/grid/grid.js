@@ -93,6 +93,7 @@ class Grid {
           const nextCellOwner = this.determineNextCellOwner(player1CellCount, player2CellCount);
 
           const newElt = this.newState(elt, liveCellCount, nextCellOwner);
+
           if (newElt.value === '*') liveCells.push([x, y]);
           newRow.push(newElt);
         });
@@ -118,7 +119,10 @@ class Grid {
     }
 
     newState = (state, liveCellCount, nextCellOwner) => {
-      if ([2, 3].includes(liveCellCount) && state.value === '*') {
+      if (state.value === 'f') {
+        return {value: 'f', player: state.player}
+      }
+      else if ([2, 3].includes(liveCellCount) && state.value === '*') {
         return { value: '*', player: state.player };
       } if (liveCellCount === 3 && state.value === '-') {
         return { value: '*', player: nextCellOwner };

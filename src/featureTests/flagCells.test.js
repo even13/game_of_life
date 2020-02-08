@@ -2,13 +2,14 @@ import React from 'react';
 import Enzyme, { mount } from 'enzyme';
 import EnzymeAdapter from 'enzyme-adapter-react-16';
 import App from '../App';
-import { formatGrid } from '../test-helper';
+import { formatGrid, findByTestAttr } from '../test-helper';
 import Grid from '../models/grid/grid';
 
 Enzyme.configure({ adapter: new EnzymeAdapter() });
 
 describe('flagCells', () => {
   let testFlag;
+  let testFlag1;
   let testFlag2;
   let testFlag3;
   let wrapper;
@@ -50,5 +51,44 @@ describe('flagCells', () => {
       expect(testFlag2.prop('cell')).toEqual(flag);
       expect(testFlag3.prop('cell')).toEqual(flag);
     });
+  });
+
+  describe('flag behaviour during evolution', () =>{
+
+    test('a flag with no neighbours survives an evolution', () => {
+      testGridModel.placeFlag([[2, 2]]);
+      wrapper = mount(<App />);
+      wrapper.setState({ model: testGridModel });
+
+      testFlag = wrapper.find({ id: '22_cell' });
+      formatGrid(wrapper.state('model').render());
+
+      const evolveButton = findByTestAttr(wrapper, 'evolution-button');
+      evolveButton.simulate('click');
+
+      testFlag = wrapper.find({ id: '22_cell' });
+      expect(testFlag.prop('cell')).toEqual(flag);
+
+    });
+
+    test('multiple flags with no neighbour survive and evolution', () => {
+      testGridModel.placeFlag([[2, 2], [0,1]]);
+      wrapper = mount(<App />);
+      wrapper.setState({ model: testGridModel });
+
+      testFlag = wrapper.find({ id: '22_cell' });
+      testFlag1 = wrapper.find({ id: '01_cell' });
+      formatGrid(wrapper.state('model').render());
+
+      const evolveButton = findByTestAttr(wrapper, 'evolution-button');
+      evolveButton.simulate('click');
+
+      testFlag = wrapper.find({ id: '22_cell' });
+      testFlag1 = wrapper.find({ id: '01_cell' });
+      expect(testFlag.prop('cell')).toEqual(flag);
+      expect(testFlag1.prop('cell')).toEqual(flag);
+
+
+    })
   });
 });
