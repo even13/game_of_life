@@ -15,11 +15,14 @@ describe('flagCells', () => {
   let wrapper;
   const testGridModel = new Grid(5);
   let flag;
+  let testCell;
+  let capturedFlag;
 
   beforeEach(() => {
     wrapper = mount(<App />);
     wrapper.setState({ model: testGridModel });
     flag = { value: 'f', player: null };
+    testCell = { value: '*', player: null };
   });
 
   it('cannot be replaced with a live cell', () => {
@@ -88,7 +91,23 @@ describe('flagCells', () => {
       expect(testFlag.prop('cell')).toEqual(flag);
       expect(testFlag1.prop('cell')).toEqual(flag);
 
-
     })
+
+    test('a flag can be  captured by player 1', () => {
+      testGridModel.placeFlag([[2, 2]]);
+      wrapper = mount(<App />);
+      wrapper.setState({ model: testGridModel });
+
+      testFlag = wrapper.find({ id: '22_cell' });
+      testCell = wrapper.find({ id: '23_cell' }); 
+      testCell.simulate('click');
+      
+      const evolveButton = findByTestAttr(wrapper, 'evolution-button');
+      evolveButton.simulate('click');
+      
+      testFlag = wrapper.find({ id: '22_cell' });
+      capturedFlag = { value: 'f', player: 1 };
+      expect(testFlag.prop('cell')).toEqual(capturedFlag);
+    });
   });
 });
