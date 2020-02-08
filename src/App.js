@@ -8,6 +8,7 @@ class App extends React.Component {
       model: new Grid(30),
       coords: [],
       playerTurn: 1,
+      evolutionRate: 100,
     }
 
     componentDidUpdate() {
@@ -62,8 +63,13 @@ class App extends React.Component {
       }
     }
 
+    handleRateChange = (event) => {
+      this.setState({ evolutionRate: event.target.value });
+    }
+
     render() {
       return (
+
         <div className="App" data-test="component-app">
           <GridDisplay
             data-test="component-grid-display"
@@ -71,14 +77,17 @@ class App extends React.Component {
             playerTurn={this.state.playerTurn}
             onStateChange={this.handleCellState}
           />
+          Evolution Rate <input 
+            value={this.state.evolutionRate} 
+            onChange={this.handleRateChange} 
+            data-test="evolution-rate" /> msec
           <button
             type="button"
-            onClick={this.evolve}
             data-test="run-button"
-          >
-            Click To Run
-          </button>
-          <button
+          >Run</button>
+
+          
+          <button 
             type="button"
             onClick={this.evolve}
             data-test="evolution-button"

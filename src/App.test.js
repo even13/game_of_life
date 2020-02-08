@@ -53,6 +53,16 @@ describe('<App />', () => {
     const button = findByTestAttr(wrapper, 'run-button');
 
     expect(button).toHaveLength(1);
-    expect(button.text()).toEqual('Click To Run');
+    expect(button.text()).toEqual('Run');
   });
+
+  it('renders an evolution rate input box with default value of 100ms', () => {
+    const updateRateBox = findByTestAttr(wrapper, 'evolution-rate');
+
+    expect(updateRateBox).toHaveLength(1);
+    expect(updateRateBox.props().value).toEqual(100);
+    // expect(updateRateBox.props().value).toEqual("100");
+  });
+
+
 });
