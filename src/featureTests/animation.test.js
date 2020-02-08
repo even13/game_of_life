@@ -14,17 +14,15 @@ jest.useFakeTimers();
 describe('cellState', () => {
   let wrapper;
   const testGridModel = new Grid(6);
-  let testCell
-  let empty;
+  let testCell;
   let one;
 
   beforeEach(() => {
     wrapper = mount(<App />);
     wrapper.setState({ model: testGridModel });
-    empty = { value: '-', player: null };
     one = { value: '*', player: 1 };
   });
-  
+
   it('should iterate for 300 evolutions by default', () => {
     const runButton = findByTestAttr(wrapper, 'run-button');
 
@@ -46,7 +44,7 @@ describe('cellState', () => {
     runButton.simulate('click');
 
     jest.runAllTimers();
-    wrapper.update()
+    wrapper.update();
 
     expect(wrapper.find({ id: '21_cell' }).prop('cell')).toEqual(one);
     expect(wrapper.find({ id: '32_cell' }).prop('cell')).toEqual(one);

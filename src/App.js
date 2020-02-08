@@ -10,21 +10,18 @@ class App extends React.Component {
       playerTurn: 1,
       evolutionRate: 50,
       maxIterations: 100,
-      isRunning: false,
       iterationCount: 0,
     }
 
-    oneEvolution = () => { 
-      this.setState({ isRunning: true })
-      this.evolve()
+    oneEvolution = () => {
+      this.evolve();
     }
 
-    runGame = () => { 
-      this.setState({ 
-        isRunning: true,
+    runGame = () => {
+      this.setState({
         iterationCount: 0,
-      })
-      this.evolve()
+      });
+      this.evolve();
     }
 
     placeLiveCell = (coord) => {
@@ -66,18 +63,15 @@ class App extends React.Component {
         coords: updatedModel.getLiveCellCoordinates(),
       }));
 
-      window.setTimeout( () => {
-        this.setState(prevState => {
-          return {iterationCount: prevState.iterationCount + 1}
-        });
+      window.setTimeout(() => {
+        this.setState((prevState) => ({ iterationCount: prevState.iterationCount + 1 }));
         if (this.state.iterationCount === this.state.maxIterations) {
           this.setState({
-            isRunning: false,
-           })
-          return
-        } else {
-          this.evolve();
+          });
+          return;
         }
+
+        this.evolve();
       }, this.state.evolutionRate);
     }
 
@@ -92,7 +86,7 @@ class App extends React.Component {
     handleRateChange = (event) => {
       this.setState({ evolutionRate: +event.target.value });
     }
-    
+
     handleIterationChange = (event) => {
       this.setState({ maxIterations: +event.target.value });
     }
@@ -107,22 +101,29 @@ class App extends React.Component {
             playerTurn={this.state.playerTurn}
             onStateChange={this.handleCellState}
           />
-          Evolution Rate <input 
-            value={this.state.evolutionRate} 
-            onChange={this.handleRateChange} 
-            data-test="evolution-rate" /> msec
+          Evolution Rate
+          <input
+            value={this.state.evolutionRate}
+            onChange={this.handleRateChange}
+            data-test="evolution-rate"
+          />
+          msec
 
-          Interations <input 
-            value={this.state.maxIterations} 
-            onChange={this.handleIterationChange} 
-            data-test="iterations" /> sec
-
+          Interations
+          <input
+            value={this.state.maxIterations}
+            onChange={this.handleIterationChange}
+            data-test="iterations"
+          />
+          sec
           <button
             type="button"
             onClick={this.runGame}
             data-test="run-button"
-          >Run</button>
-          <button 
+          >
+            Run
+          </button>
+          <button
             type="button"
             onClick={this.oneEvolution}
             data-test="evolution-button"

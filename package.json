@@ -47,9 +47,8 @@
     "eslint-plugin-react": "^7.18.3",
     "eslint-plugin-react-hooks": "^1.7.0"
   },
-
   "jest": {
-    "coveragePathIgnorePatterns" : [
+    "coveragePathIgnorePatterns": [
       "src/index.js",
       "src/serviceWorker.js",
       "src/test-helper.js"

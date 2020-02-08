@@ -73,9 +73,8 @@ describe('<App />', () => {
   it('allows the number of iterations to be changed', () => {
     const iterationsBox = findByTestAttr(wrapper, 'iterations');
 
-    iterationsBox.simulate('change', { target: { value: '50' } })
+    iterationsBox.simulate('change', { target: { value: '50' } });
 
     expect(wrapper.state().maxIterations).toEqual(50);
   });
-
 });
