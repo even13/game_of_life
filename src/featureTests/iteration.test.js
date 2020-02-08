@@ -2,7 +2,6 @@ import React from 'react';
 import Enzyme, { mount } from 'enzyme';
 import EnzymeAdapter from 'enzyme-adapter-react-16';
 import App from '../App';
-import { findByTestAttr } from '../test-helper';
 
 import Grid from '../models/grid/grid';
 
@@ -25,9 +24,10 @@ describe('runIteration', () => {
     wrapper.find({ id: '32_cell' }).simulate('click');
   });
 
-  it.skip('rotates a spinner by 90 degrees after 1001 evolution', () => {
-    const runButton = findByTestAttr(wrapper, 'run-button');
-    runButton.simulate('click');
+  it('rotates a spinner by 90 degrees after 3 evolutions', async () => {
+    // wrapper.instance().run is asynchronous
+    await wrapper.instance().run(3); // await because we want to wait for the function to complete
+    wrapper.update(); // force to re-render
     expect(wrapper.find({ id: '21_cell' }).prop('cell')).toEqual(one);
     expect(wrapper.find({ id: '12_cell' }).prop('cell')).toEqual(empty);
 

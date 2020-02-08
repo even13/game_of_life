@@ -3,13 +3,14 @@ import './App.css';
 import GridDisplay from './components/GridDisplay/GridDisplay';
 import Grid from './models/grid/grid';
 
+// taken from https://stackoverflow.com/questions/951021/what-is-the-javascript-version-of-sleep
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
 class App extends React.Component {
     state = {
       model: new Grid(30),
       coords: [],
       playerTurn: 1,
-      timer: null,
-      iterationsLeft: 0,
     }
 
     componentDidUpdate() {
@@ -48,14 +49,6 @@ class App extends React.Component {
     }
 
     evolve = () => {
-      if (this.state.iterationsLeft === 1) {
-        // this is the last iteration, clear.
-        clearInterval(this.state.timer);
-      } else {
-        this.setState((state) => ({
-          iterationsLeft: state.iterationsLeft - 1,
-        }));
-      }
       const updatedModel = { ...this.state.model };
       updatedModel.evolve();
       this.setState(() => ({
@@ -64,9 +57,11 @@ class App extends React.Component {
       }));
     }
 
-    run = () => {
-      const timer = setInterval(() => this.evolve(), 200);
-      this.setState({ iterationsLeft: 20, timer });
+    run = async (iterations) => {
+      for (let i = 0; i < iterations; i++) {
+        await sleep(500);
+        this.evolve();
+      }
     }
 
     togglePlayer = () => {
@@ -88,7 +83,7 @@ class App extends React.Component {
           />
           <button
             type="button"
-            onClick={this.run}
+            onClick={() => this.run(10)}
             data-test="run-button"
           >
             Click To Run
