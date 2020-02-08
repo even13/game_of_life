@@ -54,8 +54,5 @@ describe('cellState', () => {
     expect(wrapper.find({ id: '23_cell' }).prop('cell')).toEqual(one);
     expect(wrapper.find({ id: '13_cell' }).prop('cell')).toEqual(one);
     expect(wrapper.state().iterationCount).toEqual(100);
-
   });
-
-
 });
