@@ -8,6 +8,8 @@ class App extends React.Component {
       model: new Grid(30),
       coords: [],
       playerTurn: 1,
+      timer: null,
+      iterationsLeft: 0,
     }
 
     componentDidUpdate() {
@@ -46,12 +48,25 @@ class App extends React.Component {
     }
 
     evolve = () => {
+      if (this.state.iterationsLeft === 1) {
+        // this is the last iteration, clear.
+        clearInterval(this.state.timer);
+      } else {
+        this.setState((state) => ({
+          iterationsLeft: state.iterationsLeft - 1,
+        }));
+      }
       const updatedModel = { ...this.state.model };
       updatedModel.evolve();
       this.setState(() => ({
         model: updatedModel,
         coords: updatedModel.getLiveCellCoordinates(),
       }));
+    }
+
+    run = () => {
+      const timer = setInterval(() => this.evolve(), 200);
+      this.setState({ iterationsLeft: 20, timer });
     }
 
     togglePlayer = () => {
@@ -73,7 +88,7 @@ class App extends React.Component {
           />
           <button
             type="button"
-            onClick={this.evolve}
+            onClick={this.run}
             data-test="run-button"
           >
             Click To Run
