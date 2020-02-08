@@ -81,7 +81,7 @@ describe('Grid', () => {
         [empty, empty, empty],
       ];
       testGridInstance.placeFlag([[0, 0]]);
-      console.log(testGridInstance.currentGrid)
+      // console.log(testGridInstance.currentGrid)
       expect(testGridInstance.render()).toEqual(testGrid);
     });
 
