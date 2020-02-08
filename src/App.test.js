@@ -60,14 +60,14 @@ describe('<App />', () => {
     const updateRateBox = findByTestAttr(wrapper, 'evolution-rate');
 
     expect(updateRateBox).toHaveLength(1);
-    expect(updateRateBox.props().value).toEqual(100);
+    expect(updateRateBox.props().value).toEqual(50);
   });
 
   it('renders an Run Time input box with default value of 30s', () => {
-    const runTimeBox = findByTestAttr(wrapper, 'run-time');
+    const runTimeBox = findByTestAttr(wrapper, 'iterations');
 
     expect(runTimeBox).toHaveLength(1);
-    expect(runTimeBox.props().value).toEqual(30);
+    expect(runTimeBox.props().value).toEqual(100);
   });
 
 

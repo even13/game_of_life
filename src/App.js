@@ -8,12 +8,23 @@ class App extends React.Component {
       model: new Grid(30),
       coords: [],
       playerTurn: 1,
-      evolutionRate: 100,
-      runTime: 30,
+      evolutionRate: 50,
+      maxIterations: 100,
+      isRunning: false,
+      iterationCount: 0,
     }
 
-    componentDidUpdate() {
-      // console.log(this.state.coords)
+    oneEvolution = () => { 
+      this.setState({ isRunning: true })
+      this.evolve()
+    }
+
+    runGame = () => { 
+      this.setState({ 
+        isRunning: true,
+        iterationCount: 0,
+      })
+      this.evolve()
     }
 
     placeLiveCell = (coord) => {
@@ -54,6 +65,20 @@ class App extends React.Component {
         model: updatedModel,
         coords: updatedModel.getLiveCellCoordinates(),
       }));
+
+      window.setTimeout( () => {
+        this.setState(prevState => {
+          return {iterationCount: prevState.iterationCount + 1}
+        });
+        if (this.state.iterationCount === this.state.maxIterations) {
+          this.setState({
+            isRunning: false,
+           })
+          return
+        } else {
+          this.evolve();
+        }
+      }, this.state.evolutionRate);
     }
 
     togglePlayer = () => {
@@ -65,11 +90,11 @@ class App extends React.Component {
     }
 
     handleRateChange = (event) => {
-      this.setState({ evolutionRate: event.target.value });
+      this.setState({ evolutionRate: +event.target.value });
     }
     
-    handleTimeChange = (event) => {
-      this.setState({ runTime: event.target.value });
+    handleIterationChange = (event) => {
+      this.setState({ maxIterations: +event.target.value });
     }
 
     render() {
@@ -87,18 +112,19 @@ class App extends React.Component {
             onChange={this.handleRateChange} 
             data-test="evolution-rate" /> msec
 
-          Run Time <input 
-            value={this.state.runTime} 
-            onChange={this.handleTimeChange} 
-            data-test="run-time" /> sec
+          Interations <input 
+            value={this.state.maxIterations} 
+            onChange={this.handleIterationChange} 
+            data-test="iterations" /> sec
 
           <button
             type="button"
+            onClick={this.runGame}
             data-test="run-button"
           >Run</button>
           <button 
             type="button"
-            onClick={this.evolve}
+            onClick={this.oneEvolution}
             data-test="evolution-button"
           >
             Click To Evolve
