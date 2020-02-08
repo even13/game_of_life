@@ -3,15 +3,14 @@ import './App.css';
 import GridDisplay from './components/GridDisplay/GridDisplay';
 import Grid from './models/grid/grid';
 
+// const instance = new Grid(5);
+// instance.placeFlag([[3, 2]]);
+
 class App extends React.Component {
     state = {
-      model: new Grid(30),
+      model: new Grid(),
       coords: [],
       playerTurn: 1,
-    }
-
-    componentDidUpdate() {
-      // console.log(this.state.coords)
     }
 
     placeLiveCell = (coord) => {
