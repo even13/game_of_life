@@ -77,4 +77,12 @@ describe('<App />', () => {
 
     expect(wrapper.state().maxIterations).toEqual(50);
   });
+
+  it('allows the rate of evolution to be changed', () => {
+    const evolutionRateBox = findByTestAttr(wrapper, 'evolution-rate');
+
+    evolutionRateBox.simulate('change', { target: { value: '10' } });
+
+    expect(wrapper.state().evolutionRate).toEqual(10);
+  });
 });
