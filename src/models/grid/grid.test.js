@@ -13,7 +13,7 @@ describe('Grid', () => {
     empty = { value: '-', player: null };
     one = { value: '*', player: 1 };
     two = { value: '*', player: 2 };
-    flag = { value: 'f', player: null}
+    flag = { value: 'f', player: null };
   });
 
   it('initially shows an empty 30 x 30 grid', () => {
@@ -72,32 +72,16 @@ describe('Grid', () => {
     expect(testGridInstance.render()).toEqual(testGrid);
   });
 
-  describe('flags',() => {
-
-    it ('can place a flag on the grid at [0,0]', () => {
+  describe('flags', () => {
+    it('can place a flag on the grid at [0,0]', () => {
       testGrid = [
         [flag, empty, empty],
         [empty, empty, empty],
         [empty, empty, empty],
       ];
       testGridInstance.placeFlag([[0, 0]]);
-      // console.log(testGridInstance.currentGrid)
       expect(testGridInstance.render()).toEqual(testGrid);
     });
-
-    // it ('can place 2 flags on the grid at [0,0] and [1,1]', () => {
-    //   testGrid = [
-    //     [flag, empty, empty],
-    //     [empty, flag, empty],
-    //     [empty, empty, empty],
-    //   ];
-    //   testGridInstance.placeFlag([[0, 0], [1,1]]);
-    //   // console.log(testGridInstance.currentGrid)
-    //   expect(testGridInstance.render()).toEqual(testGrid);
-    // });
-
-
-
   });
 
   describe('3 x 3 stripe', () => {
