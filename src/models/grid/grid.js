@@ -120,9 +120,9 @@ class Grid {
 
     newState = (state, liveCellCount, nextCellOwner) => {
       if (state.value === 'f') {
-        return this.newFlagState(state, nextCellOwner)
+        return this.newFlagState(state, nextCellOwner);
       }
-      else if ([2, 3].includes(liveCellCount) && state.value === '*') {
+      if ([2, 3].includes(liveCellCount) && state.value === '*') {
         return { value: '*', player: state.player };
       } if (liveCellCount === 3 && state.value === '-') {
         return { value: '*', player: nextCellOwner };
@@ -130,13 +130,11 @@ class Grid {
       return { value: '-', player: null };
     }
 
-    newFlagState = (state, nextCellOwner) => {
-      //if there is an owner return current state and owner
-      //if there is no owner return current state we assign next cell owner and return
+    // if there is an owner return current state and owner
+    // if there is no owner return current state we assign next cell owner and return
+    newFlagState = (state, nextCellOwner) => (nextCellOwner ? { value: 'f', player: nextCellOwner } : state)
 
-      return nextCellOwner ? { value: 'f', player: nextCellOwner} : state
 
-    }
     determineNextCellOwner = (player1CellCount, player2CellCount) => {
       if (player1CellCount > player2CellCount) {
         return 1;
