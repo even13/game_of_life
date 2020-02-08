@@ -4,7 +4,6 @@ class Grid {
     this.isEvolved = false;
     this.currentGrid = Array(gridSize).fill(Array(gridSize).fill({ value: '-', player: null }));
     this.gridSize = gridSize;
-    this.flagPlaced = false;
     this.currentPlacedFlags = currentPlacedFlags;
   }
 
@@ -19,20 +18,16 @@ class Grid {
     }
 
     removeCells = (cellArray, player = 1) => {
-      if (!this.flagPlaced) {
-        const currentLiveCells = [...this.currentLiveCells];
-        // of all the current live cells, keep those that aren't in the cellArray:
-        // (a collection of cells the player clicked to be removed)
-        const updatedCurrentLiveCells = currentLiveCells.filter((cell) => !JSON.stringify(cellArray).includes(JSON.stringify(cell)));
-        this.currentLiveCells = updatedCurrentLiveCells;
-        this.updateGrid([], player);
-      }
+      const currentLiveCells = [...this.currentLiveCells];
+      // of all the current live cells, keep those that aren't in the cellArray:
+      // (a collection of cells the player clicked to be removed)
+      const updatedCurrentLiveCells = currentLiveCells.filter((cell) => !JSON.stringify(cellArray).includes(JSON.stringify(cell)));
+      this.currentLiveCells = updatedCurrentLiveCells;
+      this.updateGrid([], player);
     }
 
     placeFlag = (cellArray, player = null) => {
       let updatedCurrentGrid = [...this.currentGrid];
-
-      this.flagPlaced = true;
       this.currentPlacedFlags = this.currentPlacedFlags.concat(cellArray);
 
       updatedCurrentGrid = updatedCurrentGrid.map((row, y) => row.map((cell, x) => {
@@ -82,19 +77,23 @@ class Grid {
         const newRow = [];
         row.forEach((elt, x) => {
           let flagCount = 0;
+          let flagArray = [];
           let liveCellCount = 0;
           let player1CellCount = 0;
           let player2CellCount = 0;
 
           for (let i = 0; i < this.neighbours(y, x).length; i++) {
-            if (this.neighbours(y, x)[i].value === 'f') flagCount++;
+            if (this.neighbours(y, x)[i].value === 'f') {
+              flagCount++ 
+              flagArray.push(this.neighbours(y, x)[i])
+            };
             if (this.neighbours(y, x)[i].value === '*') liveCellCount++;
             if (this.neighbours(y, x)[i].player === 1) player1CellCount++;
             if (this.neighbours(y, x)[i].player === 2) player2CellCount++;
           }
           const nextCellOwner = this.determineNextCellOwner(player1CellCount, player2CellCount);
 
-          const newElt = this.newState(elt, liveCellCount, flagCount, nextCellOwner);
+          const newElt = this.newState(elt, liveCellCount, flagCount, flagArray, nextCellOwner);
 
           if (newElt.value === '*') liveCells.push([x, y]);
           newRow.push(newElt);
@@ -120,10 +119,16 @@ class Grid {
       ];
     }
 
-    newState = (state, liveCellCount, flagCount, nextCellOwner) => {
+    newState = (state, liveCellCount, flagCount, flagArray, nextCellOwner) => {
+      //the var below contains any single cell that is alive and owned by the player currently playing
+      let liveOwnedCells = flagArray[0] ? {value: '*', player: flagArray[0].player} : {}
+
       if (state.value === 'f') {
         return this.newFlagState(state, nextCellOwner);
-      } if ([2, 3].includes(liveCellCount + flagCount) && state.value === '*') {
+      } if ([2, 3].includes(liveCellCount + flagCount) && flagArray[0] && JSON.stringify(state) === JSON.stringify(liveOwnedCells)){
+      
+      // state.player === flagArray[0].player && state.value === '*') 
+      
         return { value: '*', player: state.player };
       } if ([2, 3].includes(liveCellCount) && state.value === '*') {
         return { value: '*', player: state.player };
