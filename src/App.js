@@ -9,6 +9,7 @@ class App extends React.Component {
       coords: [],
       playerTurn: 1,
       evolutionRate: 100,
+      runTime: 30,
     }
 
     componentDidUpdate() {
@@ -66,6 +67,10 @@ class App extends React.Component {
     handleRateChange = (event) => {
       this.setState({ evolutionRate: event.target.value });
     }
+    
+    handleTimeChange = (event) => {
+      this.setState({ runTime: event.target.value });
+    }
 
     render() {
       return (
@@ -81,12 +86,16 @@ class App extends React.Component {
             value={this.state.evolutionRate} 
             onChange={this.handleRateChange} 
             data-test="evolution-rate" /> msec
+
+          Run Time <input 
+            value={this.state.runTime} 
+            onChange={this.handleTimeChange} 
+            data-test="run-time" /> sec
+
           <button
             type="button"
             data-test="run-button"
           >Run</button>
-
-          
           <button 
             type="button"
             onClick={this.evolve}
