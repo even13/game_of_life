@@ -29,7 +29,7 @@ class Grid {
       }
     }
 
-    placeFlag = (cellArray) => {
+    placeFlag = (cellArray, player = null) => {
       let updatedCurrentGrid = [...this.currentGrid];
 
       this.flagPlaced = true;
@@ -37,7 +37,7 @@ class Grid {
 
       updatedCurrentGrid = updatedCurrentGrid.map((row, y) => row.map((cell, x) => {
         if (JSON.stringify(cellArray).includes(JSON.stringify([x, y]))) {
-          return { value: 'f', player: null };
+          return { value: 'f', player };
         }
         return cell;
       }));
