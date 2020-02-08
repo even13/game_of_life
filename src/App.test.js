@@ -64,11 +64,18 @@ describe('<App />', () => {
   });
 
   it('renders an Run Time input box with default value of 30s', () => {
-    const runTimeBox = findByTestAttr(wrapper, 'iterations');
+    const iterationsBox = findByTestAttr(wrapper, 'iterations');
 
-    expect(runTimeBox).toHaveLength(1);
-    expect(runTimeBox.props().value).toEqual(100);
+    expect(iterationsBox).toHaveLength(1);
+    expect(iterationsBox.props().value).toEqual(100);
   });
 
+  it('allows the number of iterations to be changed', () => {
+    const iterationsBox = findByTestAttr(wrapper, 'iterations');
+
+    iterationsBox.simulate('change', { target: { value: '50' } })
+
+    expect(wrapper.state().maxIterations).toEqual(50);
+  });
 
 });
