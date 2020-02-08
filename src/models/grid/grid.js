@@ -81,18 +81,20 @@ class Grid {
       this.currentGrid.forEach((row, y) => {
         const newRow = [];
         row.forEach((elt, x) => {
+          let flagCount = 0;
           let liveCellCount = 0;
           let player1CellCount = 0;
           let player2CellCount = 0;
 
           for (let i = 0; i < this.neighbours(y, x).length; i++) {
+            if (this.neighbours(y, x)[i].value === 'f') flagCount++;
             if (this.neighbours(y, x)[i].value === '*') liveCellCount++;
             if (this.neighbours(y, x)[i].player === 1) player1CellCount++;
             if (this.neighbours(y, x)[i].player === 2) player2CellCount++;
           }
           const nextCellOwner = this.determineNextCellOwner(player1CellCount, player2CellCount);
 
-          const newElt = this.newState(elt, liveCellCount, nextCellOwner);
+          const newElt = this.newState(elt, liveCellCount, flagCount, nextCellOwner);
 
           if (newElt.value === '*') liveCells.push([x, y]);
           newRow.push(newElt);
@@ -118,11 +120,12 @@ class Grid {
       ];
     }
 
-    newState = (state, liveCellCount, nextCellOwner) => {
+    newState = (state, liveCellCount, flagCount, nextCellOwner) => {
       if (state.value === 'f') {
         return this.newFlagState(state, nextCellOwner);
-      }
-      if ([2, 3].includes(liveCellCount) && state.value === '*') {
+      } if ([2, 3].includes(liveCellCount + flagCount) && state.value === '*') {
+        return { value: '*', player: state.player };
+      } if ([2, 3].includes(liveCellCount) && state.value === '*') {
         return { value: '*', player: state.player };
       } if (liveCellCount === 3 && state.value === '-') {
         return { value: '*', player: nextCellOwner };
