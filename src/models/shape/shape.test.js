@@ -33,6 +33,13 @@ describe('Shape', () => {
       ]);
     });
 
+    it('returns coordinates for a bird at [8, 9]', () => {
+      expect(Shape.create('bird', [8, 9])).toEqual([
+        [9, 7], [10, 7], [6, 8], [7, 8], [8, 8], [10, 8], [11, 8],
+        [6, 9], [7, 9], [8, 9], [9, 9], [10, 9], [7, 10], [8, 10], [9, 10],
+      ]);
+    });
+
     it('returns coordinates for a spaceship at [1, 1]', () => {
       expect(Shape.create('spaceship', [1, 1])).toEqual([[1, 0], [2, 1], [0, 2], [1, 2], [2, 2]]);
     });
