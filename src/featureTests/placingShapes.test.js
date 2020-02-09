@@ -140,5 +140,22 @@ describe('placingShapes', () => {
         expect(wrapper.find({ id }).prop('cell').value).toEqual('*');
       });
     });
+
+    test('a player places a bird on the board at [3, 3]', () => {
+      birdCreator.simulate('click');
+
+      pressedCell = wrapper.find({ id: '33_cell' });
+      pressedCell.simulate('click');
+
+      const birdCellIds = [
+        '41_cell', '51_cell', '12_cell', '22_cell', '32_cell', '52_cell',
+        '62_cell', '13_cell', '23_cell', '33_cell', '43_cell', '53_cell',
+        '24_cell', '34_cell', '44_cell',
+      ];
+
+      birdCellIds.forEach((id) => {
+        expect(wrapper.find({ id }).prop('cell').value).toEqual('*');
+      });
+    });
   });
 });
