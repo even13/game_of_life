@@ -113,7 +113,7 @@ class App extends React.Component {
             onStateChange={this.handleCellState}
           />
 
-          <div>
+          <div id="shape choices">
             <button type="button" data-test="create-spinner" onClick={() => { this.placeShape('spinner'); }}>Create A Spinner</button>
             <button type="button" data-test="create-spaceship" onClick={() => { this.placeShape('spaceship'); }}>Create A Spaceship</button>
           </div>
@@ -126,9 +126,11 @@ class App extends React.Component {
           <div>Evolution Rate</div>
           <input value={this.state.evolutionRate} onChange={this.handleRateChange} data-test="evolution-rate" />
           <span> milliseconds</span>
+
           <div>Iterations</div>
           <input value={this.state.maxIterations} onChange={this.handleIterationChange} data-test="iterations" />
           <span> /sec</span>
+
           <button type="button" onClick={this.runGame} data-test="run-button">Run</button>
         </div>
       );
