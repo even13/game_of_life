@@ -41,7 +41,9 @@ class App extends React.Component {
       if (this.state.isPlacingShape === 'spinner') {
         this.placeLiveCell([[coord[0], coord[1] - 1], coord, [coord[0], coord[1] + 1]]);
       } else if (this.state.isPlacingShape === 'spaceship') {
-        this.placeLiveCell([[1, 3], [2, 1], [2, 3], [3, 2], [3, 3]]);
+        const spaceship = [
+          [coord[0], coord[1] - 1], [coord[0] + 1, coord[1]], [coord[0] - 1, coord[1] + 1], [coord[0], coord[1] + 1], [coord[0] + 1, coord[1] + 1]];
+        this.placeLiveCell(spaceship);
       } else if (isClicked) {
         this.placeDeadCell(coord);
       } else {
@@ -66,7 +68,7 @@ class App extends React.Component {
       }
     }
 
-    toggleShapePlacer = (shape) => {
+    placeShape = (shape) => {
       this.setState({ isPlacingShape: shape });
     }
 
@@ -81,23 +83,14 @@ class App extends React.Component {
           />
 
           <div>
-            <button type="button" data-test="create-spinner" onClick={() => { this.toggleShapePlacer('spinner'); }}>Create A Spinner</button>
-            <button type="button" data-test="create-spaceship" onClick={() => { this.toggleShapePlacer('spaceship'); }}>Create A Spaceship</button>
+            <button type="button" data-test="create-spinner" onClick={() => { this.placeShape('spinner'); }}>Create A Spinner</button>
+            <button type="button" data-test="create-spaceship" onClick={() => { this.placeShape('spaceship'); }}>Create A Spaceship</button>
           </div>
-          <button
-            type="button"
-            onClick={this.evolve}
-            data-test="evolution-button"
-          >
-            Click To Evolve
-          </button>
-          <button
-            type="button"
-            onClick={this.togglePlayer}
-            data-test="player-toggle"
-          >
-            Click To Toggle Player
-          </button>
+
+          <div>
+            <button type="button" onClick={this.evolve} data-test="evolution-button">Click To Evolve</button>
+            <button type="button" onClick={this.togglePlayer} data-test="player-toggle">Click To Toggle Player</button>
+          </div>
         </div>
       );
     }

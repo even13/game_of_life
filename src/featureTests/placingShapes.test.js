@@ -84,5 +84,29 @@ describe('placingShapes', () => {
 
       expect(pressedCell.prop('cell').value).toEqual('-');
     });
+    
+    test('a player places a spaceship on the board at [1, 0], [2, 1], [0, 2], [1, 2] and [2, 2]', () => {
+      const spaceshipCreator = findByTestAttr(wrapper, 'create-spaceship');
+      spaceshipCreator.simulate('click');
+
+      pressedCell = wrapper.find({ id: '11_cell' });
+      pressedCell.simulate('click');
+      
+      testCell = wrapper.find({ id: '10_cell' });
+      testCell2 = wrapper.find({ id: '21_cell' });
+      testCell3 = wrapper.find({ id: '02_cell' });
+      testCell4 = wrapper.find({ id: '12_cell' });
+      testCell5 = wrapper.find({ id: '22_cell' });
+
+      expect(testCell.prop('cell').value).toEqual('*');
+      expect(testCell2.prop('cell').value).toEqual('*');
+      expect(testCell3.prop('cell').value).toEqual('*');
+      expect(testCell4.prop('cell').value).toEqual('*');
+      expect(testCell5.prop('cell').value).toEqual('*');
+      
+      pressedCell = wrapper.find({ id: '11_cell' });
+
+      expect(pressedCell.prop('cell').value).toEqual('-');
+    });
   });
 });
