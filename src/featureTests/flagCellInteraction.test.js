@@ -23,7 +23,6 @@ describe('testCellInteraction', () => {
     testGridModel = new Grid(5);
     wrapper = mount(<App />);
     wrapper.setState({ model: testGridModel });
-
   });
 
   describe('a player 1 spinner next to a player 1 flag', () => {
@@ -66,12 +65,10 @@ describe('testCellInteraction', () => {
   });
 
   describe('a player 2 spinner next to a player 1 flag', () => {
-    
     it('a player 1 flag should destroy a player 2 spinner after 2 generations', () => {
       testGridModel.placeFlag([[3, 2]], 1);
       wrapper = mount(<App />);
       wrapper.setState({ model: testGridModel });
-      console.log(testGridModel)
 
       playerToggle = findByTestAttr(wrapper, 'player-toggle');
       playerToggle.simulate('click');
@@ -82,11 +79,6 @@ describe('testCellInteraction', () => {
 
       const evolveButton = findByTestAttr(wrapper, 'evolution-button');
       evolveButton.simulate('click');
-
-      testCell = wrapper.find({ id: '12_cell' });
-      testCell2 = wrapper.find({ id: '22_cell' });
-      testFlag = wrapper.find({ id: '32_cell' });
-
       evolveButton.simulate('click');
 
       testCell = wrapper.find({ id: '21_cell' });

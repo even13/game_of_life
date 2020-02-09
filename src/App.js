@@ -11,6 +11,7 @@ class App extends React.Component {
       model: new Grid(),
       coords: [],
       playerTurn: 1,
+      isPlacingShape: false,
     }
 
     placeLiveCell = (coord) => {
@@ -37,6 +38,9 @@ class App extends React.Component {
     }
 
     handleCellState = (coord, isClicked) => {
+      if (this.state.isPlacingShape) {
+        this.placeLiveCell([[2, 1], [2, 2], [2, 3]]);
+      }
       if (isClicked) {
         this.placeDeadCell(coord);
       } else {
@@ -61,6 +65,10 @@ class App extends React.Component {
       }
     }
 
+    toggleShapePlacer = () => {
+      this.setState({ isPlacingShape: true });
+    }
+
     render() {
       return (
         <div className="App" data-test="component-app">
@@ -71,6 +79,9 @@ class App extends React.Component {
             onStateChange={this.handleCellState}
           />
 
+          <div>
+            <button type="button" data-test="create-spinner" onClick={this.toggleShapePlacer}>Create A Spinner</button>
+          </div>
           <button
             type="button"
             onClick={this.evolve}

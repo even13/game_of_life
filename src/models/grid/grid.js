@@ -77,16 +77,16 @@ class Grid {
         const newRow = [];
         row.forEach((elt, x) => {
           let flagCount = 0;
-          let flagArray = [];
+          const flagArray = [];
           let liveCellCount = 0;
           let player1CellCount = 0;
           let player2CellCount = 0;
 
           for (let i = 0; i < this.neighbours(y, x).length; i++) {
             if (this.neighbours(y, x)[i].value === 'f') {
-              flagCount++ 
-              flagArray.push(this.neighbours(y, x)[i])
-            };
+              flagCount++;
+              flagArray.push(this.neighbours(y, x)[i]);
+            }
             if (this.neighbours(y, x)[i].value === '*') liveCellCount++;
             if (this.neighbours(y, x)[i].player === 1) player1CellCount++;
             if (this.neighbours(y, x)[i].player === 2) player2CellCount++;
@@ -120,15 +120,14 @@ class Grid {
     }
 
     newState = (state, liveCellCount, flagCount, flagArray, nextCellOwner) => {
-      //the var below contains any single cell that is alive and owned by the player currently playing
-      let liveOwnedCells = flagArray[0] ? {value: '*', player: flagArray[0].player} : {}
+      // the var below contains any single cell that is alive and owned by the player currently playing
+      const liveOwnedCells = flagArray[0] ? { value: '*', player: flagArray[0].player } : {};
 
       if (state.value === 'f') {
         return this.newFlagState(state, nextCellOwner);
-      } if ([2, 3].includes(liveCellCount + flagCount) && flagArray[0] && JSON.stringify(state) === JSON.stringify(liveOwnedCells)){
-      
-      // state.player === flagArray[0].player && state.value === '*') 
-      
+      } if ([2, 3].includes(liveCellCount + flagCount) && flagArray[0] && JSON.stringify(state) === JSON.stringify(liveOwnedCells)) {
+      // state.player === flagArray[0].player && state.value === '*')
+
         return { value: '*', player: state.player };
       } if ([2, 3].includes(liveCellCount) && state.value === '*') {
         return { value: '*', player: state.player };
