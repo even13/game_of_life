@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import GridDisplay from './components/GridDisplay/GridDisplay';
 import Grid from './models/grid/grid';
+import Shape from './models/shape/shape';
 
 class App extends React.Component {
     state = {
@@ -49,13 +50,11 @@ class App extends React.Component {
     }
 
     handleCellState = (coord, isClicked) => {
-      if (this.state.isPlacingShape === 'spinner') {
-        this.placeLiveCell([[coord[0], coord[1] - 1], coord, [coord[0], coord[1] + 1]]);
-      } else if (this.state.isPlacingShape === 'spaceship') {
-        const spaceship = [
-          [coord[0], coord[1] - 1], [coord[0] + 1, coord[1]], [coord[0] - 1, coord[1] + 1], [coord[0], coord[1] + 1], [coord[0] + 1, coord[1] + 1]];
-        this.placeLiveCell(spaceship);
-      } else if (isClicked) {
+      if (this.state.isPlacingShape) {
+        const shape = Shape.create(this.state.isPlacingShape, coord);
+        this.placeLiveCell(shape);
+        return;
+      } if (isClicked) {
         this.placeDeadCell(coord);
       } else {
         this.placeLiveCell(coord);

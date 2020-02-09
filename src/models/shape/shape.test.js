@@ -24,4 +24,17 @@ describe('Shape', () => {
       expect(Shape.create('spaceship', [1, 1])).toEqual([[1, 0], [2, 1], [0, 2], [1, 2], [2, 2]]);
     });
   });
+
+  describe('birds', () => {
+    it('returns coordinates for a bird at [3, 3]', () => {
+      expect(Shape.create('bird', [3, 3])).toEqual([
+        [4, 1], [5, 1], [1, 2], [2, 2], [3, 2], [5, 2], [6, 2],
+        [1, 3], [2, 3], [3, 3], [4, 3], [5, 3], [2, 4], [3, 4], [4, 4],
+      ]);
+    });
+
+    it('returns coordinates for a spaceship at [1, 1]', () => {
+      expect(Shape.create('spaceship', [1, 1])).toEqual([[1, 0], [2, 1], [0, 2], [1, 2], [2, 2]]);
+    });
+  });
 });
