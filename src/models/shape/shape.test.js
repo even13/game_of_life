@@ -39,9 +39,5 @@ describe('Shape', () => {
         [6, 9], [7, 9], [8, 9], [9, 9], [10, 9], [7, 10], [8, 10], [9, 10],
       ]);
     });
-
-    it('returns coordinates for a spaceship at [1, 1]', () => {
-      expect(Shape.create('spaceship', [1, 1])).toEqual([[1, 0], [2, 1], [0, 2], [1, 2], [2, 2]]);
-    });
   });
 });
