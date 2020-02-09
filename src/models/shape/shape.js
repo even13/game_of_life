@@ -4,7 +4,7 @@ class Shape {
       case 'spinner': return Shape.spinner(coord);
       case 'spaceship': return Shape.spaceship(coord);
       case 'bird': return Shape.bird(coord);
-      default: return [];
+      default: return [coord];
     }
   }
 

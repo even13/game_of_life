@@ -40,4 +40,18 @@ describe('Shape', () => {
       ]);
     });
   });
+
+  describe('default', () => {
+    it('returns a single cell at the coordinate [0, 1]', () => {
+      expect(Shape.create(null, [0, 1])).toEqual([[0, 1]]);
+    });
+
+    it('returns a single cell at the coordinate [12, 12]', () => {
+      expect(Shape.create(null, [12, 12])).toEqual([[12, 12]]);
+    });
+
+    it('returns a single cell at the coordinate [4, 14]', () => {
+      expect(Shape.create(null, [4, 14])).toEqual([[4, 14]]);
+    });
+  });
 });
