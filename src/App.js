@@ -3,15 +3,26 @@ import './App.css';
 import GridDisplay from './components/GridDisplay/GridDisplay';
 import Grid from './models/grid/grid';
 
-// const instance = new Grid(5);
-// instance.placeFlag([[3, 2]]);
-
 class App extends React.Component {
     state = {
       model: new Grid(),
       coords: [],
       playerTurn: 1,
       isPlacingShape: false,
+      evolutionRate: 50,
+      maxIterations: 100,
+      iterationCount: 0,
+    }
+
+    oneEvolution = () => {
+      this.evolve();
+    }
+
+    runGame = () => {
+      this.setState({
+        iterationCount: 0,
+      });
+      this.evolve();
     }
 
     placeLiveCell = (coord) => {
@@ -58,6 +69,17 @@ class App extends React.Component {
         model: updatedModel,
         coords: updatedModel.getLiveCellCoordinates(),
       }));
+
+      window.setTimeout(() => {
+        this.setState((prevState) => ({ iterationCount: prevState.iterationCount + 1 }));
+        if (this.state.iterationCount === this.state.maxIterations) {
+          this.setState({
+          });
+          return;
+        }
+
+        this.evolve();
+      }, this.state.evolutionRate);
     }
 
     togglePlayer = () => {
@@ -72,8 +94,17 @@ class App extends React.Component {
       this.setState({ isPlacingShape: shape });
     }
 
+    handleRateChange = (event) => {
+      this.setState({ evolutionRate: +event.target.value });
+    }
+
+    handleIterationChange = (event) => {
+      this.setState({ maxIterations: +event.target.value });
+    }
+
     render() {
       return (
+
         <div className="App" data-test="component-app">
           <GridDisplay
             data-test="component-grid-display"
@@ -88,9 +119,17 @@ class App extends React.Component {
           </div>
 
           <div>
-            <button type="button" onClick={this.evolve} data-test="evolution-button">Click To Evolve</button>
+            <button type="button" onClick={this.oneEvolution} data-test="evolution-button">Click To Evolve</button>
             <button type="button" onClick={this.togglePlayer} data-test="player-toggle">Click To Toggle Player</button>
           </div>
+
+          <div>Evolution Rate</div>
+          <input value={this.state.evolutionRate} onChange={this.handleRateChange} data-test="evolution-rate" />
+          <span> milliseconds</span>
+          <div>Iterations</div>
+          <input value={this.state.maxIterations} onChange={this.handleIterationChange} data-test="iterations" />
+          <span> /sec</span>
+          <button type="button" onClick={this.runGame} data-test="run-button">Run</button>
         </div>
       );
     }
