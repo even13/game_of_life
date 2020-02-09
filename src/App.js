@@ -115,6 +115,7 @@ class App extends React.Component {
           <div id="shape choices">
             <button type="button" data-test="create-spinner" onClick={() => { this.placeShape('spinner'); }}>Create A Spinner</button>
             <button type="button" data-test="create-spaceship" onClick={() => { this.placeShape('spaceship'); }}>Create A Spaceship</button>
+            <button type="button" data-test="create-bird" onClick={() => { this.placeShape('bird'); }}>Create A Bird</button>
           </div>
 
           <div>

@@ -20,14 +20,19 @@ describe('placingShapes', () => {
   let testCell5;
 
   beforeEach(() => {
-    testGridModel = new Grid(5);
+    testGridModel = new Grid(15);
     wrapper = mount(<App />);
     wrapper.setState({ model: testGridModel });
   });
 
   describe('placing whole spinners', () => {
-    test('a player places a spinner on the board at [2, 1], [2, 2] and [2, 3]', () => {
-      const spinnerCreator = findByTestAttr(wrapper, 'create-spinner');
+    let spinnerCreator;
+
+    beforeEach(() => {
+      spinnerCreator = findByTestAttr(wrapper, 'create-spinner');
+    });
+
+    test('a player places a spinner on the board at [2, 2]', () => {
       spinnerCreator.simulate('click');
 
       testCell = wrapper.find({ id: '22_cell' });
@@ -42,8 +47,7 @@ describe('placingShapes', () => {
       expect(testCell3.prop('cell').value).toEqual('*');
     });
 
-    test('a player places a spinner on the board at [0, 0], [0, 1] and [0, 2]', () => {
-      const spinnerCreator = findByTestAttr(wrapper, 'create-spinner');
+    test('a player places a spinner on the board at [0, 1]', () => {
       spinnerCreator.simulate('click');
 
       pressedCell = wrapper.find({ id: '01_cell' });
@@ -60,8 +64,13 @@ describe('placingShapes', () => {
   });
 
   describe('placing whole spaceships', () => {
-    test('a player places a spaceship on the board at [1, 3], [2, 1], [2, 3], [3, 2] and [3, 3]', () => {
-      const spaceshipCreator = findByTestAttr(wrapper, 'create-spaceship');
+    let spaceshipCreator;
+
+    beforeEach(() => {
+      spaceshipCreator = findByTestAttr(wrapper, 'create-spaceship');
+    });
+
+    test('a player places a spaceship on the board at [2, 2]', () => {
       spaceshipCreator.simulate('click');
 
       pressedCell = wrapper.find({ id: '22_cell' });
@@ -84,8 +93,7 @@ describe('placingShapes', () => {
       expect(pressedCell.prop('cell').value).toEqual('-');
     });
 
-    test('a player places a spaceship on the board at [1, 0], [2, 1], [0, 2], [1, 2] and [2, 2]', () => {
-      const spaceshipCreator = findByTestAttr(wrapper, 'create-spaceship');
+    test('a player places a spaceship on the board at [1, 1]', () => {
       spaceshipCreator.simulate('click');
 
       pressedCell = wrapper.find({ id: '11_cell' });
@@ -106,6 +114,31 @@ describe('placingShapes', () => {
       pressedCell = wrapper.find({ id: '11_cell' });
 
       expect(pressedCell.prop('cell').value).toEqual('-');
+    });
+  });
+
+  describe('placing whole birds', () => {
+    let birdCreator;
+
+    beforeEach(() => {
+      birdCreator = findByTestAttr(wrapper, 'create-bird');
+    });
+
+    test('a player places a bird on the board at [8, 9]', () => {
+      birdCreator.simulate('click');
+
+      pressedCell = wrapper.find({ id: '89_cell' });
+      pressedCell.simulate('click');
+
+      const birdCellIds = [
+        '97_cell', '107_cell', '68_cell', '78_cell', '88_cell', '108_cell',
+        '118_cell', '69_cell', '79_cell', '89_cell', '99_cell', '109_cell',
+        '710_cell', '810_cell', '910_cell',
+      ];
+
+      birdCellIds.forEach((id) => {
+        expect(wrapper.find({ id }).prop('cell').value).toEqual('*');
+      });
     });
   });
 });
