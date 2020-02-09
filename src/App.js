@@ -26,7 +26,7 @@ class App extends React.Component {
       });
       this.evolve();
     }
-    
+
     placeLiveCell = (coord) => {
       const updatedCoords = [...this.state.coords];
       updatedCoords.push(coord);
@@ -104,21 +104,23 @@ class App extends React.Component {
             playerTurn={this.state.playerTurn}
             onStateChange={this.handleCellState}
           />
-          Evolution Rate
-          <input
-            value={this.state.evolutionRate}
-            onChange={this.handleRateChange}
-            data-test="evolution-rate"
-          />
-          msec
-
-          Interations
-          <input
-            value={this.state.maxIterations}
-            onChange={this.handleIterationChange}
-            data-test="iterations"
-          />
-          sec
+          <div>
+            <span>Evolution Rate: </span>
+            <input
+              value={this.state.evolutionRate}
+              onChange={this.handleRateChange}
+              data-test="evolution-rate"
+            />
+            <span> msec </span>
+          </div>
+          <div>
+            <span> Iterations: </span>
+            <input
+              value={this.state.maxIterations}
+              onChange={this.handleIterationChange}
+              data-test="iterations"
+            />
+          </div>
           <button
             type="button"
             onClick={this.runGame}

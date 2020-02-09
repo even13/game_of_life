@@ -63,7 +63,7 @@ describe('<App />', () => {
     expect(updateRateBox.props().value).toEqual(50);
   });
 
-  it('renders an Run Time input box with default value of 30s', () => {
+  it('renders an Iterations input box with default value of 100 iterations', () => {
     const iterationsBox = findByTestAttr(wrapper, 'iterations');
 
     expect(iterationsBox).toHaveLength(1);
