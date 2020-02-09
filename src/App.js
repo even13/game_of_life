@@ -39,7 +39,7 @@ class App extends React.Component {
 
     handleCellState = (coord, isClicked) => {
       if (this.state.isPlacingShape) {
-        this.placeLiveCell([[2, 1], [2, 2], [2, 3]]);
+        this.placeLiveCell([[coord[0], coord[1] - 1], coord, [coord[0], coord[1] + 1]]);
       }
       if (isClicked) {
         this.placeDeadCell(coord);
