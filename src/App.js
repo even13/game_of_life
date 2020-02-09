@@ -38,8 +38,12 @@ class App extends React.Component {
     }
 
     handleCellState = (coord, isClicked) => {
-      if (this.state.isPlacingShape) {
+      if (this.state.isPlacingShape === 'spinner') {
+        console.log([[coord[0], coord[1] - 1], coord, [coord[0], coord[1] + 1]]);
         this.placeLiveCell([[coord[0], coord[1] - 1], coord, [coord[0], coord[1] + 1]]);
+      } else if (this.state.isPlacingShape === 'spaceship') {
+        // console.log([[coord[0], coord[1] - 1], coord, [coord[0], coord[1] + 1]]);
+        this.placeLiveCell([[1, 3], [2, 1], [2, 3], [3, 2], [3, 3]]);
       }
       if (isClicked) {
         this.placeDeadCell(coord);
@@ -65,8 +69,8 @@ class App extends React.Component {
       }
     }
 
-    toggleShapePlacer = () => {
-      this.setState({ isPlacingShape: true });
+    toggleShapePlacer = (shape) => {
+      this.setState({ isPlacingShape: shape });
     }
 
     render() {
@@ -80,7 +84,8 @@ class App extends React.Component {
           />
 
           <div>
-            <button type="button" data-test="create-spinner" onClick={this.toggleShapePlacer}>Create A Spinner</button>
+            <button type="button" data-test="create-spinner" onClick={() => { this.toggleShapePlacer('spinner') }}>Create A Spinner</button>
+            <button type="button" data-test="create-spaceship" onClick={() => { this.toggleShapePlacer('spaceship') }}>Create A Spaceship</button>
           </div>
           <button
             type="button"
