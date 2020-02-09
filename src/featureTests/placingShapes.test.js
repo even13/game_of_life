@@ -13,6 +13,7 @@ describe('placingShapes', () => {
   let wrapper;
   let testGridModel;
 
+  let pressedCell;
   let testCell;
   let testCell2;
   let testCell3;
@@ -46,8 +47,8 @@ describe('placingShapes', () => {
       const spinnerCreator = findByTestAttr(wrapper, 'create-spinner');
       spinnerCreator.simulate('click');
 
-      testCell = wrapper.find({ id: '01_cell' });
-      testCell.simulate('click');
+      pressedCell = wrapper.find({ id: '01_cell' });
+      pressedCell.simulate('click');
 
       testCell = wrapper.find({ id: '00_cell' });
       testCell2 = wrapper.find({ id: '01_cell' });
@@ -64,9 +65,9 @@ describe('placingShapes', () => {
       const spaceshipCreator = findByTestAttr(wrapper, 'create-spaceship');
       spaceshipCreator.simulate('click');
 
-      testCell = wrapper.find({ id: '22_cell' });
-      testCell.simulate('click');
-
+      pressedCell = wrapper.find({ id: '22_cell' });
+      pressedCell.simulate('click');
+      
       testCell = wrapper.find({ id: '13_cell' });
       testCell2 = wrapper.find({ id: '21_cell' });
       testCell3 = wrapper.find({ id: '23_cell' });
@@ -78,6 +79,10 @@ describe('placingShapes', () => {
       expect(testCell3.prop('cell').value).toEqual('*');
       expect(testCell4.prop('cell').value).toEqual('*');
       expect(testCell5.prop('cell').value).toEqual('*');
+      
+      pressedCell = wrapper.find({ id: '22_cell' });
+
+      expect(pressedCell.prop('cell').value).toEqual('-');
     });
   });
 });
