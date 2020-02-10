@@ -52,8 +52,8 @@ class Game extends React.Component {
 
     handleCellState = (coord, isClicked) => {
       if (this.state.isPlacingShape) {
-        const shape = Shape.create(this.state.isPlacingShape, coord);
-        this.placeLiveCell(shape);
+        const shape = new Shape();
+        this.placeLiveCell(shape.create(this.state.isPlacingShape, coord));
         return;
       } if (isClicked) {
         this.placeDeadCell(coord);

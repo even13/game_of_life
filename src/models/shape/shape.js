@@ -1,28 +1,45 @@
 class Shape {
-  static create = (type, coord) => {
+
+  create = (type, coord, angle = 180) => {
     switch (type) {
-      case 'spinner': return Shape.spinner(coord);
-      case 'spaceship': return Shape.spaceship(coord);
-      case 'bird': return Shape.bird(coord);
+      case 'spinner': return this.spinner(coord, angle);
+      case 'spaceship': return this.spaceship(coord, angle);
+      case 'bird': return this.bird(coord, angle);
       default: return [coord];
     }
   }
 
-  static spinner = (coord) => [[coord[0], coord[1] - 1], coord, [coord[0], coord[1] + 1]];
+  spinner = (coord, angle) => {
+    const elmOffs = [[0, -1], [0, 0], [0, 1]];
+    return this.rotate(coord, elmOffs, angle);
+  };
 
-  static spaceship = (coord) => ([
-    [coord[0], coord[1] - 1], [coord[0] + 1, coord[1]],
-    [coord[0] - 1, coord[1] + 1], [coord[0], coord[1] + 1],
-    [coord[0] + 1, coord[1] + 1],
-  ]);
+  spaceship = (coord, angle) => {
+    const elmOffs = [[0, -1], [1, 0], [-1, 1], [0, 1], [1, 1]];
+    return this.rotate(coord, elmOffs, angle);
+  };
 
-  static bird = (coord) => ([
-    [coord[0] + 1, coord[1] - 2], [coord[0] + 2, coord[1] - 2], [coord[0] - 2, coord[1] - 1],
-    [coord[0] - 1, coord[1] - 1], [coord[0], coord[1] - 1], [coord[0] + 2, coord[1] - 1],
-    [coord[0] + 3, coord[1] - 1], [coord[0] - 2, coord[1]], [coord[0] - 1, coord[1]],
-    [coord[0], coord[1]], [coord[0] + 1, coord[1]], [coord[0] + 2, coord[1]],
-    [coord[0] - 1, coord[1] + 1], [coord[0], coord[1] + 1], [coord[0] + 1, coord[1] + 1],
-  ]);
+  bird = (coord, angle) => {
+    const elmOffs = [
+      [1, -2], [2, -2], [-2, -1], [-1, -1], [0, -1],
+      [2, -1], [3, -1], [-2, 0], [-1, 0], [0, 0], [1, 0],
+      [2, 0], [-1, 1], [0, 1], [1, 1],
+    ];
+    return this.rotate(coord, elmOffs, angle);
+  };
+
+  rotate = (coord, elmOffs, angle) => {
+    const rads = (angle * Math.PI) / 180;
+    const coords = [];
+
+    elmOffs.forEach((element) => {
+      const xCoord = coord[0] + (element[0] * Math.cos(rads) - element[1] * Math.sin(rads));
+      const yCoord = coord[1] + (element[1] * Math.cos(rads) + element[0] * Math.sin(rads));
+      coords.push([xCoord, yCoord]);
+    });
+
+    return coords;
+  };
 }
 
 export default Shape;
