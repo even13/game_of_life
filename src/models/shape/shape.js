@@ -1,6 +1,5 @@
 class Shape {
-
-  create = (type, coord, angle = 180) => {
+  create = (type, coord, angle) => {
     switch (type) {
       case 'spinner': return this.spinner(coord, angle);
       case 'spaceship': return this.spaceship(coord, angle);
