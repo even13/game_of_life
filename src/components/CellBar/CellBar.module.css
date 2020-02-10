@@ -1,0 +1,22 @@
+.CellBar {
+    border: 1px solid red;
+    width: 100px;
+    display: flex;
+    justify-content: center;
+}
+
+.Gauge {
+    width: 50px;
+    height: 100%;
+    border: 1px black solid;
+    border-radius: 35px;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+}
+
+.Bar {
+    width: 100%;
+    background-color: blueviolet;
+    transition: 0.2s;
+}
