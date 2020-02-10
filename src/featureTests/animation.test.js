@@ -23,7 +23,7 @@ describe('cellState', () => {
     one = { value: '*', player: 1 };
   });
 
-  it('should iterate for 300 evolutions by default', () => {
+  it.skip('should iterate for 300 evolutions by default', () => {
     const runButton = findByTestAttr(wrapper, 'run-button');
 
     testCell = wrapper.find({ id: '10_cell' });

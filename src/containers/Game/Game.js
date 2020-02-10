@@ -5,6 +5,9 @@ import Grid from '../../models/grid/grid';
 import Shape from '../../models/shape/shape';
 import UserControls from '../../components/UserControls/UserControls';
 
+// taken from https://stackoverflow.com/questions/951021/what-is-the-javascript-version-of-sleep
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
 class Game extends React.Component {
     state = {
       model: new Grid(30),
@@ -20,12 +23,12 @@ class Game extends React.Component {
       this.evolve();
     }
 
-    runGame = () => {
-      this.setState({
-        iterationCount: 0,
-      });
-      this.evolve();
-    }
+    // runGame = () => {
+    //   this.setState({
+    //     iterationCount: 0,
+    //   });
+    //   this.evolve();
+    // }
 
     placeLiveCell = (coord) => {
       const updatedCoords = [...this.state.coords];
@@ -69,13 +72,22 @@ class Game extends React.Component {
         model: updatedModel,
         coords: updatedModel.getLiveCellCoordinates(),
       }));
-
-      window.setTimeout(() => {
-        this.setState((prevState) => ({ iterationCount: prevState.iterationCount + 1 }));
-        if (this.state.iterationCount === this.state.maxIterations) { this.render(); return; }
-        this.evolve();
-      }, this.state.evolutionRate);
     }
+
+      run = async (iterations) => {
+        for (let i = 0; i < iterations; i++) {
+          await sleep(500);
+          console.log("here")
+          this.evolve();
+        }
+      }
+
+    //   window.setTimeout(() => {
+    //     this.setState((prevState) => ({ iterationCount: prevState.iterationCount + 1 }));
+    //     if (this.state.iterationCount === this.state.maxIterations) { this.render(); return; }
+    //     this.evolve();
+    //   }, this.state.evolutionRate);
+    // }
 
     togglePlayer = () => {
       if (this.state.playerTurn === 1) {
@@ -119,7 +131,7 @@ class Game extends React.Component {
             placeShape={this.placeShape}
             onOneEvolution={this.oneEvolution}
             onTogglePlayer={this.togglePlayer}
-            onRunGame={this.runGame}
+            onRun={() => this.run(3)}
           />
         </div>
       );
