@@ -110,7 +110,7 @@ class App extends React.Component {
             playerTurn={this.state.playerTurn}
             onStateChange={this.handleCellState}
           />
-
+        
           <UserControls
             countValue={this.state.maxIterations}
             rateValue={this.state.evolutionRate}
