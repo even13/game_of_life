@@ -1,7 +1,7 @@
 import React from 'react';
 import Enzyme, { mount } from 'enzyme';
 import EnzymeAdapter from 'enzyme-adapter-react-16';
-import App from '../App';
+import Game from '../containers/Game/Game';
 import { findByTestAttr } from '../test-helper';
 import Grid from '../models/grid/grid';
 
@@ -23,7 +23,7 @@ describe('flagCells', () => {
   let playerToggle;
 
   beforeEach(() => {
-    wrapper = mount(<App />);
+    wrapper = mount(<Game />);
     wrapper.setState({ model: testGridModel });
     flag = { value: 'f', player: null };
     testCell = { value: '*', player: null };
@@ -32,7 +32,7 @@ describe('flagCells', () => {
 
   it('cannot be replaced with a live cell', () => {
     testGridModel.placeFlag([[0, 4]]);
-    wrapper = mount(<App />);
+    wrapper = mount(<Game />);
     wrapper.setState({ model: testGridModel });
 
     testFlag = wrapper.find({ id: '04_cell' });
@@ -47,7 +47,7 @@ describe('flagCells', () => {
   describe('multiple flags', () => {
     test('a grid can hold flags at [2, 2], [3, 3] and [0, 1]', () => {
       testGridModel.placeFlag([[2, 2], [3, 3], [0, 1]]);
-      wrapper = mount(<App />);
+      wrapper = mount(<Game />);
       wrapper.setState({ model: testGridModel });
 
       testFlag = wrapper.find({ id: '22_cell' });
@@ -63,7 +63,7 @@ describe('flagCells', () => {
   describe('flag behaviour during evolution', () => {
     test('a flag with no neighbours survives an evolution', () => {
       testGridModel.placeFlag([[2, 2]]);
-      wrapper = mount(<App />);
+      wrapper = mount(<Game />);
       wrapper.setState({ model: testGridModel });
 
       testFlag = wrapper.find({ id: '22_cell' });
@@ -77,7 +77,7 @@ describe('flagCells', () => {
 
     test('multiple flags with no neighbour survive and evolution', () => {
       testGridModel.placeFlag([[2, 2], [0, 1]]);
-      wrapper = mount(<App />);
+      wrapper = mount(<Game />);
       wrapper.setState({ model: testGridModel });
 
       testFlag = wrapper.find({ id: '22_cell' });
@@ -94,7 +94,7 @@ describe('flagCells', () => {
 
     test('a flag can be captured by player 1', () => {
       testGridModel.placeFlag([[2, 2]]);
-      wrapper = mount(<App />);
+      wrapper = mount(<Game />);
       wrapper.setState({ model: testGridModel });
 
       testFlag = wrapper.find({ id: '22_cell' });
@@ -111,7 +111,7 @@ describe('flagCells', () => {
 
     test('multiple flags can be captured by player 1', () => {
       testGridModel.placeFlag([[0, 0], [4, 4]]);
-      wrapper = mount(<App />);
+      wrapper = mount(<Game />);
       wrapper.setState({ model: testGridModel });
 
       testCell = wrapper.find({ id: '10_cell' });
@@ -134,7 +134,7 @@ describe('flagCells', () => {
       // flag automatically given to player one on the grid:
       testGridModel.placeFlag([[2, 2]], 1);
 
-      wrapper = mount(<App />);
+      wrapper = mount(<Game />);
       wrapper.setState({ model: testGridModel });
       playerToggle = findByTestAttr(wrapper, 'player-toggle');
       playerToggle.simulate('click');

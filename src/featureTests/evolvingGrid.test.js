@@ -1,7 +1,7 @@
 import React from 'react';
 import Enzyme, { mount } from 'enzyme';
 import EnzymeAdapter from 'enzyme-adapter-react-16';
-import App from '../App';
+import Game from '../containers/Game/Game';
 import { findByTestAttr } from '../test-helper';
 
 import Grid from '../models/grid/grid';
@@ -18,7 +18,7 @@ describe('evolvingGrid', () => {
   beforeEach(() => {
     empty = { value: '-', player: null };
     one = { value: '*', player: 1 };
-    wrapper = mount(<App />);
+    wrapper = mount(<Game />);
     wrapper.setState({ model: testGridModel });
     wrapper.find({ id: '12_cell' }).simulate('click');
     wrapper.find({ id: '22_cell' }).simulate('click');

@@ -1,7 +1,7 @@
 import React from 'react';
 import Enzyme, { mount } from 'enzyme';
 import EnzymeAdapter from 'enzyme-adapter-react-16';
-import App from '../App';
+import Game from '../containers/Game/Game';
 import { findByTestAttr } from '../test-helper';
 import Grid from '../models/grid/grid';
 
@@ -15,7 +15,7 @@ describe('twoPlayers', () => {
   const testGridModel = new Grid();
 
   beforeEach(() => {
-    wrapper = mount(<App />);
+    wrapper = mount(<Game />);
     wrapper.setState({ model: testGridModel });
   });
 
@@ -53,7 +53,7 @@ describe('twoPlayers', () => {
   });
 
   test('cell keeps track of owner with each evolution', () => {
-    wrapper = mount(<App />);
+    wrapper = mount(<Game />);
     testCell = wrapper.find({ id: '2020_cell' });
     testCell2 = wrapper.find({ id: '2021_cell' });
     let testCell3 = wrapper.find({ id: '2022_cell' });

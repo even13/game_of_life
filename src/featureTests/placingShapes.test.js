@@ -1,7 +1,7 @@
 import React from 'react';
 import Enzyme, { mount } from 'enzyme';
 import EnzymeAdapter from 'enzyme-adapter-react-16';
-import App from '../App';
+import Game from '../containers/Game/Game';
 import { findByTestAttr } from '../test-helper';
 
 import Grid from '../models/grid/grid';
@@ -23,7 +23,7 @@ describe('placingShapes', () => {
 
   beforeEach(() => {
     testGridModel = new Grid(15);
-    wrapper = mount(<App />);
+    wrapper = mount(<Game />);
     wrapper.setState({ model: testGridModel });
   });
 
