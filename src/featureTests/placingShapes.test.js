@@ -19,6 +19,8 @@ describe('placingShapes', () => {
   let testCell4;
   let testCell5;
 
+  let spinnerCreator;
+
   beforeEach(() => {
     testGridModel = new Grid(15);
     wrapper = mount(<App />);
@@ -26,8 +28,6 @@ describe('placingShapes', () => {
   });
 
   describe('placing whole spinners', () => {
-    let spinnerCreator;
-
     beforeEach(() => {
       spinnerCreator = findByTestAttr(wrapper, 'create-spinner');
     });
@@ -155,6 +155,28 @@ describe('placingShapes', () => {
 
       birdCellIds.forEach((id) => {
         expect(wrapper.find({ id }).prop('cell').value).toEqual('*');
+      });
+    });
+
+    describe('placing a single cell after placing a shape', () => {
+      test('a player places a spinner on the board at [3, 3] then places a single cell at [9, 9]', () => {
+        spinnerCreator.simulate('click');
+
+        pressedCell = wrapper.find({ id: '33_cell' });
+        pressedCell.simulate('click');
+
+        spinnerCreator.simulate('click'); // click off spinner-creator
+
+        let singleCell = wrapper.find({ id: '99_cell' });
+        singleCell.simulate('click');
+
+        testCell = wrapper.find({ id: '98_cell' });
+        singleCell = wrapper.find({ id: '99_cell' });
+        testCell2 = wrapper.find({ id: '910_cell' });
+
+        expect(testCell.prop('cell').value).toEqual('-');
+        expect(testCell2.prop('cell').value).toEqual('-');
+        expect(singleCell.prop('cell').value).toEqual('*');
       });
     });
   });

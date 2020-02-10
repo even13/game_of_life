@@ -3,10 +3,11 @@ import './App.css';
 import GridDisplay from './components/GridDisplay/GridDisplay';
 import Grid from './models/grid/grid';
 import Shape from './models/shape/shape';
+import UserControls from './components/UserControls/UserControls';
 
 class App extends React.Component {
     state = {
-      model: new Grid(50),
+      model: new Grid(30),
       coords: [],
       playerTurn: 1,
       isPlacingShape: false,
@@ -109,28 +110,17 @@ class App extends React.Component {
             playerTurn={this.state.playerTurn}
             onStateChange={this.handleCellState}
           />
-          {/* <ShapeChoices /> */}
-          <div id="shape choices">
-            <button type="button" data-test="create-spinner" onClick={() => { this.placeShape('spinner'); }}>Create A Spinner</button>
-            <button type="button" data-test="create-spaceship" onClick={() => { this.placeShape('spaceship'); }}>Create A Spaceship</button>
-            <button type="button" data-test="create-bird" onClick={() => { this.placeShape('bird'); }}>Create A Bird</button>
-          </div>
 
-          {/* <EvolutionController /> */}
-          <div>Evolution Rate</div>
-          <input value={this.state.evolutionRate} onChange={this.handleRateChange} data-test="evolution-rate" />
-          <span> milliseconds</span>
-
-          <div>Iterations</div>
-          <input value={this.state.maxIterations} onChange={this.handleIterationChange} data-test="iterations" />
-          <span> /sec</span>
-
-          {/* <UserControls /> */}
-          <div>
-            <button type="button" onClick={this.oneEvolution} data-test="evolution-button">Click To Evolve</button>
-            <button type="button" onClick={this.togglePlayer} data-test="player-toggle">Click To Toggle Player</button>
-            <button type="button" onClick={this.runGame} data-test="run-button">Run</button>
-          </div>
+          <UserControls
+            countValue={this.state.maxIterations}
+            rateValue={this.state.evolutionRate}
+            onRateChange={this.handleRateChange}
+            onCountChange={this.handleIterationChange}
+            placeShape={this.placeShape}
+            onOneEvolution={this.oneEvolution}
+            onTogglePlayer={this.togglePlayer}
+            onRunGame={this.runGame}
+          />
         </div>
       );
     }
