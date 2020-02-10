@@ -28,8 +28,7 @@ class App extends React.Component {
     }
 
     placeLiveCell = (coord) => {
-      const updatedCoords = [...this.state.coords];
-      updatedCoords.push(coord);
+      const updatedCoords = [...this.state.coords, coord];
       const updatedModel = this.state.model;
       updatedModel.placeCells([coord], this.state.playerTurn);
 
@@ -110,7 +109,7 @@ class App extends React.Component {
             playerTurn={this.state.playerTurn}
             onStateChange={this.handleCellState}
           />
-        
+
           <UserControls
             countValue={this.state.maxIterations}
             rateValue={this.state.evolutionRate}
