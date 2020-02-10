@@ -2,15 +2,15 @@ import React from 'react';
 import './App.css';
 import GridDisplay from './components/GridDisplay/GridDisplay';
 import Grid from './models/grid/grid';
-
-// const instance = new Grid(5);
-// instance.placeFlag([[3, 2]]);
+import Shape from './models/shape/shape';
+import UserControls from './components/UserControls/UserControls';
 
 class App extends React.Component {
     state = {
-      model: new Grid(),
+      model: new Grid(30),
       coords: [],
       playerTurn: 1,
+      isPlacingShape: false,
       evolutionRate: 50,
       maxIterations: 100,
       iterationCount: 0,
@@ -51,7 +51,11 @@ class App extends React.Component {
     }
 
     handleCellState = (coord, isClicked) => {
-      if (isClicked) {
+      if (this.state.isPlacingShape) {
+        const shape = Shape.create(this.state.isPlacingShape, coord);
+        this.placeLiveCell(shape);
+        return;
+      } if (isClicked) {
         this.placeDeadCell(coord);
       } else {
         this.placeLiveCell(coord);
@@ -68,12 +72,7 @@ class App extends React.Component {
 
       window.setTimeout(() => {
         this.setState((prevState) => ({ iterationCount: prevState.iterationCount + 1 }));
-        if (this.state.iterationCount === this.state.maxIterations) {
-          this.setState({
-          });
-          return;
-        }
-
+        if (this.state.iterationCount === this.state.maxIterations) { this.render(); return; }
         this.evolve();
       }, this.state.evolutionRate);
     }
@@ -83,6 +82,14 @@ class App extends React.Component {
         this.setState({ playerTurn: 2 });
       } else {
         this.setState({ playerTurn: 1 });
+      }
+    }
+
+    placeShape = (shape) => {
+      if (this.state.isPlacingShape === shape) {
+        this.setState({ isPlacingShape: false });
+      } else {
+        this.setState({ isPlacingShape: shape });
       }
     }
 
@@ -96,7 +103,6 @@ class App extends React.Component {
 
     render() {
       return (
-
         <div className="App" data-test="component-app">
           <GridDisplay
             data-test="component-grid-display"
@@ -104,44 +110,17 @@ class App extends React.Component {
             playerTurn={this.state.playerTurn}
             onStateChange={this.handleCellState}
           />
-          <div>
-            <span>Evolution Rate: </span>
-            <input
-              value={this.state.evolutionRate}
-              onChange={this.handleRateChange}
-              data-test="evolution-rate"
-            />
-            <span> msec </span>
-          </div>
-          <div>
-            <span> Iterations: </span>
-            <input
-              value={this.state.maxIterations}
-              onChange={this.handleIterationChange}
-              data-test="iterations"
-            />
-          </div>
-          <button
-            type="button"
-            onClick={this.runGame}
-            data-test="run-button"
-          >
-            Run
-          </button>
-          <button
-            type="button"
-            onClick={this.oneEvolution}
-            data-test="evolution-button"
-          >
-            Click To Evolve
-          </button>
-          <button
-            type="button"
-            onClick={this.togglePlayer}
-            data-test="player-toggle"
-          >
-            Click To Toggle Player
-          </button>
+        
+          <UserControls
+            countValue={this.state.maxIterations}
+            rateValue={this.state.evolutionRate}
+            onRateChange={this.handleRateChange}
+            onCountChange={this.handleIterationChange}
+            placeShape={this.placeShape}
+            onOneEvolution={this.oneEvolution}
+            onTogglePlayer={this.togglePlayer}
+            onRunGame={this.runGame}
+          />
         </div>
       );
     }
