@@ -4,9 +4,10 @@ import EvolutionControls from '../EvolutionControls/EvolutionControls';
 
 const UserControls = (props) => (
   <div data-test="component-user-controls">
-    <ShapeControls 
+    <ShapeControls
       placeShape={props.placeShape}
       rotateShape={props.rotateShape}
+      orientation={props.orientation}
     />
     <EvolutionControls
       countValue={props.countValue}

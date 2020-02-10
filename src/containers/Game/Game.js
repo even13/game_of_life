@@ -95,7 +95,11 @@ class Game extends React.Component {
     }
 
     rotateShape = () => {
-      this.setState((prevState) => ({ shapeOrientation: prevState.shapeOrientation + 90 }));
+      if (this.state.shapeOrientation === 270) {
+        this.setState({ shapeOrientation: 0 });
+      } else {
+        this.setState((prevState) => ({ shapeOrientation: prevState.shapeOrientation + 90 }));
+      }
     }
 
     handleRateChange = (event) => {
@@ -126,6 +130,7 @@ class Game extends React.Component {
             onOneEvolution={this.oneEvolution}
             onTogglePlayer={this.togglePlayer}
             onRunGame={this.runGame}
+            orientation={this.state.shapeOrientation}
           />
         </div>
       );
