@@ -1,7 +1,7 @@
 import React from 'react';
 import Enzyme, { mount } from 'enzyme';
 import EnzymeAdapter from 'enzyme-adapter-react-16';
-import App from '../App';
+import Game from '../containers/Game/Game';
 import { findByTestAttr } from '../test-helper';
 
 import Grid from '../models/grid/grid';
@@ -21,14 +21,14 @@ describe('testCellInteraction', () => {
 
   beforeEach(() => {
     testGridModel = new Grid(5);
-    wrapper = mount(<App />);
+    wrapper = mount(<Game />);
     wrapper.setState({ model: testGridModel });
   });
 
   describe('a player 1 spinner next to a player 1 flag', () => {
     it('persists after two generations as usual', () => {
       testGridModel.placeFlag([[3, 2]], 1);
-      wrapper = mount(<App />);
+      wrapper = mount(<Game />);
       wrapper.setState({ model: testGridModel });
 
       testCell = wrapper.find({ id: '21_cell' });
@@ -67,7 +67,7 @@ describe('testCellInteraction', () => {
   describe('a player 2 spinner next to a player 1 flag', () => {
     it('a player 1 flag should destroy a player 2 spinner after 2 generations', () => {
       testGridModel.placeFlag([[3, 2]], 1);
-      wrapper = mount(<App />);
+      wrapper = mount(<Game />);
       wrapper.setState({ model: testGridModel });
 
       playerToggle = findByTestAttr(wrapper, 'player-toggle');

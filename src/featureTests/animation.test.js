@@ -1,7 +1,7 @@
 import React from 'react';
 import Enzyme, { mount } from 'enzyme';
 import EnzymeAdapter from 'enzyme-adapter-react-16';
-import App from '../App';
+import Game from '../containers/Game/Game';
 // import { setup, findByTestAttr } from '../test-helper';
 import Grid from '../models/grid/grid';
 import { findByTestAttr } from '../test-helper';
@@ -18,7 +18,7 @@ describe('cellState', () => {
   let one;
 
   beforeEach(() => {
-    wrapper = mount(<App />);
+    wrapper = mount(<Game />);
     wrapper.setState({ model: testGridModel });
     one = { value: '*', player: 1 };
   });
