@@ -20,9 +20,6 @@ before_script:
 script:
   - npm test
   - npm test -- --coverage
-  - npm run build
-  - npm install -g serve
-  - serve -s build
 
 after_script:
   - ./cc-test-reporter after-build -t lcov --exit-code $TRAVIS_TEST_RESULT
