@@ -14,6 +14,7 @@ class Game extends React.Component {
       evolutionRate: 50,
       maxIterations: 100,
       iterationCount: 0,
+      shapeOrientation: 0,
     }
 
     oneEvolution = () => {
@@ -52,8 +53,8 @@ class Game extends React.Component {
 
     handleCellState = (coord, isClicked) => {
       if (this.state.isPlacingShape) {
-        const shape = Shape.create(this.state.isPlacingShape, coord);
-        this.placeLiveCell(shape);
+        const shape = new Shape();
+        this.placeLiveCell(shape.create(this.state.isPlacingShape, coord, this.state.shapeOrientation));
         return;
       } if (isClicked) {
         this.placeDeadCell(coord);
@@ -93,6 +94,14 @@ class Game extends React.Component {
       }
     }
 
+    rotateShape = () => {
+      if (this.state.shapeOrientation === 270) {
+        this.setState({ shapeOrientation: 0 });
+      } else {
+        this.setState((prevState) => ({ shapeOrientation: prevState.shapeOrientation + 90 }));
+      }
+    }
+
     handleRateChange = (event) => {
       this.setState({ evolutionRate: +event.target.value });
     }
@@ -117,9 +126,11 @@ class Game extends React.Component {
             onRateChange={this.handleRateChange}
             onCountChange={this.handleIterationChange}
             placeShape={this.placeShape}
+            rotateShape={this.rotateShape}
             onOneEvolution={this.oneEvolution}
             onTogglePlayer={this.togglePlayer}
             onRunGame={this.runGame}
+            orientation={this.state.shapeOrientation}
           />
         </div>
       );
