@@ -92,4 +92,14 @@ describe('<GameForm />', () => {
       expect(wrapper.state('gameForm').gameLength.validation.min).toEqual('100');
     });
   });
+
+  describe('gameSpeed', () => {
+    it('has a maximum limit of 2', () => {
+      expect(wrapper.state('gameForm').gameSpeed.validation.max).toEqual('2');
+    });
+
+    it('has a minimum limit of 5000', () => {
+      expect(wrapper.state('gameForm').gameSpeed.validation.min).toEqual('5000');
+    });
+  });
 });
