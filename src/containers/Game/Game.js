@@ -14,6 +14,7 @@ class Game extends React.Component {
     evolutionRate: 50,
     maxIterations: 100,
     iterationCount: 0,
+    shapeOrientation: 0,
   }
 
   oneEvolution = () => {
@@ -25,6 +26,29 @@ class Game extends React.Component {
       iterationCount: 0,
     });
     this.evolve();
+  }
+
+  evolve = () => {
+    const updatedModel = { ...this.state.model };
+    updatedModel.evolve();
+    this.setState(() => ({
+      model: updatedModel,
+      coords: updatedModel.getLiveCellCoordinates(),
+    }));
+
+    window.setTimeout(() => {
+      this.setState((prevState) => ({ iterationCount: prevState.iterationCount + 1 }));
+      if (this.state.iterationCount === this.state.maxIterations) { this.render(); return; }
+      this.evolve();
+    }, this.state.evolutionRate);
+  }
+
+  togglePlayer = () => {
+    if (this.state.playerTurn === 1) {
+      this.setState({ playerTurn: 2 });
+    } else {
+      this.setState({ playerTurn: 1 });
+    }
   }
 
   placeLiveCell = (coord) => {
@@ -59,14 +83,13 @@ class Game extends React.Component {
 
   handleCellState = (coord, isClicked) => {
     if (this.state.isPlacingShape) {
-      const shape = Shape.create(this.state.isPlacingShape, coord);
-      this.placeLiveCell(shape);
+      const shape = new Shape();
+      this.placeLiveCell(shape.create(this.state.isPlacingShape, coord, this.state.shapeOrientation));
       return;
     } if (isClicked) {
-      this.placeDeadCell([coord]);
-      // keeps track of how many live cells the user removed on grid pre-game
+      this.placeDeadCell(coord);
     } else {
-      this.placeLiveCell([coord]);
+      this.placeLiveCell(coord);
     }
   }
 
@@ -101,6 +124,14 @@ class Game extends React.Component {
     }
   }
 
+  rotateShape = () => {
+    if (this.state.shapeOrientation === 270) {
+      this.setState({ shapeOrientation: 0 });
+    } else {
+      this.setState((prevState) => ({ shapeOrientation: prevState.shapeOrientation + 90 }));
+    }
+  }
+
   handleRateChange = (event) => {
     this.setState({ evolutionRate: +event.target.value });
   }
@@ -111,7 +142,7 @@ class Game extends React.Component {
 
   render() {
     return (
-      <div className="App" data-test="component-game">
+     <div className="App" data-test="component-game">
         <GridDisplay
           data-test="component-grid-display"
           model={this.state.model}
@@ -125,9 +156,11 @@ class Game extends React.Component {
           onRateChange={this.handleRateChange}
           onCountChange={this.handleIterationChange}
           placeShape={this.placeShape}
+          rotateShape={this.rotateShape}
           onOneEvolution={this.oneEvolution}
           onTogglePlayer={this.togglePlayer}
           onRunGame={this.runGame}
+          orientation={this.state.shapeOrientation}
         />
       </div>
     );
