@@ -9,7 +9,10 @@ class GameForm extends React.Component {
     gameForm: {
       playerOneName: '',
       playerTwoName: '',
+      gridSize: '',
       numberOfFlags: '',
+      gameLength: '',
+      gameSpeed: '',
     },
   }
 
@@ -28,6 +31,7 @@ class GameForm extends React.Component {
       <div className={Classes.GameForm} data-test="component-game-form">
         <form>
           {this.renderInputs()}
+          <input type='submit' id='submit' />
         </form>
       </div>
     );

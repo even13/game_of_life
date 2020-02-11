@@ -25,10 +25,34 @@ describe('<GameForm />', () => {
     expect(playerOneName).toHaveLength(1);
     expect(playerTwoName).toHaveLength(1);
   });
-  
+
   it('renders a number of flags slider', () => {
     const numberOfFlags = wrapper.find({ id: 'numberOfFlags' });
-    
+
+    expect(numberOfFlags).toHaveLength(1);
+  });
+
+  it('renders a grid-size slider', () => {
+    const numberOfFlags = wrapper.find({ id: 'gridSize' });
+
+    expect(numberOfFlags).toHaveLength(1);
+  });
+
+  it('renders a game length slider', () => {
+    const numberOfFlags = wrapper.find({ id: 'gameLength' });
+
+    expect(numberOfFlags).toHaveLength(1);
+  });
+
+  it('renders a game speed slider', () => {
+    const numberOfFlags = wrapper.find({ id: 'gameSpeed' });
+
+    expect(numberOfFlags).toHaveLength(1);
+  });
+
+  it('renders a submit button', () => {
+    const numberOfFlags = wrapper.find({ id: 'submit' });
+
     expect(numberOfFlags).toHaveLength(1);
   });
 });
