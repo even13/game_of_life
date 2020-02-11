@@ -34,6 +34,10 @@ class GameForm extends React.Component {
       gameLength: {
         type: 'range',
         value: '',
+        validation: {
+          max: '10000',
+          min: '100',
+        },
       },
       gameSpeed: {
         type: 'range',

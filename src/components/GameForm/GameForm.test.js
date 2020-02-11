@@ -82,4 +82,14 @@ describe('<GameForm />', () => {
       expect(wrapper.state('gameForm').numberOfFlags.validation.min).toEqual('4');
     });
   });
+
+  describe('gameLength', () => {
+    it('has a maximum limit of 10,000', () => {
+      expect(wrapper.state('gameForm').gameLength.validation.max).toEqual('10000');
+    });
+
+    it('has a minimum limit of 100', () => {
+      expect(wrapper.state('gameForm').gameLength.validation.min).toEqual('100');
+    });
+  });
 });
