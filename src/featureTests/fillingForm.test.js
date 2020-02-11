@@ -36,4 +36,12 @@ describe('fillingForm', () => {
       expect(wrapper.state('gameForm').playerTwoName.value).toEqual('Andrew');
     });
   });
+
+  it('takes information for a grid size of 10 x 10', async () => {
+    const gridSize = wrapper.find({ id: 'gridSize' });
+    await gridSize.simulate('change', { target: { value: '10' } });
+    setTimeout(() => {
+      expect(wrapper.state('gameForm').gridSize.value).toEqual('10');
+    });
+  });
 });

@@ -18,6 +18,10 @@ class GameForm extends React.Component {
       gridSize: {
         type: 'range',
         value: '',
+        validation: {
+          max: '70',
+          min: '10',
+        },
       },
       numberOfFlags: {
         type: 'range',

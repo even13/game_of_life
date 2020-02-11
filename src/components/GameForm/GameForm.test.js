@@ -62,4 +62,14 @@ describe('<GameForm />', () => {
     expect(submitButton).toHaveLength(1);
     expect(submitButton.prop('type')).toEqual('submit');
   });
+  
+  describe('gridSize', () => {
+    it('has a maximum limit of 70 x 70', async () => {
+      expect(wrapper.state('gameForm').gridSize.validation.max).toEqual('70');
+    });
+
+    it('has a maximum limit of 10 x 10', async () => {
+      expect(wrapper.state('gameForm').gridSize.validation.min).toEqual('10');
+    });
+  });
 });
