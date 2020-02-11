@@ -13,7 +13,7 @@ class ShapeControls extends React.Component {
   handleClick = (shape) => {
     const shapeModel = new Shape();
     const shapeDisplay = new Grid(9);
-    shapeDisplay.placeCells(shapeModel.create(shape, [4, 4], this.state.currentShapeOrientation));
+    shapeDisplay.placeCells(shapeModel.create(shape, [4, 4], this.props.orientation));
     this.setState({
       shapeDisplay,
       currentDisplayedShape: shape,
@@ -21,18 +21,13 @@ class ShapeControls extends React.Component {
     this.props.placeShape(shape);
   }
 
-  handleRotation = () => {
-    this.props.rotateShape();
-    const shapeModel = new Shape().create(this.state.currentDisplayedShape, [4, 4], this.state.currentShapeOrientation);
-    const shapeDisplay = new Grid(9);
-    shapeDisplay.placeCells(shapeModel);
-    this.setState((prevState) => {
-      const newShapeOrientation = (prevState.currentShapeOrientation + 90) % 360;
-      return {
-        shapeDisplay,
-        currentShapeOrientation: newShapeOrientation,
-      };
-    });
+  handleRotation = async () => {
+    await this.props.rotateShape();
+    console.log(this.props.orientation)
+    const shapeModel = new Shape().create(this.state.currentDisplayedShape, [4, 4], this.props.orientation);
+    const updateShapeDisplay = new Grid(9);
+    updateShapeDisplay.placeCells(shapeModel);
+    this.setState({ shapeDisplay: updateShapeDisplay })
   }
 
   render() {
@@ -50,6 +45,5 @@ class ShapeControls extends React.Component {
     );
   }
 }
-
 
 export default ShapeControls;
