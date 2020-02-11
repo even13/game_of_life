@@ -81,6 +81,10 @@ describe('<GameForm />', () => {
     it('has a minimum limit of 4', () => {
       expect(wrapper.state('gameForm').numberOfFlags.validation.min).toEqual('4');
     });
+
+    it('has a step configuration of 4 flag intervals', () => {
+      expect(wrapper.state('gameForm').numberOfFlags.config.step).toEqual('4');
+    });
   });
 
   describe('gameLength', () => {

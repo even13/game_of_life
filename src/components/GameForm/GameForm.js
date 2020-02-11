@@ -22,6 +22,7 @@ class GameForm extends React.Component {
           max: '70',
           min: '10',
         },
+        config: {},
       },
       numberOfFlags: {
         type: 'range',
@@ -29,6 +30,9 @@ class GameForm extends React.Component {
         validation: {
           max: '24',
           min: '4',
+        },
+        config: {
+          step: '4',
         },
       },
       gameLength: {
@@ -38,6 +42,7 @@ class GameForm extends React.Component {
           max: '10000',
           min: '100',
         },
+        config: {},
       },
       gameSpeed: {
         type: 'range',
@@ -46,6 +51,7 @@ class GameForm extends React.Component {
           max: '2',
           min: '5000',
         },
+        config: {},
       },
     },
   }
@@ -70,6 +76,8 @@ class GameForm extends React.Component {
         key={`${i}_input`}
         type={this.state.gameForm[field].type}
         value={this.state.gameForm[field].value}
+        validation={this.state.gameForm[field].validation}
+        config={this.state.gameForm[field].config}
         onChange={(e) => { this.handleFormChange(e, field); }}
         id={field}
       />
