@@ -126,6 +126,7 @@ class Game extends React.Component {
           model={this.state.model}
           playerTurn={this.state.playerTurn}
           onStateChange={this.handleCellState}
+          auxId={''}
         />
 
         <UserControls
