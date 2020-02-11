@@ -7,12 +7,24 @@ import Input from '../Input/Input';
 class GameForm extends React.Component {
   state = {
     gameForm: {
-      playerOneName: '',
-      playerTwoName: '',
-      gridSize: '',
-      numberOfFlags: '',
-      gameLength: '',
-      gameSpeed: '',
+      playerOneName: {
+        type: 'text',
+      },
+      playerTwoName: {
+        type: 'text',
+      },
+      gridSize: {
+        type: 'range',
+      },
+      numberOfFlags: {
+        type: 'range',
+      },
+      gameLength: {
+        type: 'range',
+      },
+      gameSpeed: {
+        type: 'range',
+      },
     },
   }
 
@@ -21,6 +33,7 @@ class GameForm extends React.Component {
     return gameFormField.map((field, i) => (
       <Input
         key={`${i}_input`}
+        type={this.state.gameForm[field].type}
         id={field}
       />
     ));
@@ -31,7 +44,7 @@ class GameForm extends React.Component {
       <div className={Classes.GameForm} data-test="component-game-form">
         <form>
           {this.renderInputs()}
-          <input type='submit' id='submit' />
+          <input type="submit" id="submit" />
         </form>
       </div>
     );
