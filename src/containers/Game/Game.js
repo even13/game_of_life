@@ -28,10 +28,11 @@ class Game extends React.Component {
   }
 
   placeLiveCell = (coord) => {
-    if (this.props.playerOneCellsRemaining && this.props.playerOneCellsRemaining - coord.length <= 0) return;
+    if ((this.props.playerOneCellsRemaining && this.props.playerOneCellsRemaining === 0) || (this.props.playerOneCellsRemaining - coord.length < 0)) return;
     // if there are cellbars on that specific gamepage, run the logic below
     // keeps track of how many live cells the user placed on grid pre-game
     if (this.props.onDecrement) this.props.onDecrement(coord.length, this.state.playerTurn);
+
     let updatedCoords = [...this.state.coords];
     updatedCoords = updatedCoords.concat(coord);
     const updatedModel = this.state.model;
@@ -44,9 +45,8 @@ class Game extends React.Component {
   }
 
   placeDeadCell = (coord) => {
-    if (this.props.playerOneCellsRemaining && this.props.playerOneCellsRemaining + coord.length >= 100) return;
-    if (this.props.onIncrement) this.props.onIncrement(null, this.state.playerTurn);
-
+    // if (this.props.playerOneCellsRemaining && this.props.playerOneCellsRemaining + coord.length > 100) return;
+    if (this.props.onIncrement) this.props.onIncrement(undefined, this.state.playerTurn);
     const { model } = this.state;
     const coords = [...this.state.coords];
     const updatedCoords = coords.filter((existingCoord) => !JSON.stringify(coord).includes(JSON.stringify(existingCoord)));
@@ -64,10 +64,9 @@ class Game extends React.Component {
       return;
     } if (isClicked) {
       this.placeDeadCell([coord]);
-      if (this.props.onIncrement) this.props.onIncrement(); // keeps track of how many live cells the user removed on grid pre-game
+      // keeps track of how many live cells the user removed on grid pre-game
     } else {
       this.placeLiveCell([coord]);
-      if (this.props.onDecrement) this.props.onDecrement();
     }
   }
 
