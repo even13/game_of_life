@@ -15,6 +15,7 @@ class Game extends React.Component {
       maxIterations: 100,
       iterationCount: 0,
       shapeOrientation: 0,
+      mirrorShape: false,
     }
 
     oneEvolution = () => {
@@ -54,7 +55,7 @@ class Game extends React.Component {
     handleCellState = (coord, isClicked) => {
       if (this.state.isPlacingShape) {
         const shape = new Shape();
-        this.placeLiveCell(shape.create(this.state.isPlacingShape, coord, this.state.shapeOrientation));
+        this.placeLiveCell(shape.create(this.state.isPlacingShape, coord, this.state.shapeOrientation, this.state.mirrorShape));
         return;
       } if (isClicked) {
         this.placeDeadCell(coord);
@@ -110,6 +111,10 @@ class Game extends React.Component {
       this.setState({ maxIterations: +event.target.value });
     }
 
+    handleMirrorShape = () => {
+      this.setState((prevState) => ({ mirrorShape: !prevState.mirrorShape }));
+    }
+
     render() {
       return (
         <div className="App" data-test="component-game">
@@ -127,10 +132,12 @@ class Game extends React.Component {
             onCountChange={this.handleIterationChange}
             placeShape={this.placeShape}
             rotateShape={this.rotateShape}
+            onMirrorShape={this.handleMirrorShape}
             onOneEvolution={this.oneEvolution}
             onTogglePlayer={this.togglePlayer}
             onRunGame={this.runGame}
             orientation={this.state.shapeOrientation}
+            mirrorShape={this.state.mirrorShape}
           />
         </div>
       );
