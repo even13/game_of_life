@@ -40,37 +40,27 @@ class Grid {
     this.currentGrid = updatedCurrentGrid;
   }
 
-  randomFlag = () => {
+  randomFlags = () => {
+    const xCoordQ1 = Math.floor(Math.random() * Math.ceil(this.gridSize / 2));
+    const yCoordQ1 = Math.floor(Math.random() * Math.floor(this.gridSize / 2));
+    const Q1 = [xCoordQ1, yCoordQ1];
 
-    const xCoordQ1 = Math.floor(Math.random() * (this.gridSize/2))
-    const yCoordQ1 = Math.floor(Math.random() * (this.gridSize/2))
-    const Q1 = [xCoordQ1, yCoordQ1]
+    const xCoordQ2 = Math.floor(Math.random() * Math.floor(this.gridSize / 2)) + Math.ceil(this.gridSize / 2);
+    const yCoordQ2 = Math.floor(Math.random() * Math.floor(this.gridSize / 2));
+    const Q2 = [xCoordQ2, yCoordQ2];
 
-    const xCoordQ2 = Math.floor(Math.random() * (this.gridSize/2)) + (this.gridSize/2)
-    const yCoordQ2= Math.floor(Math.random() * (this.gridSize/2))
-    const Q2 = [xCoordQ2, yCoordQ2]
+    const xCoordQ3 = Math.floor(Math.random() * Math.floor(this.gridSize / 2)) + Math.floor(this.gridSize / 2);
+    const yCoordQ3 = Math.floor(Math.random() * Math.floor(this.gridSize / 2)) + Math.ceil(this.gridSize / 2);
+    const Q3 = [xCoordQ3, yCoordQ3];
 
-    const xCoordQ3 = Math.floor(Math.random() * (this.gridSize/2)) + (this.gridSize/2)
-    const yCoordQ3 = Math.floor(Math.random() * (this.gridSize/2)) + (this.gridSize/2)
-    const Q3 = [xCoordQ3, yCoordQ3]
+    const xCoordQ4 = Math.floor(Math.random() * Math.floor(this.gridSize / 2));
+    const yCoordQ4 = Math.floor(Math.random() * Math.ceil(this.gridSize / 2)) + Math.floor(this.gridSize / 2);
+    const Q4 = [xCoordQ4, yCoordQ4];
 
-    const xCoordQ4 = Math.floor(Math.random() * (this.gridSize/2)) 
-    const yCoordQ4= Math.floor(Math.random() * (this.gridSize/2)) + (this.gridSize/2)
-    const Q4 = [xCoordQ4, yCoordQ4]
-
-
-    
-    console.log(Q4)
-
-
-    this.currentPlacedFlags = [Q1, Q2, Q3, Q4]
-  
+    this.currentPlacedFlags = [Q1, Q2, Q3, Q4];
   }
 
-  getCurrentFlags = () => {
-    return this.currentPlacedFlags
-    
-  }
+  getCurrentFlags = () => this.currentPlacedFlags
 
   updateGrid = (cellArray, player) => {
     const newGrid = [];
