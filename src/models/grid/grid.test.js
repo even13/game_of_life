@@ -179,4 +179,90 @@ describe('Grid', () => {
       expect(testGridInstance.render()).toEqual(testGrid);
     });
   });
+
+  describe('#random flags', () => {
+
+    it('flags are placed randomly over 4 quadrants in a 4x4 grid', () => {
+      
+      let Q1 = [[0, 0], [0, 1], [1, 0], [1, 1]]
+      let Q2 = [[2, 0], [2, 1], [3, 0], [3, 1]]
+      let Q3 = [[0, 2], [0, 3], [1, 2], [1, 3]]
+      let Q4 = [[2, 2], [2, 3], [3, 2], [3, 3]]
+      console.log("hello")
+
+      testGridInstance = new Grid(4);
+      testGridInstance.randomFlag()
+
+      const flagInQ1 = Q1.some(elm => {
+        return testGridInstance.getCurrentFlags().some(otherElm => {
+          return JSON.stringify(elm) === JSON.stringify(otherElm)
+        })
+      })
+      expect(flagInQ1).toBe(true);
+
+      const flagInQ2 = Q2.some(elm => {
+        return testGridInstance.getCurrentFlags().some(otherElm => {
+          return JSON.stringify(elm) === JSON.stringify(otherElm)
+        })
+      })
+      expect(flagInQ2).toBe(true);
+
+      const flagInQ3 = Q3.some(elm => {
+        return testGridInstance.getCurrentFlags().some(otherElm => {
+          return JSON.stringify(elm) === JSON.stringify(otherElm)
+        })
+      })
+      expect(flagInQ3).toBe(true);
+
+      const flagInQ4 = Q4.some(elm => {
+        return testGridInstance.getCurrentFlags().some(otherElm => {
+          return JSON.stringify(elm) === JSON.stringify(otherElm)
+        })
+      })
+      expect(flagInQ4).toBe(true);
+
+
+    });
+
+    it('flags are placed randomly over 4 quadrants in a 6x6 grid', () => {
+
+      let Q1 = [[0, 0], [0, 1], [0, 2], [1, 0], [1, 1], [1, 2], [2, 0], [2, 1], [2, 2]]
+      let Q2 = [[3, 0], [3, 1], [3, 2], [4, 0], [4, 1], [4, 2], [5, 0], [5, 1], [5, 2]]
+      let Q3 = [[0, 3], [0, 4], [0, 5], [1, 3], [1, 4], [1, 5], [2, 3], [2, 4], [2, 5]]
+      let Q4 = [[3, 3], [3, 4], [3, 5], [4, 3], [4, 4], [4, 5], [5, 3], [5, 4], [5, 5]]
+
+      testGridInstance = new Grid(6);
+      console.log("here")
+      testGridInstance.randomFlag()
+
+      const flagInQ1 = Q1.some(elm => {
+        return testGridInstance.getCurrentFlags().some(otherElm => {
+          return JSON.stringify(elm) === JSON.stringify(otherElm)
+        })
+      })
+      expect(flagInQ1).toBe(true);
+
+      const flagInQ2 = Q2.some(elm => {
+        return testGridInstance.getCurrentFlags().some(otherElm => {
+          return JSON.stringify(elm) === JSON.stringify(otherElm)
+        })
+      })
+      expect(flagInQ2).toBe(true);
+
+      const flagInQ3 = Q3.some(elm => {
+        return testGridInstance.getCurrentFlags().some(otherElm => {
+          return JSON.stringify(elm) === JSON.stringify(otherElm)
+        })
+      })
+      expect(flagInQ3).toBe(true);
+
+      const flagInQ4 = Q4.some(elm => {
+        return testGridInstance.getCurrentFlags().some(otherElm => {
+          return JSON.stringify(elm) === JSON.stringify(otherElm)
+        })
+      })
+      expect(flagInQ4).toBe(true);
+
+    });
+  });
 });
