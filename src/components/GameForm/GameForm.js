@@ -1,6 +1,8 @@
 import React from 'react';
 import Classes from './GameForm.module.css';
 
+import Input from '../Input/Input';
+
 class GameForm extends React.Component {
   state = {
 
@@ -8,7 +10,9 @@ class GameForm extends React.Component {
 
   render() {
     return (
-      <div className={Classes.GameForm} data-test="component-game-form" />
+      <div className={Classes.GameForm} data-test="component-game-form">
+        <Input id="playerOneName" />
+      </div>
     );
   }
 }
