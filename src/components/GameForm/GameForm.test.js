@@ -62,14 +62,24 @@ describe('<GameForm />', () => {
     expect(submitButton).toHaveLength(1);
     expect(submitButton.prop('type')).toEqual('submit');
   });
-  
+
   describe('gridSize', () => {
-    it('has a maximum limit of 70 x 70', async () => {
+    it('has a maximum limit of 70 x 70', () => {
       expect(wrapper.state('gameForm').gridSize.validation.max).toEqual('70');
     });
 
-    it('has a maximum limit of 10 x 10', async () => {
+    it('has a minimum limit of 10 x 10', () => {
       expect(wrapper.state('gameForm').gridSize.validation.min).toEqual('10');
+    });
+  });
+
+  describe('numberOfFlags', () => {
+    it('has a maximum limit of 24', () => {
+      expect(wrapper.state('gameForm').numberOfFlags.validation.max).toEqual('24');
+    });
+
+    it('has a minimum limit of 4', () => {
+      expect(wrapper.state('gameForm').numberOfFlags.validation.min).toEqual('4');
     });
   });
 });

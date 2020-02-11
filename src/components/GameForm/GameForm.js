@@ -26,6 +26,10 @@ class GameForm extends React.Component {
       numberOfFlags: {
         type: 'range',
         value: '',
+        validation: {
+          max: '24',
+          min: '4',
+        },
       },
       gameLength: {
         type: 'range',
@@ -46,7 +50,7 @@ class GameForm extends React.Component {
       const updatedGameFormField = { ...updatedGameForm[field] };
       updatedGameFormField.value = e.target.value;
       updatedGameForm[field] = updatedGameFormField;
-      
+
       return { gameForm: updatedGameForm };
     });
   }

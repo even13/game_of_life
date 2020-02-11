@@ -2,9 +2,7 @@ import React from 'react';
 import Enzyme, { mount } from 'enzyme';
 import EnzymeAdapter from 'enzyme-adapter-react-16';
 import GameForm from '../components/GameForm/GameForm';
-import { findByTestAttr } from '../test-helper';
-
-import Grid from '../models/grid/grid';
+// import { findByTestAttr } from '../test-helper';
 
 Enzyme.configure({ adapter: new EnzymeAdapter() });
 
