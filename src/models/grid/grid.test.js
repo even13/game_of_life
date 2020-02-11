@@ -204,7 +204,7 @@ describe('Grid', () => {
       flagInQ2 = Q2.some((elm) => testGridInstance.getCurrentFlags().some((otherElm) => JSON.stringify(elm) === JSON.stringify(otherElm)));
       flagInQ3 = Q3.some((elm) => testGridInstance.getCurrentFlags().some((otherElm) => JSON.stringify(elm) === JSON.stringify(otherElm)));
       flagInQ4 = Q4.some((elm) => testGridInstance.getCurrentFlags().some((otherElm) => JSON.stringify(elm) === JSON.stringify(otherElm)));
-      
+
       expect(flagInQ1).toBe(true);
       expect(flagInQ2).toBe(true);
       expect(flagInQ3).toBe(true);
@@ -249,6 +249,43 @@ describe('Grid', () => {
       expect(flagInQ2).toBe(true);
       expect(flagInQ3).toBe(true);
       expect(flagInQ4).toBe(true);
+    });
+
+    describe('multiple flags per quadrant', () => {
+      it('can place 8 flags randomly over 4 quadrants in a 4 x 4 grid', () => {
+        Q1 = [[0, 0], [0, 1], [1, 0], [1, 1]];
+        Q2 = [[2, 0], [2, 1], [3, 0], [3, 1]];
+        Q3 = [[0, 2], [0, 3], [1, 2], [1, 3]];
+        Q4 = [[2, 2], [2, 3], [3, 2], [3, 3]];
+
+        testGridInstance = new Grid(4);
+        testGridInstance.randomFlags(2);
+        const placedFlags = testGridInstance.getCurrentFlags();
+
+        let flagsInQ1 = [];
+        Q1.forEach((randomFlag) => {
+          if (JSON.stringify(placedFlags).includes(JSON.stringify(randomFlag))) flagsInQ1 = [...flagsInQ1, randomFlag];
+        });
+        expect(flagsInQ1).toHaveLength(2);
+
+        let flagsInQ2 = [];
+        Q1.forEach((randomFlag) => {
+          if (JSON.stringify(placedFlags).includes(JSON.stringify(randomFlag))) flagsInQ2 = [...flagsInQ2, randomFlag];
+        });
+        expect(flagsInQ2).toHaveLength(2);
+
+        let flagsInQ3 = [];
+        Q1.forEach((randomFlag) => {
+          if (JSON.stringify(placedFlags).includes(JSON.stringify(randomFlag))) flagsInQ3 = [...flagsInQ3, randomFlag];
+        });
+        expect(flagsInQ3).toHaveLength(2);
+
+        let flagsInQ4 = [];
+        Q1.forEach((randomFlag) => {
+          if (JSON.stringify(placedFlags).includes(JSON.stringify(randomFlag))) flagsInQ4 = [...flagsInQ4, randomFlag];
+        });
+        expect(flagsInQ4).toHaveLength(2);
+      });
     });
   });
 });
