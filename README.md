@@ -1,6 +1,11 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/8076ad0ba100f1cc8036/maintainability)](https://codeclimate.com/github/even13/game_of_life/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/8076ad0ba100f1cc8036/test_coverage)](https://codeclimate.com/github/even13/game_of_life/test_coverage)
 
+
+[How to contribute to this project](#how-to-contribute-to-this-project) | [Quickstart](#quickstart) | [Versioning](#versioning) | [User stories](#user-stories) | [Database structure](#database-structure) | [Features](#features) | [Code style](#code-style) | [Tech used](#tech-used) | [Test coverage](#test-coverage) | [Contributors](#contributors)
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Deployment
