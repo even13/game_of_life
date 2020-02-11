@@ -26,7 +26,7 @@ describe('<Input />', () => {
   });
 
   it('renders a range input if its type prop === range', () => {
-    wrapper = setup(Input, { type: 'range', config: { step: '12'} });
+    wrapper = setup(Input, { type: 'range', config: { step: '12' } });
     const input = findByTestAttr(wrapper, 'input');
     expect(input.prop('type')).toEqual('range');
   });

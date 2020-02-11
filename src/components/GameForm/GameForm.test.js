@@ -106,4 +106,13 @@ describe('<GameForm />', () => {
       expect(wrapper.state('gameForm').gameSpeed.validation.min).toEqual('5000');
     });
   });
+
+  it('handles form changes', async () => {
+    const instance = wrapper.instance();
+    const playerOneNameField = wrapper.find({ id: 'playerOneName' });
+
+    jest.spyOn(instance, 'handleFormChange');
+    await playerOneNameField.simulate('change', { target: { value: 'Raluca' }, persist: jest.fn() });
+    setTimeout(() => { expect(instance.handleFormChange).toHaveBeenCalled(); });
+  });
 });
