@@ -30,13 +30,11 @@ class Shape {
   rotate = (coord, elmOffs, angle) => {
     const rads = (angle * Math.PI) / 180;
     const coords = [];
-
     elmOffs.forEach((element) => {
       const xCoord = coord[0] + (element[0] * Math.cos(rads) - element[1] * Math.sin(rads));
       const yCoord = coord[1] + (element[1] * Math.cos(rads) + element[0] * Math.sin(rads));
       coords.push([xCoord, yCoord]);
     });
-
     return coords;
   };
 }
