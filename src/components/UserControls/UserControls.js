@@ -8,6 +8,8 @@ const UserControls = (props) => (
       placeShape={props.placeShape}
       rotateShape={props.rotateShape}
       orientation={props.orientation}
+      onMirrorShape={props.onMirrorShape}
+      mirrorShape={props.mirrorShape}
     />
     <EvolutionControls
       countValue={props.countValue}

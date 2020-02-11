@@ -9,6 +9,10 @@ const ShapeControls = (props) => (
       {props.orientation}
       <sup>o</sup>
     </button>
+    <button type="button" data-test="mirror-button" onClick={() => { props.onMirrorShape(); }}>
+      <span>Mirror: </span>
+      { props.mirrorShape ? 'On' : 'Off' }
+    </button>
   </div>
 );
 
