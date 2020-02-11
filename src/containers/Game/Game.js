@@ -103,11 +103,7 @@ class Game extends React.Component {
   }
 
   rotateShape = () => {
-    if (this.state.shapeOrientation === 270) {
-      this.setState({ shapeOrientation: 0 });
-    } else {
-      this.setState((prevState) => ({ shapeOrientation: prevState.shapeOrientation + 90 }));
-    }
+      this.setState((prevState) => ({ shapeOrientation: (prevState.shapeOrientation + 90) % 360 }));
   }
 
   handleRateChange = (event) => {
@@ -126,7 +122,7 @@ class Game extends React.Component {
           model={this.state.model}
           playerTurn={this.state.playerTurn}
           onStateChange={this.handleCellState}
-          auxId={''}
+          auxId=""
         />
 
         <UserControls
