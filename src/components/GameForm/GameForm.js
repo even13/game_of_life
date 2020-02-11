@@ -9,23 +9,42 @@ class GameForm extends React.Component {
     gameForm: {
       playerOneName: {
         type: 'text',
+        value: '',
       },
       playerTwoName: {
         type: 'text',
+        value: '',
       },
       gridSize: {
         type: 'range',
+        value: '',
       },
       numberOfFlags: {
         type: 'range',
+        value: '',
       },
       gameLength: {
         type: 'range',
+        value: '',
       },
       gameSpeed: {
         type: 'range',
+        value: '',
       },
     },
+  }
+
+  handleFormChange = (e, field) => {
+    e.persist();
+
+    this.setState((prevState) => {
+      const updatedGameForm = { ...prevState.gameForm };
+      const updatedGameFormField = { ...updatedGameForm[field] };
+      updatedGameFormField.value = e.target.value;
+      updatedGameForm[field] = updatedGameFormField;
+      
+      return { gameForm: updatedGameForm };
+    });
   }
 
   renderInputs = () => {
@@ -34,6 +53,8 @@ class GameForm extends React.Component {
       <Input
         key={`${i}_input`}
         type={this.state.gameForm[field].type}
+        value={this.state.gameForm[field].value}
+        onChange={(e) => { this.handleFormChange(e, field); }}
         id={field}
       />
     ));

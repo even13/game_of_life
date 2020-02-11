@@ -21,16 +21,16 @@ describe('<GameForm />', () => {
   it('renders two player name inputs', () => {
     const playerOneName = wrapper.find({ id: 'playerOneName' });
     const playerTwoName = wrapper.find({ id: 'playerTwoName' });
-    
+
     expect(playerOneName).toHaveLength(1);
     expect(playerTwoName).toHaveLength(1);
     expect(playerOneName.prop('type')).toEqual('text');
     expect(playerTwoName.prop('type')).toEqual('text');
   });
-  
+
   it('renders a number of flags slider', () => {
     const numberOfFlags = wrapper.find({ id: 'numberOfFlags' });
-    
+
     expect(numberOfFlags).toHaveLength(1);
     expect(numberOfFlags.prop('type')).toEqual('range');
   });
@@ -55,10 +55,10 @@ describe('<GameForm />', () => {
     expect(gameSpeed).toHaveLength(1);
     expect(gameSpeed.prop('type')).toEqual('range');
   });
-  
+
   it('renders a submit button', () => {
     const submitButton = wrapper.find({ id: 'submit' });
-    
+
     expect(submitButton).toHaveLength(1);
     expect(submitButton.prop('type')).toEqual('submit');
   });
