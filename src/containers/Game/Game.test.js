@@ -33,11 +33,4 @@ describe('<Game />', () => {
       expect(gridDisplayComponent.prop('model')).toStrictEqual(testGridModel);
     });
   });
-
-  // describe('rotateShape', () => {
-  //   it('is sets the orientation to 90 when run once', () => {
-  //     console.log(wrapper.dive().debug())
-  //     expect(gameInstance.state.shapeOrientation).toStrictEqual(90);
-  //   });
-  // });
 });
