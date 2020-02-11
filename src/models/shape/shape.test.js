@@ -60,4 +60,14 @@ describe('Shape', () => {
       expect(testShapeInstance.create(null, [4, 14], 0)).toEqual([[4, 14]]);
     });
   });
+
+  describe('rotate', () => {
+    it('returns correct coordinates for a spinner at [2, 2], rotated by 90 degrees', () => {
+      expect(testShapeInstance.create('spinner', [2, 2], 0)).toEqual([[2, 1], [2, 2], [2, 3]]);
+    });
+
+    it('returns correct coordinates for a spaceship at [1, 1], rotated by 90 degrees', () => {
+      expect(testShapeInstance.create('spaceship', [1, 1], 0)).toEqual([[1, 0], [2, 1], [0, 2], [1, 2], [2, 2]]);
+    });
+  });
 });
