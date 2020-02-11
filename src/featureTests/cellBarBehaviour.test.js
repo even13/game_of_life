@@ -6,7 +6,7 @@ import Grid from '../models/grid/grid';
 
 Enzyme.configure({ adapter: new EnzymeAdapter() });
 
-describe('cellState', () => {
+describe('cellBarBehaviour', () => {
   let wrapper;
   const testGridModel = new Grid();
   let testCell;
