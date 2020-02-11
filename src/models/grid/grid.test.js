@@ -179,4 +179,188 @@ describe('Grid', () => {
       expect(testGridInstance.render()).toEqual(testGrid);
     });
   });
+
+  describe('#random flags', () => {
+    let Q1;
+    let Q2;
+    let Q3;
+    let Q4;
+
+    let flagInQ1;
+    let flagInQ2;
+    let flagInQ3;
+    let flagInQ4;
+
+    it('can place 4 flags randomly over 4 quadrants in a 4 x 4 grid', () => {
+      Q1 = [[0, 0], [0, 1], [1, 0], [1, 1]];
+      Q2 = [[2, 0], [2, 1], [3, 0], [3, 1]];
+      Q3 = [[0, 2], [0, 3], [1, 2], [1, 3]];
+      Q4 = [[2, 2], [2, 3], [3, 2], [3, 3]];
+
+      testGridInstance = new Grid(4);
+      testGridInstance.randomFlags();
+
+      flagInQ1 = Q1.some((elm) => testGridInstance.getCurrentFlags().some((otherElm) => JSON.stringify(elm) === JSON.stringify(otherElm)));
+      flagInQ2 = Q2.some((elm) => testGridInstance.getCurrentFlags().some((otherElm) => JSON.stringify(elm) === JSON.stringify(otherElm)));
+      flagInQ3 = Q3.some((elm) => testGridInstance.getCurrentFlags().some((otherElm) => JSON.stringify(elm) === JSON.stringify(otherElm)));
+      flagInQ4 = Q4.some((elm) => testGridInstance.getCurrentFlags().some((otherElm) => JSON.stringify(elm) === JSON.stringify(otherElm)));
+
+      expect(flagInQ1).toBe(true);
+      expect(flagInQ2).toBe(true);
+      expect(flagInQ3).toBe(true);
+      expect(flagInQ4).toBe(true);
+    });
+
+    it('can place 4 flags randomly over 4 quadrants in a 6 x 6 grid', () => {
+      Q1 = [[0, 0], [0, 1], [0, 2], [1, 0], [1, 1], [1, 2], [2, 0], [2, 1], [2, 2]];
+      Q2 = [[3, 0], [3, 1], [3, 2], [4, 0], [4, 1], [4, 2], [5, 0], [5, 1], [5, 2]];
+      Q3 = [[0, 3], [0, 4], [0, 5], [1, 3], [1, 4], [1, 5], [2, 3], [2, 4], [2, 5]];
+      Q4 = [[3, 3], [3, 4], [3, 5], [4, 3], [4, 4], [4, 5], [5, 3], [5, 4], [5, 5]];
+
+      testGridInstance = new Grid(6);
+      testGridInstance.randomFlags();
+
+      flagInQ1 = Q1.some((elm) => testGridInstance.getCurrentFlags().some((otherElm) => JSON.stringify(elm) === JSON.stringify(otherElm)));
+      flagInQ2 = Q2.some((elm) => testGridInstance.getCurrentFlags().some((otherElm) => JSON.stringify(elm) === JSON.stringify(otherElm)));
+      flagInQ3 = Q3.some((elm) => testGridInstance.getCurrentFlags().some((otherElm) => JSON.stringify(elm) === JSON.stringify(otherElm)));
+      flagInQ4 = Q4.some((elm) => testGridInstance.getCurrentFlags().some((otherElm) => JSON.stringify(elm) === JSON.stringify(otherElm)));
+
+      expect(flagInQ1).toBe(true);
+      expect(flagInQ2).toBe(true);
+      expect(flagInQ3).toBe(true);
+      expect(flagInQ4).toBe(true);
+    });
+
+    it('can place 4 flags randomly over 4 quadrants in a 5 x 5 grid', () => {
+      Q1 = [[0, 0], [1, 0], [2, 0], [0, 1], [1, 1], [2, 1]];
+      Q2 = [[3, 0], [4, 0], [3, 1], [4, 1], [3, 2], [4, 2]];
+      Q3 = [[2, 3], [3, 3], [4, 3], [2, 4], [3, 4], [4, 4]];
+      Q4 = [[0, 2], [1, 2], [0, 3], [1, 3], [0, 4], [1, 4]];
+
+      testGridInstance = new Grid(5);
+      testGridInstance.randomFlags();
+
+      flagInQ1 = Q1.some((elm) => testGridInstance.getCurrentFlags().some((otherElm) => JSON.stringify(elm) === JSON.stringify(otherElm)));
+      flagInQ2 = Q2.some((elm) => testGridInstance.getCurrentFlags().some((otherElm) => JSON.stringify(elm) === JSON.stringify(otherElm)));
+      flagInQ3 = Q3.some((elm) => testGridInstance.getCurrentFlags().some((otherElm) => JSON.stringify(elm) === JSON.stringify(otherElm)));
+      flagInQ4 = Q4.some((elm) => testGridInstance.getCurrentFlags().some((otherElm) => JSON.stringify(elm) === JSON.stringify(otherElm)));
+
+      expect(flagInQ1).toBe(true);
+      expect(flagInQ2).toBe(true);
+      expect(flagInQ3).toBe(true);
+      expect(flagInQ4).toBe(true);
+    });
+
+    describe('multiple flags per quadrant', () => {
+      let flagsInQ1;
+      let flagsInQ2;
+      let flagsInQ3;
+      let flagsInQ4;
+
+      it('can place 8 flags randomly over 4 quadrants in a 4 x 4 grid', () => {
+        Q1 = [[0, 0], [0, 1], [1, 0], [1, 1]];
+        Q2 = [[2, 0], [2, 1], [3, 0], [3, 1]];
+        Q3 = [[0, 2], [0, 3], [1, 2], [1, 3]];
+        Q4 = [[2, 2], [2, 3], [3, 2], [3, 3]];
+
+        testGridInstance = new Grid(4);
+        testGridInstance.randomFlags(2);
+        const placedFlags = testGridInstance.getCurrentFlags();
+
+        flagsInQ1 = [];
+        Q1.forEach((randomFlag) => {
+          if (JSON.stringify(placedFlags).includes(JSON.stringify(randomFlag))) flagsInQ1 = [...flagsInQ1, randomFlag];
+        });
+        expect(flagsInQ1).toHaveLength(2);
+
+        flagsInQ2 = [];
+        Q1.forEach((randomFlag) => {
+          if (JSON.stringify(placedFlags).includes(JSON.stringify(randomFlag))) flagsInQ2 = [...flagsInQ2, randomFlag];
+        });
+        expect(flagsInQ2).toHaveLength(2);
+
+        flagsInQ3 = [];
+        Q1.forEach((randomFlag) => {
+          if (JSON.stringify(placedFlags).includes(JSON.stringify(randomFlag))) flagsInQ3 = [...flagsInQ3, randomFlag];
+        });
+        expect(flagsInQ3).toHaveLength(2);
+
+        flagsInQ4 = [];
+        Q1.forEach((randomFlag) => {
+          if (JSON.stringify(placedFlags).includes(JSON.stringify(randomFlag))) flagsInQ4 = [...flagsInQ4, randomFlag];
+        });
+        expect(flagsInQ4).toHaveLength(2);
+      });
+
+      it('can place 16 flags randomly over 4 quadrants in a 6 x 6 grid', () => {
+        Q1 = [[0, 0], [0, 1], [0, 2], [1, 0], [1, 1], [1, 2], [2, 0], [2, 1], [2, 2]];
+        Q2 = [[3, 0], [3, 1], [3, 2], [4, 0], [4, 1], [4, 2], [5, 0], [5, 1], [5, 2]];
+        Q3 = [[0, 3], [0, 4], [0, 5], [1, 3], [1, 4], [1, 5], [2, 3], [2, 4], [2, 5]];
+        Q4 = [[3, 3], [3, 4], [3, 5], [4, 3], [4, 4], [4, 5], [5, 3], [5, 4], [5, 5]];
+
+        testGridInstance = new Grid(6);
+        testGridInstance.randomFlags(4);
+        const placedFlags = testGridInstance.getCurrentFlags();
+
+        flagsInQ1 = [];
+        Q1.forEach((randomFlag) => {
+          if (JSON.stringify(placedFlags).includes(JSON.stringify(randomFlag))) flagsInQ1 = [...flagsInQ1, randomFlag];
+        });
+        expect(flagsInQ1).toHaveLength(4);
+
+        flagsInQ2 = [];
+        Q1.forEach((randomFlag) => {
+          if (JSON.stringify(placedFlags).includes(JSON.stringify(randomFlag))) flagsInQ2 = [...flagsInQ2, randomFlag];
+        });
+        expect(flagsInQ2).toHaveLength(4);
+
+        flagsInQ3 = [];
+        Q1.forEach((randomFlag) => {
+          if (JSON.stringify(placedFlags).includes(JSON.stringify(randomFlag))) flagsInQ3 = [...flagsInQ3, randomFlag];
+        });
+        expect(flagsInQ3).toHaveLength(4);
+
+        flagsInQ4 = [];
+        Q1.forEach((randomFlag) => {
+          if (JSON.stringify(placedFlags).includes(JSON.stringify(randomFlag))) flagsInQ4 = [...flagsInQ4, randomFlag];
+        });
+        expect(flagsInQ4).toHaveLength(4);
+      });
+
+      it('can place 12 flags randomly over 4 quadrants in a 5 x 5 grid', () => {
+        Q1 = [[0, 0], [1, 0], [2, 0], [0, 1], [1, 1], [2, 1]];
+        Q2 = [[3, 0], [4, 0], [3, 1], [4, 1], [3, 2], [4, 2]];
+        Q3 = [[2, 3], [3, 3], [4, 3], [2, 4], [3, 4], [4, 4]];
+        Q4 = [[0, 2], [1, 2], [0, 3], [1, 3], [0, 4], [1, 4]];
+
+        testGridInstance = new Grid(5);
+        testGridInstance.randomFlags(3);
+        const placedFlags = testGridInstance.getCurrentFlags();
+
+        flagsInQ1 = [];
+        Q1.forEach((randomFlag) => {
+          if (JSON.stringify(placedFlags).includes(JSON.stringify(randomFlag))) flagsInQ1 = [...flagsInQ1, randomFlag];
+        });
+        expect(flagsInQ1).toHaveLength(3);
+
+        flagsInQ2 = [];
+        Q1.forEach((randomFlag) => {
+          if (JSON.stringify(placedFlags).includes(JSON.stringify(randomFlag))) flagsInQ2 = [...flagsInQ2, randomFlag];
+        });
+        expect(flagsInQ2).toHaveLength(3);
+
+        flagsInQ3 = [];
+        Q1.forEach((randomFlag) => {
+          if (JSON.stringify(placedFlags).includes(JSON.stringify(randomFlag))) flagsInQ3 = [...flagsInQ3, randomFlag];
+        });
+        expect(flagsInQ3).toHaveLength(3);
+
+        flagsInQ4 = [];
+        Q1.forEach((randomFlag) => {
+          if (JSON.stringify(placedFlags).includes(JSON.stringify(randomFlag))) flagsInQ4 = [...flagsInQ4, randomFlag];
+        });
+        expect(flagsInQ4).toHaveLength(3);
+      });
+    });
+  });
 });

@@ -40,6 +40,48 @@ class Grid {
     this.currentGrid = updatedCurrentGrid;
   }
 
+  randomFlags = (numberPerQuadrant = 1) => {
+    let Q1FlagCoordinates = [];
+    while (Q1FlagCoordinates.length < numberPerQuadrant) {
+      const xCoordQ1 = Math.floor(Math.random() * Math.ceil(this.gridSize / 2));
+      const yCoordQ1 = Math.floor(Math.random() * Math.floor(this.gridSize / 2));
+      if (!JSON.stringify(Q1FlagCoordinates).includes(JSON.stringify([xCoordQ1, yCoordQ1]))) {
+        Q1FlagCoordinates = [...Q1FlagCoordinates, [xCoordQ1, yCoordQ1]];
+      }
+    }
+
+    let Q2FlagCoordinates = [];
+    while (Q2FlagCoordinates.length < numberPerQuadrant) {
+      const xCoordQ2 = Math.floor(Math.random() * Math.floor(this.gridSize / 2)) + Math.ceil(this.gridSize / 2);
+      const yCoordQ2 = Math.floor(Math.random() * Math.floor(this.gridSize / 2));
+      if (!JSON.stringify(Q2FlagCoordinates).includes(JSON.stringify([xCoordQ2, yCoordQ2]))) {
+        Q2FlagCoordinates = [...Q2FlagCoordinates, [xCoordQ2, yCoordQ2]];
+      }
+    }
+
+    let Q3FlagCoordinates = [];
+    while (Q3FlagCoordinates.length < numberPerQuadrant) {
+      const xCoordQ3 = Math.floor(Math.random() * Math.floor(this.gridSize / 2)) + Math.floor(this.gridSize / 2);
+      const yCoordQ3 = Math.floor(Math.random() * Math.floor(this.gridSize / 2)) + Math.ceil(this.gridSize / 2);
+      if (!JSON.stringify(Q3FlagCoordinates).includes(JSON.stringify([xCoordQ3, yCoordQ3]))) {
+        Q3FlagCoordinates = [...Q3FlagCoordinates, [xCoordQ3, yCoordQ3]];
+      }
+    }
+
+    let Q4FlagCoordinates = [];
+    while (Q4FlagCoordinates.length < numberPerQuadrant) {
+      const xCoordQ4 = Math.floor(Math.random() * Math.floor(this.gridSize / 2));
+      const yCoordQ4 = Math.floor(Math.random() * Math.ceil(this.gridSize / 2)) + Math.floor(this.gridSize / 2);
+      if (!JSON.stringify(Q4FlagCoordinates).includes(JSON.stringify([xCoordQ4, yCoordQ4]))) {
+        Q4FlagCoordinates = [...Q4FlagCoordinates, [xCoordQ4, yCoordQ4]];
+      }
+    }
+
+    this.currentPlacedFlags = Q1FlagCoordinates.concat(Q2FlagCoordinates).concat(Q3FlagCoordinates).concat(Q4FlagCoordinates);
+  }
+
+  getCurrentFlags = () => this.currentPlacedFlags
+
   updateGrid = (cellArray, player) => {
     const newGrid = [];
     let newRow;
