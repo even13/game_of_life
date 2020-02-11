@@ -8,6 +8,10 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Deployment
+
+The application is deployed [here](https://game-of-life-catch-the-flag.herokuapp.com/).
+
 ## Available Scripts
 
 In the project directory, you can run:
