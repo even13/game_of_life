@@ -51,20 +51,18 @@ describe('<Game />', () => {
     });
   });
 
-  // describe('handleMirrorShape', () => {
-  //   it('should set to true after run once', () => {
-  //     wrapper.instance().handleMirrorShape();
+  describe('handleMirrorShape', () => {
+    it('should set to true after run once', () => {
+      wrapper.instance().handleMirrorShape();
 
-  //     expect(wrapper.state('mirrorShape')).toStrictEqual(90);
-  //   });
+      expect(wrapper.state('mirrorShape')).toStrictEqual(true);
+    });
 
-  //   it('should change the shape orientation back to 0 degrees when run 4 times', () => {
-  //     wrapper.instance().rotateShape();
-  //     wrapper.instance().rotateShape();
-  //     wrapper.instance().rotateShape();
-  //     wrapper.instance().rotateShape();
+    it('should set back to false when run twice', () => {
+      wrapper.instance().handleMirrorShape();
+      wrapper.instance().handleMirrorShape();
 
-  //     expect(wrapper.state('shapeOrientation')).toStrictEqual(0);
-  //   });
-  // });
+      expect(wrapper.state('mirrorShape')).toStrictEqual(false);
+    });
+  });
 });
