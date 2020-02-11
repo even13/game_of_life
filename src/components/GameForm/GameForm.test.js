@@ -20,6 +20,15 @@ describe('<GameForm />', () => {
 
   it('renders two player name inputs', () => {
     const playerOneName = wrapper.find({ id: 'playerOneName' });
+    const playerTwoName = wrapper.find({ id: 'playerTwoName' });
+
     expect(playerOneName).toHaveLength(1);
+    expect(playerTwoName).toHaveLength(1);
+  });
+  
+  it('renders a number of flags slider', () => {
+    const numberOfFlags = wrapper.find({ id: 'numberOfFlags' });
+    
+    expect(numberOfFlags).toHaveLength(1);
   });
 });
