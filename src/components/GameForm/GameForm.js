@@ -132,7 +132,9 @@ class GameForm extends React.Component {
     return (
       <Aux>
         <div className={Classes.PlayerInputs}>
+          <div className={Classes.ColorPickers}>{this.renderColorPicker(1)}</div>
           { playerInputFields }
+          <div className={Classes.ColorPickers}>{this.renderColorPicker(2)}</div>
         </div>
         <div className={Classes.Sliders}>
           { sliders }
@@ -141,8 +143,10 @@ class GameForm extends React.Component {
     );
   }
 
-  renderColorPickers = () => {
+  renderColorPicker = (player) => {
     const colorPickerFields = Object.keys(this.state.colorPickers);
+    const playerNumber = player - 1;
+
     return colorPickerFields.map((field, i) => (
       <ColorPicker
         key={`${i}_colorPicker`}
@@ -150,13 +154,12 @@ class GameForm extends React.Component {
         onClick={this.handleColorChange}
         id={field}
       />
-    ));
+    ))[playerNumber];
   }
 
   render() {
     return (
       <div className={Classes.GameForm} data-test="component-game-form">
-        <div className={Classes.ColorPickers}>{this.renderColorPickers()}</div>
         <form>
           {this.renderInputs()}
           <Button id="submit" />
