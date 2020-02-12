@@ -4,6 +4,7 @@ import Classes from './GameForm.module.css';
 
 import Input from '../Input/Input';
 import Button from '../Button/Button';
+import ColorPicker from '../ColorPicker/ColorPicker';
 
 // Button compnent
 // Implement placeholders
@@ -26,14 +27,6 @@ class GameForm extends React.Component {
         config: {
           placeholder: 'Player Two',
         },
-      },
-      playerOneColor: {
-        type: 'button',
-        value: 'blue',
-      },
-      playerTwoColor: {
-        type: 'button',
-        value: 'pink',
       },
       gridSize: {
         type: 'range',
@@ -74,6 +67,14 @@ class GameForm extends React.Component {
         config: {},
       },
     },
+    colorPickers: {
+      playerOneColor: {
+        value: 'blue',
+      },
+      playerTwoColor: {
+        value: 'pink',
+      },
+    },
   }
 
   handleFormChange = (e, field) => {
@@ -90,8 +91,8 @@ class GameForm extends React.Component {
   }
 
   renderInputs = () => {
-    const gameFormField = Object.keys(this.state.gameForm);
-    return gameFormField.map((field, i) => (
+    const gameFormFields = Object.keys(this.state.gameForm);
+    return gameFormFields.map((field, i) => (
       <Input
         key={`${i}_input`}
         type={this.state.gameForm[field].type}
@@ -104,9 +105,24 @@ class GameForm extends React.Component {
     ));
   }
 
+  renderColorPickers = () => {
+    const colorPickerFields = Object.keys(this.state.colorPickers);
+    return colorPickerFields.map((field, i) => {
+      return (
+        <ColorPicker
+          key={`${i}_colorPicker`}
+          value={`${this.state.colorPickers[field].value}`}
+          onClick={this.handleColorChange}
+          id={field}
+        />
+      );
+    });
+  }
+
   render() {
     return (
       <div className={Classes.GameForm} data-test="component-game-form">
+        {this.renderColorPickers()}
         <form>
           {this.renderInputs()}
           <Button id="submit" />

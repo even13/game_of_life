@@ -20,6 +20,11 @@ describe('<Input />', () => {
     config: { step: '10' },
   };
 
+  const colorPickerDefaultProps = {
+    type: 'colorPicker',
+    value: 'yellow',
+  };
+
   beforeEach(() => {
     wrapper = setup(Input);
     inputComponent = findByTestAttr(wrapper, 'component-input');
@@ -39,5 +44,11 @@ describe('<Input />', () => {
     wrapper = setup(Input, rangeInputDefaultProps);
     const input = findByTestAttr(wrapper, 'input');
     expect(input.prop('type')).toEqual('range');
+  });
+
+  it('renders a range input if its type prop === colorPicker', () => {
+    wrapper = setup(Input, colorPickerDefaultProps);
+    const input = findByTestAttr(wrapper, 'input');
+    expect(input.prop('type')).toEqual('colorPicker');
   });
 });

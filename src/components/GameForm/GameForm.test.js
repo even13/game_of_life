@@ -63,7 +63,7 @@ describe('<GameForm />', () => {
   });
 
   
-  describe('color pickers', () => {
+  describe('<ColorPicker /> components', () => {
     let playerOneColor;
     let playerTwoColor;
 
@@ -80,11 +80,11 @@ describe('<GameForm />', () => {
     });
 
     test('player one has a default of blue', () => {
-      expect(wrapper.state('gameForm').playerOneColor.value).toEqual('blue');
+      expect(wrapper.state('colorPickers').playerOneColor.value).toEqual('blue');
     });
 
     test('player two has a default of pink', () => {
-      expect(wrapper.state('gameForm').playerTwoColor.value).toEqual('pink');
+      expect(wrapper.state('colorPickers').playerTwoColor.value).toEqual('pink');
     });
   });
 
