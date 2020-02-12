@@ -13,6 +13,53 @@
   padding: 10px;
 }
 
+.sliderOptions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 5px 0;
+}
+
+.sliderOption, .sliderValue {
+  width: auto;
+}
+
+.sliderOption {
+  display: flex;
+  text-align: right;
+  margin: 10px 0;
+}
+
+.sliderValue {
+  text-align: left;
+}
+
+.paramsAndValues {
+  margin: 20px;
+  width: 400px;
+  display: flex;
+  color: #fdc0ff;
+  font-size: 20px;
+  justify-content: center;
+}
+
+.params, .values {
+  width: 50%;
+}
+
+.params {
+  margin-right: 10px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.values {
+  border-radius: 5px;
+  margin-left: 10px;
+  display: flex;
+  justify-content: flex-end;
+}
+
 .playerOneName, .playerTwoName {
  color: white;
  width: 100%;
@@ -28,7 +75,7 @@
 }
 
 .Slider {
-  max-width: 50vh;
+  max-width: 600px;
 }
 
 .TextInput {
@@ -39,4 +86,7 @@
   height: 30px;
   color: white;
   width: 30vh;
+  font-size: 25px;
+  text-align: center;
+  padding: 10px 10px 5px 10px;
 }

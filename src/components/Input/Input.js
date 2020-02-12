@@ -13,7 +13,14 @@ class Input extends React.Component {
         inputElement = (
           <Aux>
             <div className={Classes.sliderOptions}>
-              <div className={[Classes.Input, Classes[this.props.id], Classes.sliderOption].join(' ')}>{this.props.id}</div>
+              <div className={Classes.paramsAndValues}>
+                <div className={Classes.params}>
+                  <div className={[Classes.Input, Classes[this.props.id], Classes.sliderOption].join(' ')}>{this.props.config.label}</div>
+                </div>
+                <div className={Classes.values}>
+                  <div className={Classes.sliderValue}>{this.props.value}</div>
+                </div>
+              </div>
               <input
                 data-test={`input${suffix}`}
                 type={this.props.type}
@@ -32,8 +39,14 @@ class Input extends React.Component {
         inputElement = (
           <Aux>
             <div className={Classes.playerInputs}>
-              <div className={[Classes.Input, Classes[this.props.id]].join(' ')}>{this.props.id}</div>
+              <div
+                className={[Classes.Input, Classes[this.props.id]].join(' ')}
+                style={{ color: this.props.color }}
+              >
+                {this.props.config.placeholder}
+              </div>
               <input
+                spellCheck={false}
                 data-test={`input${suffix}`}
                 type={this.props.type}
                 onChange={this.props.onChange}

@@ -12,7 +12,7 @@ import ColorPicker from '../ColorPicker/ColorPicker';
 
 class GameForm extends React.Component {
   state = {
-    colors: ['red', 'green', 'blue', 'white', "#ccc"],
+    colors: ['red', 'green', 'blue', 'white', '#ccc'],
     gameForm: {
       playerOneName: {
         type: 'text',
@@ -30,41 +30,48 @@ class GameForm extends React.Component {
       },
       gridSize: {
         type: 'range',
-        value: '',
+        value: '30',
         validation: {
           max: '70',
           min: '10',
         },
-        config: {},
+        config: {
+          label: 'Grid Size',
+        },
       },
       numberOfFlags: {
         type: 'range',
-        value: '',
+        value: '4',
         validation: {
           max: '24',
           min: '4',
         },
         config: {
           step: '4',
+          label: 'Flags',
         },
       },
       gameLength: {
         type: 'range',
-        value: '',
+        value: '500',
         validation: {
           max: '10000',
           min: '100',
         },
-        config: {},
+        config: {
+          label: 'Game Length',
+        },
       },
       gameSpeed: {
         type: 'range',
-        value: '',
+        value: '50',
         validation: {
           max: '1000',
           min: '2',
         },
-        config: {},
+        config: {
+          label: 'Game Speed',
+        },
       },
     },
     colorPickers: {
@@ -107,7 +114,7 @@ class GameForm extends React.Component {
     const gameFormFields = Object.keys(this.state.gameForm);
     let playerInputFields = [];
     let sliders = [];
-    const playerColors = { 'playerOneName': 'playerOneColor', 'playerTwoName': 'playerTwoColor' };
+    const playerColors = { playerOneName: 'playerOneColor', playerTwoName: 'playerTwoColor' };
     let color;
 
     gameFormFields.forEach((field, i) => {
@@ -165,9 +172,9 @@ class GameForm extends React.Component {
   render() {
     return (
       <div className={Classes.GameForm} data-test="component-game-form">
-        <form>
+        <form className={Classes.formElement}>
           {this.renderInputs()}
-          <Button id="submit" />
+          <Button form id="submit" content="GO" />
         </form>
       </div>
     );

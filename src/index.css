@@ -1,5 +1,6 @@
 * {
-  font-family: 'Press Start 2P', cursive;
+  /* font-family: 'Press Start 2P', cursive; */
+  font-family: 'Bungee', cursive;
 }
 
 html {
@@ -18,7 +19,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #212121;
+  background-color: #0c0c0c;
 }
 
 code {
@@ -53,7 +54,7 @@ input[type=range]::-ms-track {
 /* Special styling for WebKit/Blink */
 input[type=range]::-webkit-slider-thumb {
   -webkit-appearance: none;
-  height: 40px;
+  height: 38px;
   width: 10px;
   border-radius: 3px;
   background: #fdc0ff;
@@ -90,7 +91,7 @@ input[type=range]::-ms-thumb {
 
 input[type=range]::-webkit-slider-runnable-track {
   width: 100%;
-  height: 10px;
+  height: 8px;
   cursor: pointer;
   box-shadow: 1px 1px 1px #8a05839c, 0px 0px 1px #fdc0ff;
   background: #fdc0ff;

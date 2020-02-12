@@ -1,0 +1,23 @@
+.Button {
+  margin: 50px auto;
+  width: 200px;
+  height: 50px;
+  font-size: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.InnerButton {
+  text-align: center;
+  border-radius: 10px;
+  color: white;
+  transition: 0.2s;
+  width: 200px;
+}
+
+.InnerButton:hover {
+  border: 2px solid #fdc0ff;
+  background-color: #fdc0ff;
+  box-shadow: 1px 1px 1px #8a05839c, 0px 0px 10px #fdc0ff;
+}
