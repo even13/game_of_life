@@ -62,6 +62,14 @@ describe('<GameForm />', () => {
     expect(submitButton).toHaveLength(1);
   });
 
+  it('renders a two color pickers', () => {
+    const playerOneColor = wrapper.find({ id: 'playerOneColor' });
+    const playerTwoColor = wrapper.find({ id: 'playerTwoColor' });
+
+    expect(playerOneColor).toHaveLength(1);
+    expect(playerTwoColor).toHaveLength(1);
+  });
+
   describe('gridSize', () => {
     it('has a maximum limit of 70 x 70', () => {
       expect(wrapper.state('gameForm').gridSize.validation.max).toEqual('70');

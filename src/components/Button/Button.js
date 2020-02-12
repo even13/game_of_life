@@ -1,5 +1,5 @@
 import React from 'react';
-import Classes from 'Button.module.css';
+import Classes from './Button.module.css';
 
 class Button extends React.Component {
   state = {}
