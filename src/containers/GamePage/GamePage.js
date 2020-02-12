@@ -26,6 +26,7 @@ class GamePage extends React.Component {
         <CellBar cellsLeft={this.state.playerOneCells} />
         <Game
           playerOneCellsRemaining={this.state.playerOneCells}
+          playerTwoCellsRemaining={this.state.playerTwoCells}
           onIncrement={this.increment}
           onDecrement={this.decrement}
         />

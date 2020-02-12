@@ -5,7 +5,7 @@ import Grid from '../../models/grid/grid';
 import Shape from '../../models/shape/shape';
 import UserControls from '../../components/UserControls/UserControls';
 
-const gridInstance = new Grid(80);
+const gridInstance = new Grid(30);
 gridInstance.randomFlags();
 
 class Game extends React.Component {
@@ -33,8 +33,6 @@ class Game extends React.Component {
   }
 
   placeLiveCell = (coord) => {
-    console.log("player1", this.props.playerOneCellsRemaining);
-    console.log("player2", this.props.playerTwoCellsRemaining);
     if ((this.props.playerOneCellsRemaining && this.props.playerOneCellsRemaining === 0) || (this.props.playerOneCellsRemaining - coord.length < 0)) return;
     if ((this.props.playerTwoCellsRemaining && this.props.playerTwoCellsRemaining === 0) || (this.props.playerTwoCellsRemaining - coord.length < 0)) return;
     // if there are cellbars on that specific gamepage, run the logic below
@@ -50,6 +48,8 @@ class Game extends React.Component {
       model: updatedModel,
       coords: updatedCoords,
     }));
+    // console.log("player1", this.props.playerOneCellsRemaining);
+    // console.log("player2", this.props.playerTwoCellsRemaining);
   }
 
   placeDeadCell = (coord) => {
