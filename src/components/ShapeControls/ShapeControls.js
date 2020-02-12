@@ -40,9 +40,9 @@ class ShapeControls extends React.Component {
           {this.props.orientation}
           <sup>o</sup>
         </button>
-        <button type="button" data-test="mirror-button" onClick={() => { props.onMirrorShape(); }}>
+        <button type="button" data-test="mirror-button" onClick={() => { this.props.onMirrorShape(); }}>
           <span>Mirror: </span>
-          { props.mirrorShape ? 'On' : 'Off' }
+          { this.props.mirrorShape ? 'On' : 'Off' }
         </button>
       </div>
     );
