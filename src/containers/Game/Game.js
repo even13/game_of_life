@@ -105,7 +105,6 @@ class Game extends React.Component {
 
   rotateShape = async () => {
     await this.setState((prevState) => ({ shapeOrientation: (prevState.shapeOrientation + 90) % 360 }));
-    console.log("here1", this.state.shapeOrientation)
   }
 
   handleRateChange = (event) => {

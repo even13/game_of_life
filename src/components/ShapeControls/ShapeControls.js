@@ -24,9 +24,10 @@ class ShapeControls extends React.Component {
   handleRotation = async () => {
     await this.props.rotateShape();
     const shapeModel = new Shape().create(this.state.currentDisplayedShape, [4, 4], this.props.orientation);
+    console.log(shapeModel)
     const updateShapeDisplay = new Grid(9);
     updateShapeDisplay.placeCells(shapeModel);
-    this.setState({ shapeDisplay: updateShapeDisplay })
+    this.setState({ shapeDisplay: updateShapeDisplay });
   }
 
   render() {
