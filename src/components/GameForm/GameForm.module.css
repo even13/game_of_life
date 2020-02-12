@@ -1,11 +1,21 @@
 .GameForm {
-
+  width: auto;
+  border: 1px solid red;
 }
 
 .ColorPickers {
   display: flex;
   width: 100%;
   justify-content: space-between;
+}
+
+.Sliders {
+  border: 1px solid red;
+  width: 100%;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 .PlayerInputs {

@@ -7,14 +7,12 @@ import Input from '../Input/Input';
 import Button from '../Button/Button';
 import ColorPicker from '../ColorPicker/ColorPicker';
 
-// Button compnent
-// Implement placeholders
 // Persist state of form to the grid and rest of App
 // Reset form?
 
 class GameForm extends React.Component {
   state = {
-    colors: ['red', 'green', 'blue', 'white'],
+    colors: ['red', 'green', 'blue', 'white', "#ccc"],
     gameForm: {
       playerOneName: {
         type: 'text',
@@ -109,7 +107,13 @@ class GameForm extends React.Component {
     const gameFormFields = Object.keys(this.state.gameForm);
     let playerInputFields = [];
     let sliders = [];
+    const playerNames = ['playerOneName', 'playerTwoName'];
+    const playerColors = { 'playerOneName': 'playerOneColor', 'playerTwoName': 'playerTwoColor' };
+    let color;
+
     gameFormFields.forEach((field, i) => {
+      color = null;
+      if (playerNames.includes(field)) color = this.state.colorPickers[playerColors['playerOneName']].value;
       const el = (
         <Input
           key={`${i}_input`}
@@ -118,6 +122,7 @@ class GameForm extends React.Component {
           validation={this.state.gameForm[field].validation}
           config={this.state.gameForm[field].config}
           onChange={(e) => { this.handleFormChange(e, field); }}
+          color={color}
           id={field}
         />
       );

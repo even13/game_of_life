@@ -38,7 +38,7 @@ class Input extends React.Component {
     }
 
     return (
-      <div data-test="component-input">
+      <div data-test="component-input" className={Classes.Input}>
         {inputElement}
       </div>
     );
