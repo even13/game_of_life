@@ -21,9 +21,9 @@ describe('<Button />', () => {
   it('renders a button', () => {
     const button = findByTestAttr(wrapper, 'button');
     expect(button).toHaveLength(1);
-    expect(button.prop('role')).toEqual('button');
+    expect(button.prop('type')).toEqual('submit');
   });
-  
+
   describe('button props', () => {
     it('renders the text GO when passed it through the `content` prop', () => {
       wrapper = setup(Button, { content: 'GO' });

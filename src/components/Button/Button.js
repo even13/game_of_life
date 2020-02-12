@@ -1,14 +1,15 @@
 import React from 'react';
+import Classes from 'Button.module.css';
 
 class Button extends React.Component {
   state = {}
 
   render() {
     return (
-      <div data-test="component-button">
-        <div data-test="button" role="button">
+      <div className={Classes.Button} data-test="component-button">
+        <button data-test="button" type="submit">
           {this.props.content}
-        </div>
+        </button>
       </div>
     );
   }

@@ -60,7 +60,6 @@ describe('<GameForm />', () => {
     const submitButton = wrapper.find({ id: 'submit' });
 
     expect(submitButton).toHaveLength(1);
-    expect(submitButton.prop('type')).toEqual('submit');
   });
 
   describe('gridSize', () => {

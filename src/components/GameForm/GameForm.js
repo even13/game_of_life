@@ -3,6 +3,7 @@ import React from 'react';
 import Classes from './GameForm.module.css';
 
 import Input from '../Input/Input';
+import Button from '../Button/Button';
 
 // Button compnent
 // Implement placeholders
@@ -100,7 +101,7 @@ class GameForm extends React.Component {
       <div className={Classes.GameForm} data-test="component-game-form">
         <form>
           {this.renderInputs()}
-          <input type="submit" id="submit" />
+          <Button id="submit" />
         </form>
       </div>
     );
