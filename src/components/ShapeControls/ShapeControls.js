@@ -13,7 +13,7 @@ class ShapeControls extends React.Component {
   handleClick = (shape) => {
     const shapeModel = new Shape();
     const shapeDisplay = new Grid(9);
-    shapeDisplay.placeCells(shapeModel.create(shape, [4, 4], this.props.orientation));
+    shapeDisplay.placeCells(shapeModel.create(shape, [4, 4], this.props.orientation, this.props.mirrorShape));
     this.setState({
       shapeDisplay,
       currentDisplayedShape: shape,
@@ -23,7 +23,15 @@ class ShapeControls extends React.Component {
 
   handleRotation = async () => {
     await this.props.rotateShape();
-    const shapeModel = new Shape().create(this.state.currentDisplayedShape, [4, 4], this.props.orientation);
+    const shapeModel = new Shape().create(this.state.currentDisplayedShape, [4, 4], this.props.orientation, this.props.mirrorShape);
+    const updateShapeDisplay = new Grid(9);
+    updateShapeDisplay.placeCells(shapeModel);
+    this.setState({ shapeDisplay: updateShapeDisplay });
+  }
+
+  handleMirror = async () => {
+    await this.props.onMirrorShape();
+    const shapeModel = new Shape().create(this.state.currentDisplayedShape, [4, 4], this.props.orientation, this.props.mirrorShape);
     const updateShapeDisplay = new Grid(9);
     updateShapeDisplay.placeCells(shapeModel);
     this.setState({ shapeDisplay: updateShapeDisplay });
@@ -40,7 +48,7 @@ class ShapeControls extends React.Component {
           {this.props.orientation}
           <sup>o</sup>
         </button>
-        <button type="button" data-test="mirror-button" onClick={() => { this.props.onMirrorShape(); }}>
+        <button type="button" data-test="mirror-button" onClick={() => { this.handleMirror(); }}>
           <span>Mirror: </span>
           { this.props.mirrorShape ? 'On' : 'Off' }
         </button>
