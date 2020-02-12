@@ -5,12 +5,9 @@ import Grid from '../../models/grid/grid';
 import Shape from '../../models/shape/shape';
 import UserControls from '../../components/UserControls/UserControls';
 
-const gridInstance = new Grid(30);
-gridInstance.randomFlags();
-
 class Game extends React.Component {
   state = {
-    model: gridInstance,
+    model: new Grid(30),
     coords: [],
     playerTurn: 1,
     isPlacingShape: false,
