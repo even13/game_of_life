@@ -151,6 +151,7 @@ class Game extends React.Component {
           orientation={this.state.shapeOrientation}
           mirrorShape={this.state.mirrorShape}
         />
+
       </div>
     );
   }
