@@ -4,10 +4,11 @@ import GridDisplay from '../../components/GridDisplay/GridDisplay';
 import Grid from '../../models/grid/grid';
 import Shape from '../../models/shape/shape';
 import UserControls from '../../components/UserControls/UserControls';
+import ScoreDisplay from '../../components/ScoreDisplay/ScoreDisplay';
 
 
-const gridInstance = new Grid(30)
-gridInstance.randomFlags()
+const gridInstance = new Grid(30);
+gridInstance.randomFlags();
 
 class Game extends React.Component {
   state = {
@@ -137,6 +138,12 @@ class Game extends React.Component {
           auxId=""
         />
 
+        <ScoreDisplay
+          data-test="component-score-display-p1"
+          name="P1 Score"
+          score={this.state.model.countFlags()[0]}
+        />
+
         <UserControls
           countValue={this.state.maxIterations}
           rateValue={this.state.evolutionRate}
@@ -150,6 +157,12 @@ class Game extends React.Component {
           onRunGame={this.runGame}
           orientation={this.state.shapeOrientation}
           mirrorShape={this.state.mirrorShape}
+        />
+
+        <ScoreDisplay
+          data-test="component-score-display-p2"
+          name="P2 Score"
+          score={this.state.model.countFlags()[1]}
         />
 
       </div>

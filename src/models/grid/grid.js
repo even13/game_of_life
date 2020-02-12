@@ -152,21 +152,25 @@ class Grid {
     });
     this.currentLiveCells = liveCells;
     this.currentGrid = newGrid;
-    this.countFlags();
+  }
+
+  playerScores = () => {
+    const flags = this.countFlags();
   }
 
   countFlags = () => {
     const flagArrLength = this.currentPlacedFlags.length;
-    this.player1FlagCount = 0;
-    this.player2FlagCount = 0;
+    let player1FlagCount = 0;
+    let player2FlagCount = 0;
     // console.log(this.currentPlacedFlags);
     for (let i = 0; i < flagArrLength; i++) {
       const xCoord = this.currentPlacedFlags[i][1];
       const yCoord = this.currentPlacedFlags[i][0];
       const cell = this.currentGrid[xCoord][yCoord];
-      if (cell.value === 'f' && cell.player === 1) this.player1FlagCount++;
-      if (cell.value === 'f' && cell.player === 2) this.player2FlagCount++;
+      if (cell.value === 'f' && cell.player === 1) player1FlagCount++;
+      if (cell.value === 'f' && cell.player === 2) player2FlagCount++;
     }
+    return [player1FlagCount, player2FlagCount];
   };
 
   neighbours = (x, y) => {
