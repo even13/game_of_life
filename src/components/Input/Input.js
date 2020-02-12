@@ -1,5 +1,6 @@
 /* eslint-disable react/prefer-stateless-function */
 import React from 'react';
+import Aux from '../../hoc/Aux';
 
 class Input extends React.Component {
   render() {
@@ -21,13 +22,17 @@ class Input extends React.Component {
         );
         break;
       default:
+        console.log(this.props);
         inputElement = (
-          <input
-            data-test={`input${suffix}`}
-            type={this.props.type}
-            onChange={this.props.onChange}
-            value={this.props.value}
-          />
+          <div>
+            <div>{this.props.config.placeholder}</div>
+            <input
+              data-test={`input${suffix}`}
+              type={this.props.type}
+              onChange={this.props.onChange}
+              value={this.props.value}
+            />
+          </div>
         );
     }
 

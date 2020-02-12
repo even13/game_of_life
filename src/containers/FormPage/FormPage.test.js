@@ -17,4 +17,9 @@ describe('<FormPage />', () => {
   it('renders without error', () => {
     expect(formPageComponent).toHaveLength(1);
   });
+
+  it('renders a <GameForm >', () => {
+    const gameForm = findByTestAttr(wrapper, 'game-form');
+    expect(gameForm).toHaveLength(1);
+  });
 });
