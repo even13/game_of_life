@@ -140,4 +140,13 @@ describe('<GameForm />', () => {
     await playerOneNameField.simulate('change', { target: { value: 'Raluca' }, persist: jest.fn() });
     setTimeout(() => { expect(instance.handleFormChange).toHaveBeenCalled(); });
   });
+
+  it('handles color changes', async () => {
+    const instance = wrapper.instance();
+    const playerOneNameField = wrapper.find({ id: 'playerOneColor' });
+
+    jest.spyOn(instance, 'handleColorChange');
+    await playerOneNameField.simulate('click', { persist: jest.fn() });
+    setTimeout(() => { expect(instance.handleColorChange).toHaveBeenCalled(); });
+  });
 });

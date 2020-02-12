@@ -5,8 +5,8 @@ import Classes from './ColorPicker.module.css';
 class ColorPicker extends React.Component {
   state = {}
 
-  handleClick = () => {
-    this.props.onClick();
+  handleClick = (e) => {
+    this.props.onClick(e, this.props.id);
   }
 
   render() {

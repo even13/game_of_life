@@ -13,6 +13,7 @@ import ColorPicker from '../ColorPicker/ColorPicker';
 
 class GameForm extends React.Component {
   state = {
+    colors: ['red', 'green', 'blue', 'red', 'white'],
     gameForm: {
       playerOneName: {
         type: 'text',
@@ -90,6 +91,19 @@ class GameForm extends React.Component {
     });
   }
 
+  handleColorChange = (e, player) => {
+    e.persist();
+
+    this.setState((prevState) => {
+      const colorPickers = { ...prevState.colorPickers };
+      const playerColorPicker = { ...colorPickers[player] };
+      const colorIndex = prevState.colors.indexOf(playerColorPicker.value);
+      playerColorPicker.value = prevState.colors[(colorIndex + 1) % prevState.colors.length];
+      colorPickers[player] = playerColorPicker;
+      return { colorPickers };
+    });
+  };
+
   renderInputs = () => {
     const gameFormFields = Object.keys(this.state.gameForm);
     return gameFormFields.map((field, i) => (
@@ -107,16 +121,14 @@ class GameForm extends React.Component {
 
   renderColorPickers = () => {
     const colorPickerFields = Object.keys(this.state.colorPickers);
-    return colorPickerFields.map((field, i) => {
-      return (
-        <ColorPicker
-          key={`${i}_colorPicker`}
-          value={`${this.state.colorPickers[field].value}`}
-          onClick={this.handleColorChange}
-          id={field}
-        />
-      );
-    });
+    return colorPickerFields.map((field, i) => (
+      <ColorPicker
+        key={`${i}_colorPicker`}
+        value={`${this.state.colorPickers[field].value}`}
+        onClick={this.handleColorChange}
+        id={field}
+      />
+    ));
   }
 
   render() {
