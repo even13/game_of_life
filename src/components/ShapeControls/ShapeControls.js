@@ -7,7 +7,7 @@ class ShapeControls extends React.Component {
   state = {
     shapeDisplay: new Grid(9),
     currentDisplayedShape: null,
-    currentShapeOrientation: 0,
+    // currentShapeOrientation: 0,
   }
 
   handleClick = (shape) => {

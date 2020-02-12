@@ -39,7 +39,7 @@ describe('<ShapeControls />', () => {
       testDisplayCell = wrapper.state('shapeDisplay').currentGrid[3][4];
       testDisplayCell2 = wrapper.state('shapeDisplay').currentGrid[4][4];
       testDisplayCell3 = wrapper.state('shapeDisplay').currentGrid[5][4];
-  
+
       expect(testDisplayCell.value).toEqual('*');
       expect(testDisplayCell2.value).toEqual('*');
       expect(testDisplayCell3.value).toEqual('*');

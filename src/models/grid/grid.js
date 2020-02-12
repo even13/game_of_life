@@ -77,7 +77,11 @@ class Grid {
       }
     }
 
+    const xCoordOdd = Math.floor(Math.random() * Math.floor(this.gridSize));
+    const yCoordOdd = Math.floor(Math.random() * Math.ceil(this.gridSize));
+
     this.currentPlacedFlags = Q1FlagCoordinates.concat(Q2FlagCoordinates).concat(Q3FlagCoordinates).concat(Q4FlagCoordinates);
+    this.currentPlacedFlags.push([xCoordOdd, yCoordOdd]);
   }
 
   getCurrentFlags = () => this.currentPlacedFlags

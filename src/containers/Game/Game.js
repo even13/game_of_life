@@ -5,9 +5,12 @@ import Grid from '../../models/grid/grid';
 import Shape from '../../models/shape/shape';
 import UserControls from '../../components/UserControls/UserControls';
 
+const gridInstance = new Grid(30);
+gridInstance.randomFlags();
+
 class Game extends React.Component {
   state = {
-    model: new Grid(30),
+    model: gridInstance,
     coords: [],
     playerTurn: 1,
     isPlacingShape: false,
@@ -30,7 +33,8 @@ class Game extends React.Component {
   }
 
   placeLiveCell = (coord) => {
-    if ((this.props.playerOneCellsRemaining && this.props.playerOneCellsRemaining === 0) || (this.props.playerOneCellsRemaining - coord.length < 0)) return;
+    if (this.state.playerTurn === 1 && (this.props.playerOneCellsRemaining === 0 || (this.props.playerOneCellsRemaining - coord.length < 0))) return;
+    if (this.state.playerTurn === 2 && (this.props.playerTwoCellsRemaining === 0 || (this.props.playerTwoCellsRemaining - coord.length < 0))) return;
     // if there are cellbars on that specific gamepage, run the logic below
     // keeps track of how many live cells the user placed on grid pre-game
     if (this.props.onDecrement) this.props.onDecrement(coord.length, this.state.playerTurn);
@@ -44,6 +48,8 @@ class Game extends React.Component {
       model: updatedModel,
       coords: updatedCoords,
     }));
+    // console.log("player1", this.props.playerOneCellsRemaining);
+    // console.log("player2", this.props.playerTwoCellsRemaining);
   }
 
   placeDeadCell = (coord) => {
