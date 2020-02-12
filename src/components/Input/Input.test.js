@@ -8,7 +8,17 @@ Enzyme.configure({ adapter: new EnzymeAdapter() });
 describe('<Input />', () => {
   let wrapper;
   let inputComponent;
+  const rangeInputDefaultProps = {
+    type: 'range',
+    validation: { max: '100', min: '1' },
+    config: { step: '10' },
+  };
 
+  const textInputDefaultProps = {
+    type: 'text',
+    validation: { max: '100', min: '1' },
+    config: { step: '10' },
+  };
 
   beforeEach(() => {
     wrapper = setup(Input);
@@ -20,13 +30,13 @@ describe('<Input />', () => {
   });
 
   it('renders a text input if its type prop === input', () => {
-    wrapper = setup(Input, { type: 'text' });
+    wrapper = setup(Input, textInputDefaultProps);
     const input = findByTestAttr(wrapper, 'input');
     expect(input.prop('type')).toEqual('text');
   });
 
   it('renders a range input if its type prop === range', () => {
-    wrapper = setup(Input, { type: 'range', config: { step: '12' } });
+    wrapper = setup(Input, rangeInputDefaultProps);
     const input = findByTestAttr(wrapper, 'input');
     expect(input.prop('type')).toEqual('range');
   });

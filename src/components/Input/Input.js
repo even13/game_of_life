@@ -15,6 +15,8 @@ class Input extends React.Component {
             onChange={this.props.onChange}
             value={this.props.value}
             step={this.props.config.step}
+            max={this.props.validation.max}
+            min={this.props.validation.min}
           />
         );
         break;

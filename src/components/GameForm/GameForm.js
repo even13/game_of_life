@@ -4,16 +4,27 @@ import Classes from './GameForm.module.css';
 
 import Input from '../Input/Input';
 
+// Button compnent
+// Implement placeholders
+// Persist state of form to the grid and rest of App
+// Reset form?
+
 class GameForm extends React.Component {
   state = {
     gameForm: {
       playerOneName: {
         type: 'text',
         value: '',
+        config: {
+          placeholder: 'Player One',
+        },
       },
       playerTwoName: {
         type: 'text',
         value: '',
+        config: {
+          placeholder: 'Player Two',
+        },
       },
       gridSize: {
         type: 'range',
