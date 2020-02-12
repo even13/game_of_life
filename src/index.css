@@ -3,6 +3,18 @@
   font-family: 'Bungee', cursive;
 }
 
+*:focus {
+  outline: none;
+}
+
+::-moz-selection { background: transparent; }
+::selection { background: transparent; }
+
+input[type="text"]::-moz-selection { background: rgb(179, 179, 179); }
+input[type="text"]::selection { background: rgb(179, 179, 179); }
+
+
+
 html {
   display: flex;
   flex-direction: column;

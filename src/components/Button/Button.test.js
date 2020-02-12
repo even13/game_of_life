@@ -18,16 +18,10 @@ describe('<Button />', () => {
     expect(buttonComponent).toHaveLength(1);
   });
 
-  it('renders a button', () => {
-    const button = findByTestAttr(wrapper, 'button');
-    expect(button).toHaveLength(1);
-    expect(button.prop('type')).toEqual('submit');
-  });
-
   describe('button props', () => {
     it('renders the text GO when passed it through the `content` prop', () => {
       wrapper = setup(Button, { content: 'GO' });
-      const button = findByTestAttr(wrapper, 'button');
+      const button = findByTestAttr(wrapper, 'component-button');
       expect(button.text()).toEqual('GO');
     });
   });

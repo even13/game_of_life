@@ -2,7 +2,7 @@
 import React from 'react';
 import FormPage from './containers/FormPage/FormPage';
 import GamePage from './containers/GamePage/GamePage';
-import Classes from './App';
+import Classes from './App.module.css';
 
 class App extends React.Component {
   render() {
