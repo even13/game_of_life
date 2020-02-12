@@ -9,10 +9,11 @@ class Cell extends React.Component {
   }
 
   render() {
-    const color = this.props.cell.value === '*' ? 'black' : 'green';
+    let color = this.props.cell.value === '*' ? 'black' : 'green';
+    if (this.props.cell.value === 'f') color = 'red'
     return (
       <div
-        style={{ backgroundColor: color }}
+        style={{ backgroundColor: color}}
         className={Classes.Cell}
         role="button"
         tabIndex={0}
@@ -20,7 +21,7 @@ class Cell extends React.Component {
         onKeyDown={this.handleClick}
         data-test="component-cell"
       >
-        {this.props.cell.player}
+        {this.props.cell.player }
       </div>
     );
   }
