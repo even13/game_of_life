@@ -36,8 +36,8 @@ class Shape {
       if (mirror) {
         mirrorElement = element[0] * -1;
       }
-      const xCoord = coord[0] + (mirrorElement * Math.cos(rads) - element[1] * Math.sin(rads));
-      const yCoord = coord[1] + (element[1] * Math.cos(rads) + mirrorElement * Math.sin(rads));
+      const xCoord = Math.round(coord[0] + (mirrorElement * Math.cos(rads) - element[1] * Math.sin(rads)));
+      const yCoord = Math.round(coord[1] + (element[1] * Math.cos(rads) + mirrorElement * Math.sin(rads)));
       coords.push([xCoord, yCoord]);
     });
     return coords;
