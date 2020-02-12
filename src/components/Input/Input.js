@@ -22,9 +22,8 @@ class Input extends React.Component {
         );
         break;
       default:
-        console.log(this.props);
         inputElement = (
-          <div>
+          <Aux>
             <div>{this.props.config.placeholder}</div>
             <input
               data-test={`input${suffix}`}
@@ -32,7 +31,7 @@ class Input extends React.Component {
               onChange={this.props.onChange}
               value={this.props.value}
             />
-          </div>
+          </Aux>
         );
     }
 

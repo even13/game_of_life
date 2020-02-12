@@ -17,4 +17,9 @@ describe('<ColorPicker />', () => {
   it('renders without error', () => {
     expect(colorPickerComponent).toHaveLength(1);
   });
+
+  it('renders a color display', () => {
+    const colorDisplay = findByTestAttr(wrapper, 'color-display');
+    expect(colorDisplay).toHaveLength(1);
+  });
 });

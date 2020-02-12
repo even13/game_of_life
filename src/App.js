@@ -1,6 +1,5 @@
 /* eslint-disable react/prefer-stateless-function */
 import React from 'react';
-import GamePage from './containers/GamePage/GamePage';
 import FormPage from './containers/FormPage/FormPage';
 
 class App extends React.Component {
