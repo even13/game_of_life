@@ -29,9 +29,11 @@ class GameForm extends React.Component {
       },
       playerOneColor: {
         type: 'button',
+        value: 'blue',
       },
       playerTwoColor: {
         type: 'button',
+        value: 'pink',
       },
       gridSize: {
         type: 'range',

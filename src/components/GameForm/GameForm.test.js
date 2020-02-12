@@ -62,12 +62,30 @@ describe('<GameForm />', () => {
     expect(submitButton).toHaveLength(1);
   });
 
-  it('renders a two color pickers', () => {
-    const playerOneColor = wrapper.find({ id: 'playerOneColor' });
-    const playerTwoColor = wrapper.find({ id: 'playerTwoColor' });
+  
+  describe('color pickers', () => {
+    let playerOneColor;
+    let playerTwoColor;
 
-    expect(playerOneColor).toHaveLength(1);
-    expect(playerTwoColor).toHaveLength(1);
+    beforeEach(() => {
+      wrapper = setup(GameForm);
+      gameFormComponent = findByTestAttr(wrapper, 'component-game-form');
+      playerOneColor = wrapper.find({ id: 'playerOneColor' });
+      playerTwoColor = wrapper.find({ id: 'playerTwoColor' });
+    });
+    
+    it('renders a two color pickers', () => {
+      expect(playerOneColor).toHaveLength(1);
+      expect(playerTwoColor).toHaveLength(1);
+    });
+
+    test('player one has a default of blue', () => {
+      expect(wrapper.state('gameForm').playerOneColor.value).toEqual('blue');
+    });
+
+    test('player two has a default of pink', () => {
+      expect(wrapper.state('gameForm').playerTwoColor.value).toEqual('pink');
+    });
   });
 
   describe('gridSize', () => {
