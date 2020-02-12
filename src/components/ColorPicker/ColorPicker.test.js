@@ -8,9 +8,10 @@ Enzyme.configure({ adapter: new EnzymeAdapter() });
 describe('<ColorPicker />', () => {
   let wrapper;
   let colorPickerComponent;
+  let colorDisplay;
 
   beforeEach(() => {
-    wrapper = setup(ColorPicker);
+    wrapper = setup(ColorPicker, { onClick: jest.fn() });
     colorPickerComponent = findByTestAttr(wrapper, 'component-color-picker');
   });
 
@@ -19,7 +20,16 @@ describe('<ColorPicker />', () => {
   });
 
   it('renders a color display', () => {
-    const colorDisplay = findByTestAttr(wrapper, 'color-display');
+    colorDisplay = findByTestAttr(wrapper, 'color-display');
     expect(colorDisplay).toHaveLength(1);
+  });
+
+  it('changes color when clicked', async () => {
+    const instance = wrapper.instance();
+    colorDisplay = findByTestAttr(wrapper, 'color-display');
+
+    jest.spyOn(instance, 'handleClick');
+    await colorDisplay.simulate('click', { preventDefault: jest.fn() });
+    setTimeout(() => { expect(instance.handleClick).toHaveBeenCalled(); });
   });
 });
