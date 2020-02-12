@@ -14,7 +14,8 @@ class GridDisplay extends React.Component {
             cells={data[res.length]}
             playerTurn={this.props.playerTurn}
             data-test="component-row"
-            id={`${i}index`}
+            id={`${i}index${this.props.auxId}`}
+            auxId={this.props.auxId}
           />,
         );
       }

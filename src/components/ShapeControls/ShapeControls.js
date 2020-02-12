@@ -1,19 +1,60 @@
 import React from 'react';
+import GridDisplay from '../GridDisplay/GridDisplay';
+import Grid from '../../models/grid/grid';
+import Shape from '../../models/shape/shape';
 
-const ShapeControls = (props) => (
-  <div className="ShapeControls" data-test="component-shape-controls">
-    <button type="button" data-test="create-spinner" onClick={() => { props.placeShape('spinner'); }}>Create A Spinner</button>
-    <button type="button" data-test="create-spaceship" onClick={() => { props.placeShape('spaceship'); }}>Create A Spaceship</button>
-    <button type="button" data-test="create-bird" onClick={() => { props.placeShape('bird'); }}>Create A Bird</button>
-    <button type="button" data-test="rotate-button" onClick={() => { props.rotateShape(); }}>
-      {props.orientation}
-      <sup>o</sup>
-    </button>
-    <button type="button" data-test="mirror-button" onClick={() => { props.onMirrorShape(); }}>
-      <span>Mirror: </span>
-      { props.mirrorShape ? 'On' : 'Off' }
-    </button>
-  </div>
-);
+class ShapeControls extends React.Component {
+  state = {
+    shapeDisplay: new Grid(9),
+    currentDisplayedShape: null,
+    currentShapeOrientation: 0,
+  }
+
+  handleClick = (shape) => {
+    const shapeModel = new Shape();
+    const shapeDisplay = new Grid(9);
+    shapeDisplay.placeCells(shapeModel.create(shape, [4, 4], this.props.orientation, this.props.mirrorShape));
+    this.setState({
+      shapeDisplay,
+      currentDisplayedShape: shape,
+    });
+    this.props.placeShape(shape);
+  }
+
+  handleRotation = async () => {
+    await this.props.rotateShape();
+    const shapeModel = new Shape().create(this.state.currentDisplayedShape, [4, 4], this.props.orientation, this.props.mirrorShape);
+    const updateShapeDisplay = new Grid(9);
+    updateShapeDisplay.placeCells(shapeModel);
+    this.setState({ shapeDisplay: updateShapeDisplay });
+  }
+
+  handleMirror = async () => {
+    await this.props.onMirrorShape();
+    const shapeModel = new Shape().create(this.state.currentDisplayedShape, [4, 4], this.props.orientation, this.props.mirrorShape);
+    const updateShapeDisplay = new Grid(9);
+    updateShapeDisplay.placeCells(shapeModel);
+    this.setState({ shapeDisplay: updateShapeDisplay });
+  }
+
+  render() {
+    return (
+      <div className="ShapeControls" data-test="component-shape-controls">
+        <GridDisplay size={9} model={this.state.shapeDisplay} auxId="_display" data-test="shape-display" />
+        <button type="button" data-test="create-spinner" onClick={() => { this.handleClick('spinner'); }}>Create A Spinner</button>
+        <button type="button" data-test="create-spaceship" onClick={() => { this.handleClick('spaceship'); }}>Create A Spaceship</button>
+        <button type="button" data-test="create-bird" onClick={() => { this.handleClick('bird'); }}>Create A Bird</button>
+        <button type="button" data-test="rotate-button" onClick={() => { this.handleRotation(); }}>
+          {this.props.orientation}
+          <sup>o</sup>
+        </button>
+        <button type="button" data-test="mirror-button" onClick={() => { this.handleMirror(); }}>
+          <span>Mirror: </span>
+          { this.props.mirrorShape ? 'On' : 'Off' }
+        </button>
+      </div>
+    );
+  }
+}
 
 export default ShapeControls;
