@@ -1,16 +1,14 @@
 .GameForm {
-  width: auto;
-  border: 1px solid red;
+  width: 100%;
 }
 
-.ColorPickers {
+.ColorPicker {
   display: flex;
-  width: 100%;
+  width: auto;
   justify-content: space-between;
 }
 
 .Sliders {
-  border: 1px solid red;
   width: 100%;
   height: 300px;
   display: flex;
@@ -20,4 +18,5 @@
 
 .PlayerInputs {
   display: flex;
+  justify-content: center;
 }

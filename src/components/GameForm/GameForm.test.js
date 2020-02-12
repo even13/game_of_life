@@ -123,12 +123,12 @@ describe('<GameForm />', () => {
   });
 
   describe('gameSpeed', () => {
-    it('has a maximum limit of 2', () => {
-      expect(wrapper.state('gameForm').gameSpeed.validation.max).toEqual('2');
+    it('has a maximum limit of 1000', () => {
+      expect(wrapper.state('gameForm').gameSpeed.validation.max).toEqual('1000');
     });
 
-    it('has a minimum limit of 5000', () => {
-      expect(wrapper.state('gameForm').gameSpeed.validation.min).toEqual('5000');
+    it('has a minimum limit of 2', () => {
+      expect(wrapper.state('gameForm').gameSpeed.validation.min).toEqual('2');
     });
   });
 

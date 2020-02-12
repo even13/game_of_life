@@ -61,8 +61,8 @@ class GameForm extends React.Component {
         type: 'range',
         value: '',
         validation: {
-          max: '2',
-          min: '5000',
+          max: '1000',
+          min: '2',
         },
         config: {},
       },
@@ -107,13 +107,13 @@ class GameForm extends React.Component {
     const gameFormFields = Object.keys(this.state.gameForm);
     let playerInputFields = [];
     let sliders = [];
-    const playerNames = ['playerOneName', 'playerTwoName'];
     const playerColors = { 'playerOneName': 'playerOneColor', 'playerTwoName': 'playerTwoColor' };
     let color;
 
     gameFormFields.forEach((field, i) => {
       color = null;
-      if (playerNames.includes(field)) color = this.state.colorPickers[playerColors['playerOneName']].value;
+      const playerNames = Object.keys(playerColors);
+      if (playerNames.includes(field)) color = this.state.colorPickers[playerColors[field]].value;
       const el = (
         <Input
           key={`${i}_input`}
@@ -137,9 +137,9 @@ class GameForm extends React.Component {
     return (
       <Aux>
         <div className={Classes.PlayerInputs}>
-          <div className={Classes.ColorPickers}>{this.renderColorPicker(1)}</div>
+          <div className={Classes.ColorPicker}>{this.renderColorPicker(1)}</div>
           { playerInputFields }
-          <div className={Classes.ColorPickers}>{this.renderColorPicker(2)}</div>
+          <div className={Classes.ColorPicker}>{this.renderColorPicker(2)}</div>
         </div>
         <div className={Classes.Sliders}>
           { sliders }
