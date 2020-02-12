@@ -16,7 +16,7 @@ describe('cellState', () => {
     wrapper.setState({ model: testGridModel });
   });
 
-  describe('placing live cells from the browser', () => {
+  describe('setting shape rotation angle', () => {
     beforeEach(() => {
       wrapper = mount(<Game />);
     });
@@ -37,6 +37,27 @@ describe('cellState', () => {
       rotateShapeButton.simulate('click');
 
       expect(wrapper.state().shapeOrientation).toEqual(0);
+    });
+  });
+
+  describe('mirroring shape', () => {
+    beforeEach(() => {
+      wrapper = mount(<Game />);
+    });
+
+    it('changes mirror to true after first click', () => {
+      const mirrorShapeButton = findByTestAttr(wrapper, 'mirror-button');
+      mirrorShapeButton.simulate('click');
+
+      expect(wrapper.state().mirrorShape).toEqual(true);
+    });
+
+    it('changes mirror back to false after 2 clicks', () => {
+      const mirrorShapeButton = findByTestAttr(wrapper, 'mirror-button');
+      mirrorShapeButton.simulate('click');
+      mirrorShapeButton.simulate('click');
+
+      expect(wrapper.state().mirrorShape).toEqual(false);
     });
   });
 });

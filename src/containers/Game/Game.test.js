@@ -33,4 +33,36 @@ describe('<Game />', () => {
       expect(gridDisplayComponent.prop('model')).toStrictEqual(testGridModel);
     });
   });
+
+  describe('rotateShape', () => {
+    it('should change the shape orientation to 90 degrees when run once', () => {
+      wrapper.instance().rotateShape();
+
+      expect(wrapper.state('shapeOrientation')).toStrictEqual(90);
+    });
+
+    it('should change the shape orientation back to 0 degrees when run 4 times', () => {
+      wrapper.instance().rotateShape();
+      wrapper.instance().rotateShape();
+      wrapper.instance().rotateShape();
+      wrapper.instance().rotateShape();
+
+      expect(wrapper.state('shapeOrientation')).toStrictEqual(0);
+    });
+  });
+
+  describe('handleMirrorShape', () => {
+    it('should set to true after run once', () => {
+      wrapper.instance().handleMirrorShape();
+
+      expect(wrapper.state('mirrorShape')).toStrictEqual(true);
+    });
+
+    it('should set back to false when run twice', () => {
+      wrapper.instance().handleMirrorShape();
+      wrapper.instance().handleMirrorShape();
+
+      expect(wrapper.state('mirrorShape')).toStrictEqual(false);
+    });
+  });
 });

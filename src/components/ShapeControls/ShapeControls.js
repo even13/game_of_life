@@ -23,7 +23,6 @@ class ShapeControls extends React.Component {
 
   handleRotation = async () => {
     await this.props.rotateShape();
-    console.log(this.props.orientation)
     const shapeModel = new Shape().create(this.state.currentDisplayedShape, [4, 4], this.props.orientation);
     const updateShapeDisplay = new Grid(9);
     updateShapeDisplay.placeCells(shapeModel);
@@ -40,6 +39,10 @@ class ShapeControls extends React.Component {
         <button type="button" data-test="rotate-button" onClick={() => { this.handleRotation(); }}>
           {this.props.orientation}
           <sup>o</sup>
+        </button>
+        <button type="button" data-test="mirror-button" onClick={() => { props.onMirrorShape(); }}>
+          <span>Mirror: </span>
+          { props.mirrorShape ? 'On' : 'Off' }
         </button>
       </div>
     );
