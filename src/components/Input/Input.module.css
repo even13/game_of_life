@@ -1,0 +1,16 @@
+.Input {
+
+}
+
+.playerOneName {
+  text-align: left;
+}
+
+.playerTwoName {
+  text-align: right;
+}
+
+.TextInput {
+  border: none;
+  border-bottom: 1px solid black;
+}

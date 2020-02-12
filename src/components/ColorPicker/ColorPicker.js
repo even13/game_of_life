@@ -13,6 +13,7 @@ class ColorPicker extends React.Component {
     return (
       <div className={Classes.ColorPicker} data-test="component-color-picker">
         <div
+          style={{ backgroundColor: this.props.color }}
           role="button"
           tabIndex={0}
           onKeyDown={this.handleClick}

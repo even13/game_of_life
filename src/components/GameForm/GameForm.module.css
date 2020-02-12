@@ -1,3 +1,13 @@
 .GameForm {
 
 }
+
+.ColorPickers {
+  display: flex;
+  width: 50%;
+  justify-content: center;
+}
+
+.PlayerInputs {
+  display: flex;
+}

@@ -2,6 +2,7 @@
 import React from 'react';
 import Classes from './GameForm.module.css';
 
+import Aux from '../../hoc/Aux';
 import Input from '../Input/Input';
 import Button from '../Button/Button';
 import ColorPicker from '../ColorPicker/ColorPicker';
@@ -13,7 +14,7 @@ import ColorPicker from '../ColorPicker/ColorPicker';
 
 class GameForm extends React.Component {
   state = {
-    colors: ['red', 'green', 'blue', 'red', 'white'],
+    colors: ['red', 'green', 'blue', 'white'],
     gameForm: {
       playerOneName: {
         type: 'text',
@@ -106,17 +107,38 @@ class GameForm extends React.Component {
 
   renderInputs = () => {
     const gameFormFields = Object.keys(this.state.gameForm);
-    return gameFormFields.map((field, i) => (
-      <Input
-        key={`${i}_input`}
-        type={this.state.gameForm[field].type}
-        value={this.state.gameForm[field].value}
-        validation={this.state.gameForm[field].validation}
-        config={this.state.gameForm[field].config}
-        onChange={(e) => { this.handleFormChange(e, field); }}
-        id={field}
-      />
-    ));
+    let playerInputFields = [];
+    let sliders = [];
+    gameFormFields.forEach((field, i) => {
+      const el = (
+        <Input
+          key={`${i}_input`}
+          type={this.state.gameForm[field].type}
+          value={this.state.gameForm[field].value}
+          validation={this.state.gameForm[field].validation}
+          config={this.state.gameForm[field].config}
+          onChange={(e) => { this.handleFormChange(e, field); }}
+          id={field}
+        />
+      );
+
+      if (['playerOneName', 'playerTwoName'].includes(field)) {
+        playerInputFields = [...playerInputFields, el];
+      } else {
+        sliders = [...sliders, el];
+      }
+    });
+
+    return (
+      <Aux>
+        <div className={Classes.PlayerInputs}>
+          { playerInputFields }
+        </div>
+        <div className={Classes.Sliders}>
+          { sliders }
+        </div>
+      </Aux>
+    );
   }
 
   renderColorPickers = () => {
@@ -124,7 +146,7 @@ class GameForm extends React.Component {
     return colorPickerFields.map((field, i) => (
       <ColorPicker
         key={`${i}_colorPicker`}
-        value={`${this.state.colorPickers[field].value}`}
+        color={`${this.state.colorPickers[field].value}`}
         onClick={this.handleColorChange}
         id={field}
       />
@@ -134,7 +156,7 @@ class GameForm extends React.Component {
   render() {
     return (
       <div className={Classes.GameForm} data-test="component-game-form">
-        {this.renderColorPickers()}
+        <div className={Classes.ColorPickers}>{this.renderColorPickers()}</div>
         <form>
           {this.renderInputs()}
           <Button id="submit" />
