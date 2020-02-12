@@ -31,16 +31,18 @@ describe('<ShapeControls />', () => {
     expect(shapeDisplay).toHaveLength(1);
   });
 
-  it('displays a spinner when the user clicks on the spinner button', () => {
+  it('displays a spinner when the user clicks on the spinner button', async () => {
     const spinnerButton = findByTestAttr(wrapper, 'create-spinner');
-    spinnerButton.simulate('click');
+    await spinnerButton.simulate('click');
 
-    testDisplayCell = wrapper.state('shapeDisplay').currentGrid[3][4];
-    testDisplayCell2 = wrapper.state('shapeDisplay').currentGrid[4][4];
-    testDisplayCell3 = wrapper.state('shapeDisplay').currentGrid[5][4];
-
-    expect(testDisplayCell.value).toEqual('*');
-    expect(testDisplayCell2.value).toEqual('*');
-    expect(testDisplayCell3.value).toEqual('*');
+    setTimeout(() => {
+      testDisplayCell = wrapper.state('shapeDisplay').currentGrid[3][4];
+      testDisplayCell2 = wrapper.state('shapeDisplay').currentGrid[4][4];
+      testDisplayCell3 = wrapper.state('shapeDisplay').currentGrid[5][4];
+  
+      expect(testDisplayCell.value).toEqual('*');
+      expect(testDisplayCell2.value).toEqual('*');
+      expect(testDisplayCell3.value).toEqual('*');
+    });
   });
 });
