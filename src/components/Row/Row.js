@@ -12,7 +12,7 @@ class Row extends React.Component {
             key={`${res.length}${this.props.yCoord}_cell`}
             onClick={this.props.onStateChange}
             coord={[i, this.props.yCoord]}
-            id={`${res.length}${this.props.yCoord}_cell`}
+            id={`${res.length}${this.props.yCoord}_cell${this.props.auxId}`}
             data-test="component-cell"
             isAlive={this.props.cells[i].value === '*'}
             cell={this.props.cells[i]}
