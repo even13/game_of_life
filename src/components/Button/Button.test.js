@@ -10,7 +10,7 @@ describe('<Button />', () => {
   let buttonComponent;
 
   beforeEach(() => {
-    wrapper = setup(Button, { Button: { value: '-', player: null } });
+    wrapper = setup(Button);
     buttonComponent = findByTestAttr(wrapper, 'component-button');
   });
 
@@ -20,8 +20,15 @@ describe('<Button />', () => {
 
   it('renders a button', () => {
     const button = findByTestAttr(wrapper, 'button');
-
     expect(button).toHaveLength(1);
     expect(button.prop('role')).toEqual('button');
+  });
+  
+  describe('button props', () => {
+    it('renders the text GO when passed it through the `content` prop', () => {
+      wrapper = setup(Button, { content: 'GO' });
+      const button = findByTestAttr(wrapper, 'button');
+      expect(button.text()).toEqual('GO');
+    });
   });
 });

@@ -6,7 +6,9 @@ class Button extends React.Component {
   render() {
     return (
       <div data-test="component-button">
-        <div data-test="button" role="button"></div>
+        <div data-test="button" role="button">
+          {this.props.content}
+        </div>
       </div>
     );
   }
