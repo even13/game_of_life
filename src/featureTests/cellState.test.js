@@ -9,23 +9,23 @@ Enzyme.configure({ adapter: new EnzymeAdapter() });
 
 describe('cellState', () => {
   let wrapper;
+  let wrapperTwo;
   const testGridModel = new Grid();
+  const testGridModelTwo = new Grid();
   let empty;
   let one;
 
   beforeEach(() => {
     wrapper = mount(<Game />);
+    wrapperTwo = mount(<Game />);
     wrapper.setState({ model: testGridModel });
+    wrapperTwo.setState({ model: testGridModelTwo });
     empty = { value: '-', player: null };
     one = { value: '*', player: 1 };
   });
 
   describe('placing live cells from the browser', () => {
     let testCell;
-
-    beforeEach(() => {
-      wrapper = mount(<Game />);
-    });
 
     it('changes the value assigned to the clicked cell', () => {
       testCell = wrapper.find({ id: '04_cell' });
@@ -37,17 +37,16 @@ describe('cellState', () => {
     });
 
     it('changes the value assigned to two clicked cells', () => {
-      testCell = wrapper.find({ id: '018_cell' });
+      testCell = wrapperTwo.find({ id: '018_cell' });
       testCell.simulate('click');
 
-      testCell = wrapper.find({ id: '019_cell' });
+      testCell = wrapperTwo.find({ id: '019_cell' });
       testCell.simulate('click');
 
-      testCell = wrapper.find({ id: '1420_cell' });
+      testCell = wrapperTwo.find({ id: '1420_cell' });
       testCell.simulate('click');
 
-      const clickedCells = wrapper.find({ cell: one });
-
+      const clickedCells = wrapperTwo.find({ cell: one });
       expect(clickedCells).toHaveLength(3);
     });
   });
