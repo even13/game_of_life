@@ -7,7 +7,7 @@ class ShapeControls extends React.Component {
   state = {
     shapeDisplay: new Grid(9),
     currentDisplayedShape: null,
-    currentShapeOrientation: 0,
+    // currentShapeOrientation: 0,
   }
 
   handleClick = (shape) => {
@@ -26,7 +26,7 @@ class ShapeControls extends React.Component {
     const shapeModel = new Shape().create(this.state.currentDisplayedShape, [4, 4], this.props.orientation);
     const updateShapeDisplay = new Grid(9);
     updateShapeDisplay.placeCells(shapeModel);
-    this.setState({ shapeDisplay: updateShapeDisplay })
+    this.setState({ shapeDisplay: updateShapeDisplay });
   }
 
   render() {

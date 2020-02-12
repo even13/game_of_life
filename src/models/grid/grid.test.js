@@ -271,25 +271,29 @@ describe('Grid', () => {
         Q1.forEach((randomFlag) => {
           if (JSON.stringify(placedFlags).includes(JSON.stringify(randomFlag))) flagsInQ1 = [...flagsInQ1, randomFlag];
         });
-        expect(flagsInQ1).toHaveLength(2);
+        expect(flagsInQ1.length).toBeGreaterThanOrEqual(2);
+        expect(flagsInQ1.length).toBeLessThanOrEqual(3);
 
         flagsInQ2 = [];
         Q1.forEach((randomFlag) => {
           if (JSON.stringify(placedFlags).includes(JSON.stringify(randomFlag))) flagsInQ2 = [...flagsInQ2, randomFlag];
         });
-        expect(flagsInQ2).toHaveLength(2);
+        expect(flagsInQ2.length).toBeGreaterThanOrEqual(2);
+        expect(flagsInQ2.length).toBeLessThanOrEqual(3);
 
         flagsInQ3 = [];
         Q1.forEach((randomFlag) => {
           if (JSON.stringify(placedFlags).includes(JSON.stringify(randomFlag))) flagsInQ3 = [...flagsInQ3, randomFlag];
         });
-        expect(flagsInQ3).toHaveLength(2);
+        expect(flagsInQ3.length).toBeGreaterThanOrEqual(2);
+        expect(flagsInQ3.length).toBeLessThanOrEqual(3);
 
         flagsInQ4 = [];
         Q1.forEach((randomFlag) => {
           if (JSON.stringify(placedFlags).includes(JSON.stringify(randomFlag))) flagsInQ4 = [...flagsInQ4, randomFlag];
         });
-        expect(flagsInQ4).toHaveLength(2);
+        expect(flagsInQ4.length).toBeGreaterThanOrEqual(2);
+        expect(flagsInQ4.length).toBeLessThanOrEqual(3);
       });
 
       it('can place 16 flags randomly over 4 quadrants in a 6 x 6 grid', () => {
@@ -306,25 +310,29 @@ describe('Grid', () => {
         Q1.forEach((randomFlag) => {
           if (JSON.stringify(placedFlags).includes(JSON.stringify(randomFlag))) flagsInQ1 = [...flagsInQ1, randomFlag];
         });
-        expect(flagsInQ1).toHaveLength(4);
+        expect(flagsInQ1.length).toBeGreaterThanOrEqual(4);
+        expect(flagsInQ1.length).toBeLessThanOrEqual(5);
 
         flagsInQ2 = [];
         Q1.forEach((randomFlag) => {
           if (JSON.stringify(placedFlags).includes(JSON.stringify(randomFlag))) flagsInQ2 = [...flagsInQ2, randomFlag];
         });
-        expect(flagsInQ2).toHaveLength(4);
+        expect(flagsInQ2.length).toBeGreaterThanOrEqual(4);
+        expect(flagsInQ2.length).toBeLessThanOrEqual(5);
 
         flagsInQ3 = [];
         Q1.forEach((randomFlag) => {
           if (JSON.stringify(placedFlags).includes(JSON.stringify(randomFlag))) flagsInQ3 = [...flagsInQ3, randomFlag];
         });
-        expect(flagsInQ3).toHaveLength(4);
+        expect(flagsInQ3.length).toBeGreaterThanOrEqual(4);
+        expect(flagsInQ3.length).toBeLessThanOrEqual(5);
 
         flagsInQ4 = [];
         Q1.forEach((randomFlag) => {
           if (JSON.stringify(placedFlags).includes(JSON.stringify(randomFlag))) flagsInQ4 = [...flagsInQ4, randomFlag];
         });
-        expect(flagsInQ4).toHaveLength(4);
+        expect(flagsInQ4.length).toBeGreaterThanOrEqual(4);
+        expect(flagsInQ4.length).toBeLessThanOrEqual(5);
       });
 
       it('can place 12 flags randomly over 4 quadrants in a 5 x 5 grid', () => {

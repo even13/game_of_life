@@ -36,6 +36,7 @@ module.exports = {
     "max-len": ["error", { "code": 200 }],
     "react/destructuring-assignment": "off",
     "react/prop-types": "off",
-    "react/state-in-constructor": "off"
+    "react/state-in-constructor": "off",
+    "prefer-destructuring": "off"
   },
 };
