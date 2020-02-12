@@ -341,25 +341,29 @@ describe('Grid', () => {
         Q1.forEach((randomFlag) => {
           if (JSON.stringify(placedFlags).includes(JSON.stringify(randomFlag))) flagsInQ1 = [...flagsInQ1, randomFlag];
         });
-        expect(flagsInQ1).toHaveLength(3);
+        expect(flagsInQ1.length).toBeGreaterThanOrEqual(3);
+        expect(flagsInQ1.length).toBeLessThanOrEqual(4);
 
         flagsInQ2 = [];
         Q1.forEach((randomFlag) => {
           if (JSON.stringify(placedFlags).includes(JSON.stringify(randomFlag))) flagsInQ2 = [...flagsInQ2, randomFlag];
         });
-        expect(flagsInQ2).toHaveLength(3);
+        expect(flagsInQ2.length).toBeGreaterThanOrEqual(3);
+        expect(flagsInQ2.length).toBeLessThanOrEqual(4);
 
         flagsInQ3 = [];
         Q1.forEach((randomFlag) => {
           if (JSON.stringify(placedFlags).includes(JSON.stringify(randomFlag))) flagsInQ3 = [...flagsInQ3, randomFlag];
         });
-        expect(flagsInQ3).toHaveLength(3);
+        expect(flagsInQ3.length).toBeGreaterThanOrEqual(3);
+        expect(flagsInQ3.length).toBeLessThanOrEqual(4);
 
         flagsInQ4 = [];
         Q1.forEach((randomFlag) => {
           if (JSON.stringify(placedFlags).includes(JSON.stringify(randomFlag))) flagsInQ4 = [...flagsInQ4, randomFlag];
         });
-        expect(flagsInQ4).toHaveLength(3);
+        expect(flagsInQ4.length).toBeGreaterThanOrEqual(3);
+        expect(flagsInQ4.length).toBeLessThanOrEqual(4);
       });
     });
   });

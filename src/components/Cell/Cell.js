@@ -9,7 +9,7 @@ class Cell extends React.Component {
   }
 
   render() {
-    const color = this.props.cell.value === '*' ? 'black' : 'LightGray';
+    const color = this.props.cell.value === '*' ? 'black' : 'green';
     return (
       <div
         style={{ backgroundColor: color }}
