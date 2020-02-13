@@ -10,6 +10,8 @@ class GridDisplay extends React.Component {
         res.push(
           <Row
             key={`${i}index`}
+            isDisplay={this.props.isDisplay}
+            colors={this.props.colors}
             onStateChange={this.props.onStateChange}
             yCoord={res.length}
             cells={data[res.length]}

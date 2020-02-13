@@ -45,7 +45,7 @@ class ShapeControls extends React.Component {
         <div className={Classes.ShapeDisplayScreen} />
         <div className={Classes.ShapeDisplayAndOrientation}>
           <ControlButton data-test="rotate-button" onClick={() => { this.handleRotation(); }} content={`${this.props.orientation}°`} text="Rotate" />
-          <GridDisplay size={9} width={107} model={this.state.shapeDisplay} auxId="_display" data-test="shape-display" />
+          <GridDisplay isDisplay size={9} width={107} model={this.state.shapeDisplay} auxId="_display" data-test="shape-display" />
           <ControlButton data-test="mirror-button" onClick={() => { this.handleMirror(); }} content={this.props.mirrorShape ? 'On' : 'Off'} text="Mirror" />
         </div>
         <div className={Classes.ShapeControlButtons}>

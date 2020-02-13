@@ -12,7 +12,7 @@ import ColorPicker from '../ColorPicker/ColorPicker';
 
 class GameForm extends React.Component {
   state = {
-    colors: ['red', 'green', 'blue', 'white', '#ccc'],
+    colors: ['#831277', '#27cac9', '#ADFF2F', 'white', '#e563ed', '#FF4500'],
     gameForm: {
       playerOneName: {
         type: 'text',
@@ -76,10 +76,10 @@ class GameForm extends React.Component {
     },
     colorPickers: {
       playerOneColor: {
-        value: 'blue',
+        value:  '#E563ED',
       },
       playerTwoColor: {
-        value: 'pink',
+        value: '#27cac9',
       },
     },
   }
@@ -170,7 +170,7 @@ class GameForm extends React.Component {
   }
 
   handleClick = () => {
-    this.props.onCommitSettings(this.state.gameForm);
+    this.props.onCommitSettings(this.state.gameForm, this.state.colorPickers);
     this.props.onPlayGame();
   }
 

@@ -1,0 +1,26 @@
+.ScoreDisplay {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.PlayerName {
+  font-size: 40px;
+}
+
+.PlayerScore {
+  font-size: 35px;
+}
+
+.Label {
+  padding-right: 15px;
+}
+
+.PlayerFlags {
+  font-size: 30px;
+}
+
+.PlayeLiveCells {
+  font-size: 20px;
+}

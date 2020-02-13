@@ -10,6 +10,8 @@ class Row extends React.Component {
         res.push(
           <Cell
             key={`${res.length}${this.props.yCoord}_cell`}
+            isDisplay={this.props.isDisplay}
+            colors={this.props.colors}
             onClick={this.props.onStateChange}
             coord={[i, this.props.yCoord]}
             id={`${res.length}${this.props.yCoord}_cell${this.props.auxId}`}

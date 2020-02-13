@@ -17,17 +17,24 @@ class Game extends React.Component {
     iterationCount: 0,
     shapeOrientation: 0,
     mirrorShape: false,
+    isRunning: false,
   }
 
   oneEvolution = () => {
     this.evolve();
   }
 
-  runGame = () => {
-    this.setState({
-      iterationCount: 0,
+  runGame = async () => {
+    await this.setState((prevState) => {
+      const updatedModel = prevState.model;
+      updatedModel.randomFlags(+this.props.settings.numberOfFlags.value / 4);
+      return {
+        iterationCount: 0,
+        model: updatedModel,
+        isRunning: true,
+      };
     });
-    this.evolve();
+    setTimeout(() => { this.evolve(); });
   }
 
   placeLiveCell = (coord) => {
@@ -35,19 +42,21 @@ class Game extends React.Component {
     if (this.state.playerTurn === 2 && (this.props.playerTwoCellsRemaining === 0 || (this.props.playerTwoCellsRemaining - coord.length < 0))) return;
     // if there are cellbars on that specific gamepage, run the logic below
     // keeps track of how many live cells the user placed on grid pre-game
-    if (this.props.onDecrement) this.props.onDecrement(coord.length, this.state.playerTurn);
+    // additionally if placing cells has been rejected then do not apply decrement
 
-    let updatedCoords = [...this.state.coords];
-    updatedCoords = updatedCoords.concat(coord);
+    let updatedCoords;
     const updatedModel = this.state.model;
-    updatedModel.placeCells(coord, this.state.playerTurn);
+    const hasUpdated = updatedModel.placeCells(coord, this.state.playerTurn);
 
-    this.setState(() => ({
-      model: updatedModel,
-      coords: updatedCoords,
-    }));
-    // console.log("player1", this.props.playerOneCellsRemaining);
-    // console.log("player2", this.props.playerTwoCellsRemaining);
+    if (hasUpdated) {
+      if (this.props.onDecrement) this.props.onDecrement(coord.length, this.state.playerTurn);
+      updatedCoords = [...this.state.coords];
+      updatedCoords = updatedCoords.concat(coord);
+      this.setState(() => ({
+        model: updatedModel,
+        coords: updatedCoords,
+      }));
+    }
   }
 
   placeDeadCell = (coord) => {
@@ -76,6 +85,22 @@ class Game extends React.Component {
     }
   }
 
+  resetGame = () => {
+    this.props.onReplay();
+    this.setState({
+      model: new Grid(+this.props.settings.gridSize.value),
+      coords: [],
+      playerTurn: 1,
+      isPlacingShape: false,
+      evolutionRate: 50,
+      maxIterations: 100,
+      iterationCount: 0,
+      shapeOrientation: 0,
+      mirrorShape: false,
+      isRunning: false,
+    });
+  }
+
   evolve = () => {
     const updatedModel = { ...this.state.model };
     updatedModel.evolve();
@@ -84,11 +109,15 @@ class Game extends React.Component {
       coords: updatedModel.getLiveCellCoordinates(),
     }));
 
-    window.setTimeout(() => {
-      this.setState((prevState) => ({ iterationCount: prevState.iterationCount + 1 }));
-      if (this.state.iterationCount === this.state.maxIterations) { this.render(); return; }
-      this.evolve();
-    }, this.state.evolutionRate);
+    this.props.onDisplayUpdate(this.state.model.playerScores());
+
+    if (this.state.isRunning) {
+      window.setTimeout(() => {
+        this.setState((prevState) => ({ iterationCount: prevState.iterationCount + 1 }));
+        if (this.state.iterationCount === this.state.maxIterations) { this.render(); return; }
+        this.evolve();
+      }, this.state.evolutionRate);
+    }
   }
 
   togglePlayer = () => {
@@ -124,19 +153,23 @@ class Game extends React.Component {
   }
 
   render() {
+    const playerScores = this.state.model.playerScores();
     return (
       <div className={Classes.Game} data-test="component-game">
         <div className={Classes.GridDisplayWrapper}>
           <GridDisplay
             data-test="component-grid-display"
+            colors={this.props.colors}
             model={this.state.model}
             playerTurn={this.state.playerTurn}
             onStateChange={this.handleCellState}
             auxId=""
           />
         </div>
-
         <UserControls
+          onReplay={this.resetGame}
+          model={this.state.model}
+          flags={+this.props.settings.numberOfFlags.value}
           countValue={+this.props.settings.gameLength.value}
           rateValue={+this.props.settings.gameSpeed.value}
           onRateChange={this.handleRateChange}

@@ -1,5 +1,6 @@
 .Cell {
-    border: 1px solid #fdc0ff;
+    border-top: 0.2px solid #fdc0ff;
+    border-right: 0.2px solid #fdc0ff;
     width: 10px;
     height: 10px;
     display: flex;

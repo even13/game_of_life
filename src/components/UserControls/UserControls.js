@@ -4,28 +4,52 @@ import EvolutionControls from '../EvolutionControls/EvolutionControls';
 import Classes from './UserControls.module.css';
 import Button from '../Button/Button';
 
-const UserControls = (props) => (
-  <div data-test="component-user-controls">
-    <ShapeControls
-      placeShape={props.placeShape}
-      rotateShape={props.rotateShape}
-      orientation={props.orientation}
-      onMirrorShape={props.onMirrorShape}
-      mirrorShape={props.mirrorShape}
-    />
-    {/* <EvolutionControls
-      countValue={props.countValue}
-      rateValue={props.rateValue}
-      onRateChange={props.onRateChange}
-      onCountChange={props.onCountChange}
-    /> */}
+class UserControls extends React.Component {
+  state = {
+    isRunning: false,
+  }
 
-    <div>
-      <button type="button" onClick={props.onOneEvolution} data-test="evolution-button">Click To Evolve</button>
-      <button type="button" onClick={props.onTogglePlayer} data-test="player-toggle">Click To Toggle Player</button>
-      <Button data-test="run-button" content="Run" onClick={props.onRunGame} />
-    </div>
-  </div>
-);
+  handleClick = () => {
+    this.setState((prevState) => {
+      return { isRunning: !prevState.isRunning };
+    });
+    if (this.state.isRunning) {
+      this.props.onReplay();
+    } else {
+      this.props.model.randomFlags(+this.props.flags / 4);
+      this.props.onRunGame();
+    }
+  }
+
+  render() {
+    return (
+      <div data-test="component-user-controls">
+        <ShapeControls
+          placeShape={this.props.placeShape}
+          rotateShape={this.props.rotateShape}
+          orientation={this.props.orientation}
+          onMirrorShape={this.props.onMirrorShape}
+          mirrorShape={this.props.mirrorShape}
+        />
+        <EvolutionControls
+          countValue={this.props.countValue}
+          rateValue={this.props.rateValue}
+          onRateChange={this.props.onRateChange}
+          onCountChange={this.props.onCountChange}
+        />
+
+        <div>
+          <button type="button" onClick={this.props.onOneEvolution} data-test="evolution-button">Click To Evolve</button>
+          <button type="button" onClick={this.props.onTogglePlayer} data-test="player-toggle">Click To Toggle Player</button>
+          <Button
+            data-test={this.state.isRunning ? 'replay-button' : 'run-button'}
+            content={this.state.isRunning ? 'Replay' : 'Run'}
+            onClick={this.handleClick}
+          />
+        </div>
+      </div>
+    );
+  }
+}
 
 export default UserControls;

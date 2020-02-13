@@ -2,27 +2,25 @@ import React from 'react';
 import Enzyme, { mount } from 'enzyme';
 import EnzymeAdapter from 'enzyme-adapter-react-16';
 import Game from '../containers/Game/Game';
-import { findByTestAttr } from '../test-helper';
+import { findByTestAttr, defaultGameSettingsProps } from '../test-helper';
 
 import Grid from '../models/grid/grid';
 
 Enzyme.configure({ adapter: new EnzymeAdapter() });
 
-describe('testCellInteraction', () => {
+describe('flagCellInteraction', () => {
   let wrapper;
   let testGridModel;
   let testCell;
   let testCell2;
   let testCell3;
-
   let testFlag;
-
   let playerToggle;
 
   beforeEach(() => {
     testGridModel = new Grid(5);
     wrapper = mount(<Game />);
-    wrapper.setState({ model: testGridModel });
+    wrapper.setState({ model: testGridModel, settings: defaultGameSettingsProps.gameForm });
   });
 
   describe('a player 1 spinner next to a player 1 flag', () => {

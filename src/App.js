@@ -8,6 +8,7 @@ class App extends React.Component {
   state = {
     inGame: false,
     currentSettings: {},
+    colorPickers: {},
   }
 
   toggleInGame = () => {
@@ -16,15 +17,19 @@ class App extends React.Component {
     });
   }
 
-  commitSettings = (settings) => {
-    this.setState({ currentSettings: settings });
+  commitSettings = (settings, colors) => {
+    this.setState({
+      currentSettings: settings,
+      colorPickers: colors,
+    });
   }
-  
+
   render() {
     const gamePage = (
       <GamePage
         onReturn={this.toggleInGame}
         currentSettings={this.state.currentSettings}
+        currentColors={this.state.colorPickers}
       />
     );
 
