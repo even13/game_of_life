@@ -6,7 +6,6 @@ import Shape from '../../models/shape/shape';
 import UserControls from '../../components/UserControls/UserControls';
 import ScoreDisplay from '../../components/ScoreDisplay/ScoreDisplay';
 
-
 const gridInstance = new Grid(30);
 gridInstance.randomFlags();
 
