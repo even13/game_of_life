@@ -13,17 +13,19 @@ const ScoreDisplay = (props) => {
   return (
     <div className={Classes.ScoreDisplay} data-test="component-score-display">
       <span className={Classes.PlayerName}>{playerName}</span>
-      <div className={Classes.PlayerScore}>
-        <span className={Classes.Label}>Score:</span>
-        {props.score}
-      </div>
-      <div className={Classes.PlayerFlags}>
-        <span className={Classes.Label}>Flags:</span>
-        {props.flags}
-      </div>
-      <div className={Classes.PlayeLiveCells}>
-        <span className={Classes.Label}>Live Cells:</span>
-        {props.cellCount}
+      <div className={Classes.PlayerData}>
+        <div className={Classes.PlayerScore}>
+          <span className={Classes.Label}>Score:</span>
+          {props.score}
+        </div>
+        <div className={Classes.PlayerFlags}>
+          <span className={Classes.Label}>Flags:</span>
+          {props.flags}
+        </div>
+        <div className={Classes.PlayeLiveCells}>
+          <span className={Classes.Label}>Live Cells:</span>
+          {props.cellCount}
+        </div>
       </div>
       {result}
     </div>

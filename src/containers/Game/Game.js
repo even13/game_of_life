@@ -113,7 +113,9 @@ class Game extends React.Component {
     if (this.state.isRunning) {
       window.setTimeout(() => {
         this.setState((prevState) => ({ iterationCount: prevState.iterationCount + 1 }));
-        if (this.state.iterationCount === +this.props.settings.gameLength.value) { this.render(); return; }
+        if (this.state.iterationCount === +this.props.settings.gameLength.value) { 
+          this.props.showWinner(); this.render(); return;
+        }
         this.evolve();
       }, +this.props.settings.gameSpeed.value);
     }

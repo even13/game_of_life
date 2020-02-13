@@ -21,10 +21,12 @@ describe('flagCells', () => {
   let capturedFlag;
   const testGridModel = new Grid(5);
   let playerToggle;
+  let evolveButton;
 
   beforeEach(() => {
     wrapper = mount(
       <Game
+        test
         onDisplayUpdate={jest.fn()}
         settings={defaultGameSettingsProps.gameForm}
         colors={{
@@ -43,6 +45,7 @@ describe('flagCells', () => {
     testGridModel.placeFlag([[0, 4]]);
     wrapper = mount(
       <Game
+        test
         settings={defaultGameSettingsProps.gameForm}
         colors={{ playerOneColor: { value: '' } }}
       />,
@@ -74,13 +77,13 @@ describe('flagCells', () => {
   });
 
   describe('flag behaviour during evolution', () => {
-    test('a flag with no neighbours survives an evolution', () => {
+    test('a flag with no neighbours survives an evolution', async () => {
       testGridModel.placeFlag([[2, 2]]);
       wrapper.setState({ model: testGridModel });
 
       testFlag = wrapper.find({ id: '22_cell' });
 
-      const evolveButton = findByTestAttr(wrapper, 'evolution-button');
+      evolveButton = findByTestAttr(wrapper, 'evolution-button');
       evolveButton.simulate('click');
 
       testFlag = wrapper.find({ id: '22_cell' });
@@ -94,7 +97,7 @@ describe('flagCells', () => {
       testFlag = wrapper.find({ id: '22_cell' });
       testFlag1 = wrapper.find({ id: '01_cell' });
 
-      const evolveButton = findByTestAttr(wrapper, 'evolution-button');
+      evolveButton = findByTestAttr(wrapper, 'evolution-button');
       evolveButton.simulate('click');
 
       testFlag = wrapper.find({ id: '22_cell' });
@@ -111,7 +114,7 @@ describe('flagCells', () => {
       testCell = wrapper.find({ id: '23_cell' });
       testCell.simulate('click');
 
-      const evolveButton = findByTestAttr(wrapper, 'evolution-button');
+      evolveButton = findByTestAttr(wrapper, 'evolution-button');
       evolveButton.simulate('click');
 
       testFlag = wrapper.find({ id: '22_cell' });
@@ -129,7 +132,7 @@ describe('flagCells', () => {
       testCell.simulate('click');
       testCell2.simulate('click');
 
-      const evolveButton = findByTestAttr(wrapper, 'evolution-button');
+      evolveButton = findByTestAttr(wrapper, 'evolution-button');
       evolveButton.simulate('click');
 
       testFlag = wrapper.find({ id: '00_cell' });
@@ -149,13 +152,11 @@ describe('flagCells', () => {
       testCell = wrapper.find({ id: '23_cell' });
       testCell.simulate('click');
 
-      const evolveButton = findByTestAttr(wrapper, 'evolution-button');
+      evolveButton = findByTestAttr(wrapper, 'evolution-button');
       evolveButton.simulate('click');
 
       testFlag = wrapper.find({ id: '22_cell' });
       expect(testFlag2.prop('cell')).toEqual(capturedFlag);
-
-      // formatGrid(wrapper.state('model').render());
     });
   });
 });

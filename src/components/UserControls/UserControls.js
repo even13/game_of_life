@@ -20,7 +20,8 @@ class UserControls extends React.Component {
   }
 
   render() {
-    let evolutionControls = null;
+    let evolutionControls;
+    let evolveButton;
 
     if (this.props.test) {
       evolutionControls = (
@@ -31,6 +32,7 @@ class UserControls extends React.Component {
           onCountChange={this.props.onCountChange}
         />
       );
+      evolveButton = <button type="button" onClick={this.props.onOneEvolution} data-test="evolution-button">Click To Evolve</button>;
     }
 
     return (
@@ -46,7 +48,7 @@ class UserControls extends React.Component {
         {evolutionControls}
 
         <div>
-          <button type="button" onClick={this.props.onOneEvolution} data-test="evolution-button">Click To Evolve</button>
+          {evolveButton}
           <button type="button" onClick={this.props.onTogglePlayer} data-test="player-toggle">Click To Toggle Player</button>
           <Button
             data-test={this.state.isRunning ? 'replay-button' : 'run-button'}

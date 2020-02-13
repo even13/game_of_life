@@ -20,6 +20,7 @@ describe('evolvingGrid', () => {
     one = { value: '*', player: 1 };
     wrapper = mount(
       <Game
+        test
         settings={defaultGameSettingsProps.gameForm}
         colors={{ playerOneColor: { value: '' } }}
         onDisplayUpdate={jest.fn()}

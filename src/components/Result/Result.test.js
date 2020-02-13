@@ -10,7 +10,7 @@ describe('<Result />', () => {
   let resultComponent;
 
   beforeEach(() => {
-    wrapper = setup(Result);
+    wrapper = setup(Result, { isWinner: jest.fn() });
     resultComponent = findByTestAttr(wrapper, 'component-result');
   });
 

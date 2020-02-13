@@ -30,7 +30,7 @@ class Row extends React.Component {
       return (
         <div
           className={Classes.Row}
-          style={{ height: `${(100 / this.props.cells.length)}%`, width: 'auto' }}
+          style={{ height: `${(100 / this.props.cells.length)}%` }}
           data-test="component-row"
         >
           {this.renderCells()}

@@ -21,6 +21,7 @@ describe('flagCellInteraction', () => {
     testGridModel = new Grid(5);
     wrapper = mount(
       <Game
+        test
         onDisplayUpdate={jest.fn()}
         settings={defaultGameSettingsProps.gameForm}
         colors={{ playerOneColor: { value: '' } }}

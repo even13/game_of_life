@@ -17,6 +17,7 @@ describe('twoPlayers', () => {
   beforeEach(() => {
     wrapper = mount(
       <Game
+        test
         onDisplayUpdate={jest.fn()}
         settings={defaultGameSettingsProps.gameForm}
         colors={{
