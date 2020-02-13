@@ -1,0 +1,27 @@
+.GameForm {
+  width: 100%;
+}
+
+.ColorPicker {
+  display: flex;
+  width: auto;
+  justify-content: space-between;
+}
+
+.Sliders {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin: 20px 0;
+}
+
+.PlayerInputs {
+  display: flex;
+  justify-content: center;
+}
+
+.formElement {
+  text-align: center;
+}

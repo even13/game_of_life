@@ -1,0 +1,17 @@
+import React from 'react';
+import GameForm from '../../components/GameForm/GameForm';
+import Classes from './FormPage.module.css';
+
+class FormPage extends React.Component {
+  state = {}
+
+  render() {
+    return (
+      <div className={Classes.FormPage} data-test="component-form-page">
+        <GameForm data-test="game-form" />
+      </div>
+    );
+  }
+}
+
+export default FormPage;
