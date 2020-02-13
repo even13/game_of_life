@@ -4,7 +4,7 @@ import Classes from './ControlButton.module.css';
 
 const ControlButton = (props) => (
   <div className={Classes.ControlButtonWrapper}>
-    <button className={Classes.ControlButton} type="button" data-test="control-button" onClick={props.onClick}>
+    <button className={Classes.ControlButton} type="button" data-test="component-control-button" onClick={props.onClick}>
       {props.content}
     </button>
     <div className={Classes.ControlButtonText}>{props.text}</div>

@@ -19,10 +19,10 @@ describe('animation', () => {
 
   beforeEach(() => {
     wrapper = mount(
-      <Game 
+      <Game
         settings={defaultGameSettingsProps.gameForm}
         colors={{ playerOneColor: { value: '' } }}
-      />
+      />,
     );
     wrapper.setState({ model: testGridModel });
     one = { value: '*', player: 1 };

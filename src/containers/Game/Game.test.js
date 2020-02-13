@@ -12,7 +12,7 @@ describe('<Game />', () => {
   const testGridModel = new Grid();
 
   beforeEach(() => {
-    wrapper = setup(Game, { settings: defaultGameSettingsProps.gameForm }, { model: testGridModel });
+    wrapper = setup(Game, { settings: defaultGameSettingsProps.gameForm, test: true }, { model: testGridModel });
     gameComponent = findByTestAttr(wrapper, 'component-game');
   });
 

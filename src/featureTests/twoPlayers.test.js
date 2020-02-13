@@ -19,11 +19,11 @@ describe('twoPlayers', () => {
       <Game
         onDisplayUpdate={jest.fn()}
         settings={defaultGameSettingsProps.gameForm}
-        colors={{ 
+        colors={{
           playerOneColor: { value: '' },
           playerTwoColor: { value: '' },
         }}
-      />
+      />,
     );
     wrapper.setState({ model: testGridModel });
   });
@@ -94,27 +94,27 @@ describe('twoPlayers', () => {
       expect(testCell.prop('cell').value).toEqual('*');
       expect((wrapper.find({ id: '2020_cell' })).prop('cell').player).toEqual(null);
       expect((wrapper.find({ id: '2020_cell' })).prop('cell').value).toEqual('-');
-  
+
       testCell2 = wrapper.find({ id: '2021_cell' });
       expect(testCell2.prop('cell').player).toEqual(1);
       expect(testCell2.prop('cell').value).toEqual('*');
-  
+
       testCell3 = wrapper.find({ id: '2121_cell' });
       expect(testCell3.prop('cell').player).toEqual(1);
       expect(testCell3.prop('cell').value).toEqual('*');
       expect((wrapper.find({ id: '2022_cell' })).prop('cell').player).toEqual(null);
       expect((wrapper.find({ id: '2022_cell' })).prop('cell').value).toEqual('-');
-  
+
       testCell4 = wrapper.find({ id: '919_cell' });
       expect(testCell4.prop('cell').player).toEqual(2);
       expect(testCell4.prop('cell').value).toEqual('*');
       expect((wrapper.find({ id: '1018_cell' })).prop('cell').player).toEqual(null);
       expect((wrapper.find({ id: '1018_cell' })).prop('cell').value).toEqual('-');
-  
+
       testCell5 = wrapper.find({ id: '1019_cell' });
       expect(testCell5.prop('cell').player).toEqual(2);
       expect(testCell5.prop('cell').value).toEqual('*');
-  
+
       testCell6 = wrapper.find({ id: '1119_cell' });
       expect(testCell6.prop('cell').player).toEqual(2);
       expect(testCell6.prop('cell').value).toEqual('*');

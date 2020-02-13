@@ -13,10 +13,10 @@ describe('rotationAndMirroring', () => {
 
   beforeEach(() => {
     wrapper = mount(
-      <Game 
+      <Game
         settings={defaultGameSettingsProps.gameForm}
         colors={{ playerOneColor: { value: '' } }}
-      />
+      />,
     );
     wrapper.setState({ model: testGridModel });
   });

@@ -24,10 +24,10 @@ describe('placingShapes', () => {
   beforeEach(() => {
     testGridModel = new Grid(15);
     wrapper = mount(
-      <Game 
+      <Game
         settings={defaultGameSettingsProps.gameForm}
         colors={{ playerOneColor: { value: '' } }}
-      />
+      />,
     );
     wrapper.setState({ model: testGridModel });
   });

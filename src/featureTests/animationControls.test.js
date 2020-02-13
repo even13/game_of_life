@@ -9,20 +9,21 @@ import { findByTestAttr, defaultGameSettingsProps } from '../test-helper';
 
 Enzyme.configure({ adapter: new EnzymeAdapter() });
 
-describe('<Game />', () => {
+describe('animationControls', () => {
   let wrapper;
   let testGridModel;
 
   beforeEach(() => {
     testGridModel = new Grid();
     wrapper = mount(
-      <Game 
+      <Game
+        test
         settings={defaultGameSettingsProps.gameForm}
-        colors={{ 
-          playerOneColor: { value: '' }, 
-          playerTwoColor: { value: '' }, 
+        colors={{
+          playerOneColor: { value: '' },
+          playerTwoColor: { value: '' },
         }}
-      />
+      />,
     );
     wrapper.setState({ model: testGridModel });
   });

@@ -20,6 +20,19 @@ class UserControls extends React.Component {
   }
 
   render() {
+    let evolutionControls = null;
+    
+    if (this.props.test) {
+      evolutionControls = (
+        <EvolutionControls
+          countValue={this.props.countValue}
+          rateValue={this.props.rateValue}
+          onRateChange={this.props.onRateChange}
+          onCountChange={this.props.onCountChange}
+        />
+      );
+    }
+
     return (
       <div data-test="component-user-controls">
         <ShapeControls
@@ -29,12 +42,8 @@ class UserControls extends React.Component {
           onMirrorShape={this.props.onMirrorShape}
           mirrorShape={this.props.mirrorShape}
         />
-        <EvolutionControls
-          countValue={this.props.countValue}
-          rateValue={this.props.rateValue}
-          onRateChange={this.props.onRateChange}
-          onCountChange={this.props.onCountChange}
-        />
+
+        {evolutionControls}
 
         <div>
           <button type="button" onClick={this.props.onOneEvolution} data-test="evolution-button">Click To Evolve</button>

@@ -25,13 +25,6 @@ describe('<UserControls />', () => {
     expect(button.prop('content')).toEqual('Run');
   });
 
-  it('renders an evolve button', () => {
-    const button = findByTestAttr(wrapper, 'evolution-button');
-
-    expect(button).toHaveLength(1);
-    expect(button.text()).toEqual('Click To Evolve');
-  });
-
   it('renders a player-toggle button', () => {
     const button = findByTestAttr(wrapper, 'player-toggle');
 

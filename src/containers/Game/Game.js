@@ -182,6 +182,7 @@ class Game extends React.Component {
           onRunGame={this.runGame}
           orientation={this.state.shapeOrientation}
           mirrorShape={this.state.mirrorShape}
+          test={this.props.test}
         />
       </div>
     );

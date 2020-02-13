@@ -27,11 +27,11 @@ describe('flagCells', () => {
       <Game
         onDisplayUpdate={jest.fn()}
         settings={defaultGameSettingsProps.gameForm}
-        colors={{ 
+        colors={{
           playerOneColor: { value: '' },
           playerTwoColor: { value: '' },
         }}
-      />
+      />,
     );
     wrapper.setState({ model: testGridModel });
     flag = { value: 'f', player: null };
@@ -42,10 +42,10 @@ describe('flagCells', () => {
   it('cannot be replaced with a live cell', () => {
     testGridModel.placeFlag([[0, 4]]);
     wrapper = mount(
-      <Game 
+      <Game
         settings={defaultGameSettingsProps.gameForm}
         colors={{ playerOneColor: { value: '' } }}
-      />
+      />,
     );
     wrapper.setState({ model: testGridModel });
 

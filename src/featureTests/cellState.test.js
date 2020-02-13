@@ -37,9 +37,6 @@ describe('cellState', () => {
   describe('placing live cells from the browser', () => {
     let testCell;
 
-    it('', () => {
-      setTimeout(() => { console.log(wrapper); });
-    });
     it('changes the value assigned to the clicked cell', () => {
       testCell = wrapper.find({ id: '04_cell' });
       expect(testCell.prop('cell')).toEqual(empty);
