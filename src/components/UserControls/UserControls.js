@@ -21,7 +21,7 @@ class UserControls extends React.Component {
 
   render() {
     let evolutionControls = null;
-    
+
     if (this.props.test) {
       evolutionControls = (
         <EvolutionControls
@@ -52,6 +52,11 @@ class UserControls extends React.Component {
             data-test={this.state.isRunning ? 'replay-button' : 'run-button'}
             content={this.state.isRunning ? 'Replay' : 'Run'}
             onClick={this.handleClick}
+          />
+          <Button
+            data-test="home-button"
+            content="Home"
+            onClick={this.props.onReturn}
           />
         </div>
       </div>

@@ -60,6 +60,7 @@ class GamePage extends React.Component {
           colors={this.props.currentColors}
           settings={this.props.currentSettings}
           onReplay={this.resetCells}
+          onReturn={this.props.onReturn}
           playerOneCellsRemaining={this.state.playerOneCells}
           playerTwoCellsRemaining={this.state.playerTwoCells}
           onIncrement={this.increment}
