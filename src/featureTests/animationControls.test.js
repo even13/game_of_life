@@ -4,7 +4,7 @@ import EnzymeAdapter from 'enzyme-adapter-react-16';
 import Game from '../containers/Game/Game';
 // import { setup, findByTestAttr } from '../test-helper';
 import Grid from '../models/grid/grid';
-import { findByTestAttr } from '../test-helper';
+import { findByTestAttr, defaultGameSettingsProps } from '../test-helper';
 
 
 Enzyme.configure({ adapter: new EnzymeAdapter() });
@@ -15,7 +15,15 @@ describe('<Game />', () => {
 
   beforeEach(() => {
     testGridModel = new Grid();
-    wrapper = mount(<Game />);
+    wrapper = mount(
+      <Game 
+        settings={defaultGameSettingsProps.gameForm}
+        colors={{ 
+          playerOneColor: { value: '' }, 
+          playerTwoColor: { value: '' }, 
+        }}
+      />
+    );
     wrapper.setState({ model: testGridModel });
   });
 

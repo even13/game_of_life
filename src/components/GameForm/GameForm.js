@@ -76,7 +76,7 @@ class GameForm extends React.Component {
     },
     colorPickers: {
       playerOneColor: {
-        value:  '#E563ED',
+        value: '#E563ED',
       },
       playerTwoColor: {
         value: '#27cac9',

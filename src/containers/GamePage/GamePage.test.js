@@ -1,18 +1,24 @@
 import Enzyme from 'enzyme';
 import EnzymeAdapter from 'enzyme-adapter-react-16';
 import GamePage from './GamePage';
-import { setup, findByTestAttr } from '../../test-helper';
+import { setup, findByTestAttr, defaultGameSettingsProps } from '../../test-helper';
 import Grid from '../../models/grid/grid';
 
 Enzyme.configure({ adapter: new EnzymeAdapter() });
 
-describe('<GamePages />', () => {
+describe('<GamePage />', () => {
   let wrapper;
   let GamePageComponent;
   const testGridModel = new Grid();
 
+  const defaultProps = {
+    onReturn: jest.fn(),
+    currentSettings: defaultGameSettingsProps.gameForm,
+    currentColors: '',
+  };
+
   beforeEach(() => {
-    wrapper = setup(GamePage, {}, { model: testGridModel });
+    wrapper = setup(GamePage, defaultProps, { model: testGridModel });
     GamePageComponent = findByTestAttr(wrapper, 'component-game-page');
   });
 

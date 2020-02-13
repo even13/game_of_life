@@ -3,6 +3,7 @@ import Enzyme, { mount } from 'enzyme';
 import EnzymeAdapter from 'enzyme-adapter-react-16';
 import GamePage from '../containers/GamePage/GamePage';
 import Grid from '../models/grid/grid';
+import { defaultGameSettingsProps } from '../test-helper';
 
 Enzyme.configure({ adapter: new EnzymeAdapter() });
 
@@ -12,7 +13,10 @@ describe('cellBarBehaviour', () => {
   let testCell;
 
   beforeEach(() => {
-    wrapper = mount(<GamePage />);
+    wrapper = mount(<GamePage
+      currentSettings={defaultGameSettingsProps.gameForm}
+      currentColors={{ playerOneColor: { value: '' } }}
+    />);
     wrapper.setState({ model: testGridModel });
   });
 

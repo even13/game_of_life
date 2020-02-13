@@ -17,28 +17,28 @@ describe('cellState', () => {
 
   beforeEach(() => {
     wrapper = mount(
-      <Game 
+      <Game
         settings={defaultGameSettingsProps.gameForm}
         colors={{ playerOneColor: { value: '' } }}
-      />
-      );
+      />,
+    );
     wrapperTwo = mount(
-      <Game 
+      <Game
         settings={defaultGameSettingsProps.gameForm}
-        colors={{ playerOneColor: { value: '' } }} 
-      />
+        colors={{ playerOneColor: { value: '' } }}
+      />,
     );
     wrapper.setState({ model: testGridModel });
     wrapperTwo.setState({ model: testGridModelTwo });
     empty = { value: '-', player: null };
     one = { value: '*', player: 1 };
   });
-  
+
   describe('placing live cells from the browser', () => {
     let testCell;
 
     it('', () => {
-      setTimeout(() => { console.log(wrapper);})
+      setTimeout(() => { console.log(wrapper); });
     });
     it('changes the value assigned to the clicked cell', () => {
       testCell = wrapper.find({ id: '04_cell' });

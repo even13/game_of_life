@@ -13,9 +13,9 @@ class Cell extends React.Component {
     if (!this.props.isDisplay) {
       switch (this.props.cell.value) {
         case '*':
-          cellColor = this.props.cell.player === 1 ?
-            this.props.colors.playerOneColor.value :
-            this.props.colors.playerTwoColor.value;
+          cellColor = this.props.cell.player === 1
+            ? this.props.colors.playerOneColor.value
+            : this.props.colors.playerTwoColor.value;
           break;
         case 'f': cellColor = 'red';
           break;

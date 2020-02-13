@@ -2,7 +2,7 @@ import React from 'react';
 import Enzyme, { mount } from 'enzyme';
 import EnzymeAdapter from 'enzyme-adapter-react-16';
 import Game from '../containers/Game/Game';
-import { findByTestAttr } from '../test-helper';
+import { findByTestAttr, defaultGameSettingsProps } from '../test-helper';
 
 import Grid from '../models/grid/grid';
 
@@ -23,7 +23,12 @@ describe('placingShapes', () => {
 
   beforeEach(() => {
     testGridModel = new Grid(15);
-    wrapper = mount(<Game />);
+    wrapper = mount(
+      <Game 
+        settings={defaultGameSettingsProps.gameForm}
+        colors={{ playerOneColor: { value: '' } }}
+      />
+    );
     wrapper.setState({ model: testGridModel });
   });
 

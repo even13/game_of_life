@@ -89,7 +89,7 @@ export const defaultGameSettingsProps = {
   },
   colorPickers: {
     playerOneColor: {
-      value:  '#E563ED',
+      value: '#E563ED',
     },
     playerTwoColor: {
       value: '#27cac9',

@@ -65,9 +65,7 @@ class GamePage extends React.Component {
           onIncrement={this.increment}
           onDecrement={this.decrement}
           onDisplayUpdate={this.updateScoreDisplays}
-          // playerOneFlagsCaptured={this.state.playerOneFlags}
-          // playerTwoFlagsCaptured={this.state.playerTwoFlags}
-          />
+        />
         <CellBar cellsLeft={this.state.playerTwoCells} />
         <ScoreDisplay
           data-test="component-score-display-p2"

@@ -12,9 +12,7 @@ class App extends React.Component {
   }
 
   toggleInGame = () => {
-    this.setState((prevState) => {
-      return { inGame: !prevState.inGame };
-    });
+    this.setState((prevState) => ({ inGame: !prevState.inGame }));
   }
 
   commitSettings = (settings, colors) => {

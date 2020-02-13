@@ -22,7 +22,7 @@ describe('<UserControls />', () => {
     const button = findByTestAttr(wrapper, 'run-button');
 
     expect(button).toHaveLength(1);
-    expect(button.text()).toEqual('Run');
+    expect(button.prop('content')).toEqual('Run');
   });
 
   it('renders an evolve button', () => {

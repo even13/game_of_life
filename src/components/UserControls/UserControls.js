@@ -10,9 +10,7 @@ class UserControls extends React.Component {
   }
 
   handleClick = () => {
-    this.setState((prevState) => {
-      return { isRunning: !prevState.isRunning };
-    });
+    this.setState((prevState) => ({ isRunning: !prevState.isRunning }));
     if (this.state.isRunning) {
       this.props.onReplay();
     } else {

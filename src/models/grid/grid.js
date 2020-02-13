@@ -13,13 +13,13 @@ class Grid {
 
 
   placeCells = (cellArray, player = 1) => {
-    let cellArrayLength = cellArray.length;
+    const cellArrayLength = cellArray.length;
     let allowPlace = true;
 
     for (let i = 0; i < cellArrayLength; i++) {
-      let currentCell = JSON.stringify(cellArray[i]);
-      let isFlag = JSON.stringify(this.currentPlacedFlags).includes(currentCell);
-      let isLiveCell = JSON.stringify(this.currentLiveCells).includes(currentCell);
+      const currentCell = JSON.stringify(cellArray[i]);
+      const isFlag = JSON.stringify(this.currentPlacedFlags).includes(currentCell);
+      const isLiveCell = JSON.stringify(this.currentLiveCells).includes(currentCell);
       if (isLiveCell || isFlag) allowPlace = false;
     }
 
@@ -133,10 +133,10 @@ class Grid {
     const liveCells = [];
     let p1LiveCells = 0;
     let p2LiveCells = 0;
- 
+
     this.currentGrid.forEach((row, y) => {
       const newRow = [];
-  
+
       row.forEach((elt, x) => {
         let flagCount = 0;
         const flagArray = [];
@@ -154,7 +154,7 @@ class Grid {
           if (this.neighbours(y, x)[i].player === 2) player2CellCount++;
         }
 
-        const nextCellOwner = this.determineNextCellOwner(player1CellCount, player2CellCount)
+        const nextCellOwner = this.determineNextCellOwner(player1CellCount, player2CellCount);
         const newElt = this.newState(elt, liveCellCount, flagCount, flagArray, nextCellOwner);
 
         if (newElt.value === '*') liveCells.push([x, y]);
