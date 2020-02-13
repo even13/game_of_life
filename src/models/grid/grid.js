@@ -5,8 +5,8 @@ class Grid {
     this.currentGrid = Array(gridSize).fill(Array(gridSize).fill({ value: '-', player: null }));
     this.gridSize = gridSize;
     this.currentPlacedFlags = currentPlacedFlags;
-    this.player1FlagCount = 0;
-    this.player2FlagCount = 0;
+    this.p1LiveCellCount = 0;
+    this.p2LiveCellCount = 0;
   }
 
   render = () => this.currentGrid
@@ -120,9 +120,12 @@ class Grid {
   evolve = () => {
     const newGrid = [];
     const liveCells = [];
-
+    let p1LiveCells = 0;
+    let p2LiveCells = 0;
+ 
     this.currentGrid.forEach((row, y) => {
       const newRow = [];
+  
       row.forEach((elt, x) => {
         let flagCount = 0;
         const flagArray = [];
@@ -139,23 +142,29 @@ class Grid {
           if (this.neighbours(y, x)[i].player === 1) player1CellCount++;
           if (this.neighbours(y, x)[i].player === 2) player2CellCount++;
         }
-        const nextCellOwner = this.determineNextCellOwner(player1CellCount, player2CellCount);
 
+        const nextCellOwner = this.determineNextCellOwner(player1CellCount, player2CellCount)
         const newElt = this.newState(elt, liveCellCount, flagCount, flagArray, nextCellOwner);
-        if (newElt.value === 'f' && newElt.player === 1) console.log("A HIT!");
-        if (newElt.value === 'f' && newElt.player === 2) console.log("A HIT2!");
 
         if (newElt.value === '*') liveCells.push([x, y]);
+        if (newElt.player === 1) p1LiveCells++;
+        if (newElt.player === 2) p2LiveCells++;
         newRow.push(newElt);
       });
       newGrid.push(newRow);
     });
+    this.p1LiveCellCount = p1LiveCells;
+    this.p2LiveCellCount = p2LiveCells;
     this.currentLiveCells = liveCells;
     this.currentGrid = newGrid;
   }
 
   playerScores = () => {
     const flags = this.countFlags();
+    const p1Score = flags[0] * 5 + this.p1LiveCellCount;
+    const p2Score = flags[1] * 5 + this.p2LiveCellCount;
+
+    return [p1Score, p2Score];
   }
 
   countFlags = () => {

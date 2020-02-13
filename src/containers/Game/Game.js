@@ -141,7 +141,7 @@ class Game extends React.Component {
         <ScoreDisplay
           data-test="component-score-display-p1"
           name="P1 Score"
-          score={this.state.model.countFlags()[0]}
+          score={this.state.model.playerScores()[0]}
         />
 
         <UserControls
@@ -162,7 +162,7 @@ class Game extends React.Component {
         <ScoreDisplay
           data-test="component-score-display-p2"
           name="P2 Score"
-          score={this.state.model.countFlags()[1]}
+          score={this.state.model.playerScores()[1]}
         />
 
       </div>
