@@ -1,5 +1,6 @@
 import React from 'react';
 import Row from '../Row/Row';
+import Classes from './GridDisplay.module.css';
 
 class GridDisplay extends React.Component {
     renderGrid = () => {
@@ -9,6 +10,8 @@ class GridDisplay extends React.Component {
         res.push(
           <Row
             key={`${i}index`}
+            isDisplay={this.props.isDisplay}
+            colors={this.props.colors}
             onStateChange={this.props.onStateChange}
             yCoord={res.length}
             cells={data[res.length]}
@@ -24,7 +27,7 @@ class GridDisplay extends React.Component {
 
     render() {
       return (
-        <div data-test="component-grid-display">
+        <div className={Classes.GridDisplay} style={{ width: this.props.width }} data-test="component-grid-display">
           {this.renderGrid()}
         </div>
       );

@@ -2,33 +2,36 @@ import React from 'react';
 import Enzyme, { mount } from 'enzyme';
 import EnzymeAdapter from 'enzyme-adapter-react-16';
 import Game from '../containers/Game/Game';
-import { findByTestAttr } from '../test-helper';
+import { findByTestAttr, defaultGameSettingsProps } from '../test-helper';
 
 import Grid from '../models/grid/grid';
 
 Enzyme.configure({ adapter: new EnzymeAdapter() });
 
-describe('testCellInteraction', () => {
+describe('flagCellInteraction', () => {
   let wrapper;
   let testGridModel;
   let testCell;
   let testCell2;
   let testCell3;
-
   let testFlag;
-
   let playerToggle;
 
   beforeEach(() => {
     testGridModel = new Grid(5);
-    wrapper = mount(<Game />);
-    wrapper.setState({ model: testGridModel });
+    wrapper = mount(
+      <Game
+        onDisplayUpdate={jest.fn()}
+        settings={defaultGameSettingsProps.gameForm}
+        colors={{ playerOneColor: { value: '' } }}
+      />
+    );
+    wrapper.setState({ model: testGridModel, settings: defaultGameSettingsProps.gameForm });
   });
 
   describe('a player 1 spinner next to a player 1 flag', () => {
     it('persists after two generations as usual', () => {
       testGridModel.placeFlag([[3, 2]], 1);
-      wrapper = mount(<Game />);
       wrapper.setState({ model: testGridModel });
 
       testCell = wrapper.find({ id: '21_cell' });
@@ -67,7 +70,6 @@ describe('testCellInteraction', () => {
   describe('a player 2 spinner next to a player 1 flag', () => {
     it('a player 1 flag should destroy a player 2 spinner after 2 generations', () => {
       testGridModel.placeFlag([[3, 2]], 1);
-      wrapper = mount(<Game />);
       wrapper.setState({ model: testGridModel });
 
       playerToggle = findByTestAttr(wrapper, 'player-toggle');

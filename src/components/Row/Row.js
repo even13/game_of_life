@@ -10,6 +10,8 @@ class Row extends React.Component {
         res.push(
           <Cell
             key={`${res.length}${this.props.yCoord}_cell`}
+            isDisplay={this.props.isDisplay}
+            colors={this.props.colors}
             onClick={this.props.onStateChange}
             coord={[i, this.props.yCoord]}
             id={`${res.length}${this.props.yCoord}_cell${this.props.auxId}`}
@@ -28,6 +30,7 @@ class Row extends React.Component {
       return (
         <div
           className={Classes.Row}
+          style={{ height: `${(100 / this.props.cells.length)}%`, width: '100%' }}
           data-test="component-row"
         >
           {this.renderCells()}

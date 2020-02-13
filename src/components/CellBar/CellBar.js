@@ -7,7 +7,6 @@ const CellBar = (props) => (
       <div className={Classes.Bar} style={{ height: `${props.cellsLeft}%` }} />
     </div>
   </div>
-
 );
 
 

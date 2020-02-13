@@ -8,7 +8,7 @@ class FormPage extends React.Component {
   render() {
     return (
       <div className={Classes.FormPage} data-test="component-form-page">
-        <GameForm data-test="game-form" />
+        <GameForm data-test="game-form" onCommitSettings={this.props.onCommitSettings} onPlayGame={this.props.onPlayGame} />
       </div>
     );
   }

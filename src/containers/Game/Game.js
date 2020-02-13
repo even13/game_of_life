@@ -4,11 +4,11 @@ import GridDisplay from '../../components/GridDisplay/GridDisplay';
 import Grid from '../../models/grid/grid';
 import Shape from '../../models/shape/shape';
 import UserControls from '../../components/UserControls/UserControls';
-import ScoreDisplay from '../../components/ScoreDisplay/ScoreDisplay';
+import Classes from './Game.module.css';
 
 class Game extends React.Component {
   state = {
-    model: new Grid(50),
+    model: new Grid(+this.props.settings.gridSize.value),
     coords: [],
     playerTurn: 1,
     isPlacingShape: false,
@@ -17,17 +17,24 @@ class Game extends React.Component {
     iterationCount: 0,
     shapeOrientation: 0,
     mirrorShape: false,
+    isRunning: false,
   }
 
   oneEvolution = () => {
     this.evolve();
   }
 
-  runGame = () => {
-    this.setState({
-      iterationCount: 0,
+  runGame = async () => {
+    await this.setState((prevState) => {
+      const updatedModel = prevState.model;
+      updatedModel.randomFlags(+this.props.settings.numberOfFlags.value / 4);
+      return {
+        iterationCount: 0,
+        model: updatedModel,
+        isRunning: true,
+      };
     });
-    this.evolve();
+    setTimeout(() => { this.evolve(); });
   }
 
   placeLiveCell = (coord) => {
@@ -78,6 +85,22 @@ class Game extends React.Component {
     }
   }
 
+  resetGame = () => {
+    this.props.onReplay();
+    this.setState({
+      model: new Grid(+this.props.settings.gridSize.value),
+      coords: [],
+      playerTurn: 1,
+      isPlacingShape: false,
+      evolutionRate: 50,
+      maxIterations: 100,
+      iterationCount: 0,
+      shapeOrientation: 0,
+      mirrorShape: false,
+      isRunning: false,
+    });
+  }
+
   evolve = () => {
     const updatedModel = { ...this.state.model };
     updatedModel.evolve();
@@ -86,11 +109,15 @@ class Game extends React.Component {
       coords: updatedModel.getLiveCellCoordinates(),
     }));
 
-    window.setTimeout(() => {
-      this.setState((prevState) => ({ iterationCount: prevState.iterationCount + 1 }));
-      if (this.state.iterationCount === this.state.maxIterations) { this.render(); return; }
-      this.evolve();
-    }, this.state.evolutionRate);
+    this.props.onDisplayUpdate(this.state.model.playerScores());
+
+    if (this.state.isRunning) {
+      window.setTimeout(() => {
+        this.setState((prevState) => ({ iterationCount: prevState.iterationCount + 1 }));
+        if (this.state.iterationCount === this.state.maxIterations) { this.render(); return; }
+        this.evolve();
+      }, this.state.evolutionRate);
+    }
   }
 
   togglePlayer = () => {
@@ -126,25 +153,25 @@ class Game extends React.Component {
   }
 
   render() {
+    const playerScores = this.state.model.playerScores();
     return (
-      <div className="App" data-test="component-game">
-        <GridDisplay
-          data-test="component-grid-display"
-          model={this.state.model}
-          playerTurn={this.state.playerTurn}
-          onStateChange={this.handleCellState}
-          auxId=""
-        />
-
-        <ScoreDisplay
-          data-test="component-score-display-p1"
-          name="P1 Score"
-          score={this.state.model.playerScores()[0]}
-        />
-
+      <div className={Classes.Game} data-test="component-game">
+        <div className={Classes.GridDisplayWrapper}>
+          <GridDisplay
+            data-test="component-grid-display"
+            colors={this.props.colors}
+            model={this.state.model}
+            playerTurn={this.state.playerTurn}
+            onStateChange={this.handleCellState}
+            auxId=""
+          />
+        </div>
         <UserControls
-          countValue={this.state.maxIterations}
-          rateValue={this.state.evolutionRate}
+          onReplay={this.resetGame}
+          model={this.state.model}
+          flags={+this.props.settings.numberOfFlags.value}
+          countValue={+this.props.settings.gameLength.value}
+          rateValue={+this.props.settings.gameSpeed.value}
           onRateChange={this.handleRateChange}
           onCountChange={this.handleIterationChange}
           placeShape={this.placeShape}
@@ -156,13 +183,6 @@ class Game extends React.Component {
           orientation={this.state.shapeOrientation}
           mirrorShape={this.state.mirrorShape}
         />
-
-        <ScoreDisplay
-          data-test="component-score-display-p2"
-          name="P2 Score"
-          score={this.state.model.playerScores()[1]}
-        />
-
       </div>
     );
   }

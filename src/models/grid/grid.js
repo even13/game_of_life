@@ -13,13 +13,13 @@ class Grid {
 
 
   placeCells = (cellArray, player = 1) => {
-    let cellArrayLength = cellArray.length;
+    const cellArrayLength = cellArray.length;
     let allowPlace = true;
 
     for (let i = 0; i < cellArrayLength; i++) {
-      let currentCell = JSON.stringify(cellArray[i]);
-      let isFlag = JSON.stringify(this.currentPlacedFlags).includes(currentCell);
-      let isLiveCell = JSON.stringify(this.currentLiveCells).includes(currentCell);
+      const currentCell = JSON.stringify(cellArray[i]);
+      const isFlag = JSON.stringify(this.currentPlacedFlags).includes(currentCell);
+      const isLiveCell = JSON.stringify(this.currentLiveCells).includes(currentCell);
       if (isLiveCell || isFlag) allowPlace = false;
     }
 
@@ -49,7 +49,6 @@ class Grid {
       }
       return cell;
     }));
-
     this.currentGrid = updatedCurrentGrid;
   }
 
@@ -95,6 +94,7 @@ class Grid {
 
     this.currentPlacedFlags = Q1FlagCoordinates.concat(Q2FlagCoordinates).concat(Q3FlagCoordinates).concat(Q4FlagCoordinates);
     this.currentPlacedFlags.push([xCoordOdd, yCoordOdd]);
+    this.updateGrid([], null);
   }
 
   getCurrentFlags = () => this.currentPlacedFlags
@@ -133,10 +133,10 @@ class Grid {
     const liveCells = [];
     let p1LiveCells = 0;
     let p2LiveCells = 0;
- 
+
     this.currentGrid.forEach((row, y) => {
       const newRow = [];
-  
+
       row.forEach((elt, x) => {
         let flagCount = 0;
         const flagArray = [];
@@ -154,7 +154,7 @@ class Grid {
           if (this.neighbours(y, x)[i].player === 2) player2CellCount++;
         }
 
-        const nextCellOwner = this.determineNextCellOwner(player1CellCount, player2CellCount)
+        const nextCellOwner = this.determineNextCellOwner(player1CellCount, player2CellCount);
         const newElt = this.newState(elt, liveCellCount, flagCount, flagArray, nextCellOwner);
 
         if (newElt.value === '*') liveCells.push([x, y]);
@@ -175,7 +175,7 @@ class Grid {
     const p1Score = flags[0] * 5 + this.p1LiveCellCount;
     const p2Score = flags[1] * 5 + this.p2LiveCellCount;
 
-    return [p1Score, p2Score];
+    return [flags[0], this.p1LiveCellCount, p1Score, flags[1], this.p2LiveCellCount, p2Score];
   }
 
   countFlags = () => {

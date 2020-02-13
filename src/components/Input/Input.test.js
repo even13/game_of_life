@@ -33,13 +33,13 @@ describe('<Input />', () => {
   it('renders without error', () => {
     expect(inputComponent).toHaveLength(1);
   });
-  
+
   it('renders a text input if its type prop === input', () => {
     wrapper = setup(Input, textInputDefaultProps);
     const input = findByTestAttr(wrapper, 'input');
     expect(input.prop('type')).toEqual('text');
   });
-  
+
   it('renders a range input if its type prop === range', () => {
     wrapper = setup(Input, rangeInputDefaultProps);
     const input = findByTestAttr(wrapper, 'input');

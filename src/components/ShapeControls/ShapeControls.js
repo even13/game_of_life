@@ -2,6 +2,8 @@ import React from 'react';
 import GridDisplay from '../GridDisplay/GridDisplay';
 import Grid from '../../models/grid/grid';
 import Shape from '../../models/shape/shape';
+import Classes from './ShapeControls.module.css';
+import ControlButton from './ControlButton/ControlButton';
 
 class ShapeControls extends React.Component {
   state = {
@@ -39,19 +41,20 @@ class ShapeControls extends React.Component {
 
   render() {
     return (
-      <div className="ShapeControls" data-test="component-shape-controls">
-        <GridDisplay size={9} model={this.state.shapeDisplay} auxId="_display" data-test="shape-display" />
-        <button type="button" data-test="create-spinner" onClick={() => { this.handleClick('spinner'); }}>Create A Spinner</button>
-        <button type="button" data-test="create-spaceship" onClick={() => { this.handleClick('spaceship'); }}>Create A Spaceship</button>
-        <button type="button" data-test="create-bird" onClick={() => { this.handleClick('bird'); }}>Create A Bird</button>
-        <button type="button" data-test="rotate-button" onClick={() => { this.handleRotation(); }}>
-          {this.props.orientation}
-          <sup>o</sup>
-        </button>
-        <button type="button" data-test="mirror-button" onClick={() => { this.handleMirror(); }}>
-          <span>Mirror: </span>
-          { this.props.mirrorShape ? 'On' : 'Off' }
-        </button>
+      <div className={Classes.ShapeControls} data-test="component-shape-controls">
+        <div className={Classes.ShapeDisplayScreen} />
+        <div className={Classes.ShapeDisplayAndOrientation}>
+          <ControlButton data-test="rotate-button" onClick={() => { this.handleRotation(); }} content={`${this.props.orientation}°`} text="Rotate" />
+          <GridDisplay isDisplay size={9} width={107} model={this.state.shapeDisplay} auxId="_display" data-test="shape-display" />
+          <ControlButton data-test="mirror-button" onClick={() => { this.handleMirror(); }} content={this.props.mirrorShape ? 'On' : 'Off'} text="Mirror" />
+        </div>
+        <div className={Classes.ShapeControlButtons}>
+          <div className={Classes.ShapeControlShapeButtons}>
+            <button type="button" data-test="create-spinner" onClick={() => { this.handleClick('spinner'); }}>Create A Spinner</button>
+            <button type="button" data-test="create-spaceship" onClick={() => { this.handleClick('spaceship'); }}>Create A Spaceship</button>
+            <button type="button" data-test="create-bird" onClick={() => { this.handleClick('bird'); }}>Create A Bird</button>
+          </div>
+        </div>
       </div>
     );
   }

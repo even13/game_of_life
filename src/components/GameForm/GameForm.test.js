@@ -62,7 +62,7 @@ describe('<GameForm />', () => {
     expect(submitButton).toHaveLength(1);
   });
 
-  
+
   describe('<ColorPicker /> components', () => {
     let playerOneColor;
     let playerTwoColor;
@@ -73,18 +73,18 @@ describe('<GameForm />', () => {
       playerOneColor = wrapper.find({ id: 'playerOneColor' });
       playerTwoColor = wrapper.find({ id: 'playerTwoColor' });
     });
-    
+
     it('renders a two color pickers', () => {
       expect(playerOneColor).toHaveLength(1);
       expect(playerTwoColor).toHaveLength(1);
     });
 
-    test('player one has a default of blue', () => {
-      expect(wrapper.state('colorPickers').playerOneColor.value).toEqual('blue');
+    test('player one has a default of #E563ED', () => {
+      expect(wrapper.state('colorPickers').playerOneColor.value).toEqual('#E563ED');
     });
 
-    test('player two has a default of pink', () => {
-      expect(wrapper.state('colorPickers').playerTwoColor.value).toEqual('pink');
+    test('player two has a default of #27cac9', () => {
+      expect(wrapper.state('colorPickers').playerTwoColor.value).toEqual('#27cac9');
     });
   });
 
