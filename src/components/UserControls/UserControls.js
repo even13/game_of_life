@@ -22,6 +22,8 @@ const UserControls = (props) => (
       <button type="button" onClick={props.onOneEvolution} data-test="evolution-button">Click To Evolve</button>
       <button type="button" onClick={props.onTogglePlayer} data-test="player-toggle">Click To Toggle Player</button>
       <button type="button" onClick={props.onRunGame} data-test="run-button">Run</button>
+
+      {/* add counters */}
     </div>
   </div>
 );

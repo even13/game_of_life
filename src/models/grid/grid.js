@@ -5,16 +5,29 @@ class Grid {
     this.currentGrid = Array(gridSize).fill(Array(gridSize).fill({ value: '-', player: null }));
     this.gridSize = gridSize;
     this.currentPlacedFlags = currentPlacedFlags;
+    this.p1LiveCellCount = 0;
+    this.p2LiveCellCount = 0;
   }
 
   render = () => this.currentGrid
 
 
   placeCells = (cellArray, player = 1) => {
-    if (!JSON.stringify(this.currentPlacedFlags).includes(JSON.stringify(cellArray[0]))) {
+    let cellArrayLength = cellArray.length;
+    let allowPlace = true;
+
+    for (let i = 0; i < cellArrayLength; i++) {
+      let currentCell = JSON.stringify(cellArray[i]);
+      let isFlag = JSON.stringify(this.currentPlacedFlags).includes(currentCell);
+      let isLiveCell = JSON.stringify(this.currentLiveCells).includes(currentCell);
+      if (isLiveCell || isFlag) allowPlace = false;
+    }
+
+    if (allowPlace) {
       this.currentLiveCells = this.currentLiveCells.concat(cellArray);
       this.updateGrid(cellArray, player);
     }
+    return allowPlace;
   }
 
   removeCells = (cellArray, player = 1) => {
@@ -118,9 +131,12 @@ class Grid {
   evolve = () => {
     const newGrid = [];
     const liveCells = [];
-
+    let p1LiveCells = 0;
+    let p2LiveCells = 0;
+ 
     this.currentGrid.forEach((row, y) => {
       const newRow = [];
+  
       row.forEach((elt, x) => {
         let flagCount = 0;
         const flagArray = [];
@@ -137,18 +153,44 @@ class Grid {
           if (this.neighbours(y, x)[i].player === 1) player1CellCount++;
           if (this.neighbours(y, x)[i].player === 2) player2CellCount++;
         }
-        const nextCellOwner = this.determineNextCellOwner(player1CellCount, player2CellCount);
 
+        const nextCellOwner = this.determineNextCellOwner(player1CellCount, player2CellCount)
         const newElt = this.newState(elt, liveCellCount, flagCount, flagArray, nextCellOwner);
 
         if (newElt.value === '*') liveCells.push([x, y]);
+        if (newElt.player === 1) p1LiveCells++;
+        if (newElt.player === 2) p2LiveCells++;
         newRow.push(newElt);
       });
       newGrid.push(newRow);
     });
+    this.p1LiveCellCount = p1LiveCells;
+    this.p2LiveCellCount = p2LiveCells;
     this.currentLiveCells = liveCells;
     this.currentGrid = newGrid;
   }
+
+  playerScores = () => {
+    const flags = this.countFlags();
+    const p1Score = flags[0] * 5 + this.p1LiveCellCount;
+    const p2Score = flags[1] * 5 + this.p2LiveCellCount;
+
+    return [p1Score, p2Score];
+  }
+
+  countFlags = () => {
+    const flagArrLength = this.currentPlacedFlags.length;
+    let player1FlagCount = 0;
+    let player2FlagCount = 0;
+    for (let i = 0; i < flagArrLength; i++) {
+      const xCoord = this.currentPlacedFlags[i][1];
+      const yCoord = this.currentPlacedFlags[i][0];
+      const cell = this.currentGrid[xCoord][yCoord];
+      if (cell.value === 'f' && cell.player === 1) player1FlagCount++;
+      if (cell.value === 'f' && cell.player === 2) player2FlagCount++;
+    }
+    return [player1FlagCount, player2FlagCount];
+  };
 
   neighbours = (x, y) => {
     const size = this.currentGrid.length;
