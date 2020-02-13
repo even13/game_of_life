@@ -5,11 +5,11 @@ class Button extends React.Component {
   state = {}
 
   render() {
-    const backgroundColor = this.props.form ? 'transparent' : 'green';
+    const backgroundColor = 'transparent';
 
     return (
       <div className={Classes.Button} style={{ backgroundColor }} data-test="component-button">
-        <div className={Classes.InnerButton}>
+        <div className={Classes.InnerButton} onClick={this.props.onClick}>
           {this.props.content}
         </div>
       </div>

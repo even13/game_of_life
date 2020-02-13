@@ -1,0 +1,42 @@
+.ShapeControls {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: -90px;
+  width: auto;
+}
+
+.ShapeControlButtons {
+  margin-top: 20px;
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.ShapeDisplayAndOrientation {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ShapeControlShapeButtons {
+  display: flex;
+}
+
+.controlButton {
+  margin: 30px;
+  border: 100px solid red;
+}
+
+.ShapeDisplayScreen {
+  /* border: 1px solid red; */
+  position: relative;
+  z-index: 1000;
+  height: 111px;
+  width: 111px;
+  top: 113px;
+  margin: 0 auto;
+}

@@ -4,10 +4,11 @@ import GridDisplay from '../../components/GridDisplay/GridDisplay';
 import Grid from '../../models/grid/grid';
 import Shape from '../../models/shape/shape';
 import UserControls from '../../components/UserControls/UserControls';
+import Classes from './Game.module.css';
 
 class Game extends React.Component {
   state = {
-    model: new Grid(30),
+    model: new Grid(+this.props.settings.gridSize.value),
     coords: [],
     playerTurn: 1,
     isPlacingShape: false,
@@ -124,18 +125,20 @@ class Game extends React.Component {
 
   render() {
     return (
-      <div className="App" data-test="component-game">
-        <GridDisplay
-          data-test="component-grid-display"
-          model={this.state.model}
-          playerTurn={this.state.playerTurn}
-          onStateChange={this.handleCellState}
-          auxId=""
-        />
+      <div className={Classes.Game} data-test="component-game">
+        <div className={Classes.GridDisplayWrapper}>
+          <GridDisplay
+            data-test="component-grid-display"
+            model={this.state.model}
+            playerTurn={this.state.playerTurn}
+            onStateChange={this.handleCellState}
+            auxId=""
+          />
+        </div>
 
         <UserControls
-          countValue={this.state.maxIterations}
-          rateValue={this.state.evolutionRate}
+          countValue={+this.props.settings.gameLength.value}
+          rateValue={+this.props.settings.gameSpeed.value}
           onRateChange={this.handleRateChange}
           onCountChange={this.handleIterationChange}
           placeShape={this.placeShape}

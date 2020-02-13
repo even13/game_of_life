@@ -39,3 +39,8 @@
     transform: rotate(360deg);
   }
 }
+
+.GridDisplayWrapper {
+  position: relative;
+  z-index: 9999;
+}

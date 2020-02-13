@@ -1,13 +1,17 @@
 .Cell {
-    border: 1px solid black;
+    border: 1px solid #fdc0ff;
     width: 10px;
     height: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
     color: white;
+    background-color: rgba(0, 68, 59, 0.575);
     cursor: pointer;
+    box-shadow: 0 0 5px #fdc0ff;
 }
+
+
 
 .Cell:focus {
     outline: none;

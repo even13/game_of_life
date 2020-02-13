@@ -9,10 +9,10 @@ class Cell extends React.Component {
   }
 
   render() {
-    const color = this.props.cell.value === '*' ? 'black' : 'green';
+    // const color = this.props.cell.value === '*' ? 'black' : 'black';
     return (
       <div
-        style={{ backgroundColor: color }}
+        // style={{ backgroundColor: color }}
         className={Classes.Cell}
         role="button"
         tabIndex={0}

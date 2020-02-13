@@ -169,12 +169,17 @@ class GameForm extends React.Component {
     ))[playerNumber];
   }
 
+  handleClick = () => {
+    this.props.onCommitSettings(this.state.gameForm);
+    this.props.onPlayGame();
+  }
+
   render() {
     return (
       <div className={Classes.GameForm} data-test="component-game-form">
         <form className={Classes.formElement}>
           {this.renderInputs()}
-          <Button form id="submit" content="GO" />
+          <Button form id="submit" content="GO" onClick={this.handleClick} />
         </form>
       </div>
     );

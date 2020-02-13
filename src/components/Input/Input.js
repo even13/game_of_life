@@ -4,6 +4,13 @@ import Aux from '../../hoc/Aux';
 import Classes from './Input.module.css';
 
 class Input extends React.Component {
+  formattedOutput = (field, value) => {
+    switch (field) {
+      case 'Grid Size': return `${value} x ${value}`;
+      default: return value;
+    }
+  }
+
   render() {
     const suffix = this.props.id ? `-${this.props.id}` : '';
     let inputElement;
@@ -18,7 +25,7 @@ class Input extends React.Component {
                   <div className={[Classes.Input, Classes[this.props.id], Classes.sliderOption].join(' ')}>{this.props.config.label}</div>
                 </div>
                 <div className={Classes.values}>
-                  <div className={Classes.sliderValue}>{this.props.value}</div>
+                  <div className={Classes.sliderValue}>{this.formattedOutput(this.props.config.label, this.props.value)}</div>
                 </div>
               </div>
               <input

@@ -62,7 +62,7 @@ describe('<GameForm />', () => {
     expect(submitButton).toHaveLength(1);
   });
 
-  
+
   describe('<ColorPicker /> components', () => {
     let playerOneColor;
     let playerTwoColor;
@@ -73,7 +73,7 @@ describe('<GameForm />', () => {
       playerOneColor = wrapper.find({ id: 'playerOneColor' });
       playerTwoColor = wrapper.find({ id: 'playerTwoColor' });
     });
-    
+
     it('renders a two color pickers', () => {
       expect(playerOneColor).toHaveLength(1);
       expect(playerTwoColor).toHaveLength(1);

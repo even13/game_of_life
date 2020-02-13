@@ -25,6 +25,7 @@ class GamePage extends React.Component {
       <div className={Classes.GamePage} data-test="component-game-page">
         <CellBar cellsLeft={this.state.playerOneCells} />
         <Game
+          settings={this.props.currentSettings}
           playerOneCellsRemaining={this.state.playerOneCells}
           playerTwoCellsRemaining={this.state.playerTwoCells}
           onIncrement={this.increment}
