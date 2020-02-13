@@ -13,10 +13,21 @@ class Grid {
 
 
   placeCells = (cellArray, player = 1) => {
-    if (!JSON.stringify(this.currentPlacedFlags).includes(JSON.stringify(cellArray[0]))) {
+    let cellArrayLength = cellArray.length;
+    let allowPlace = true;
+
+    for (let i = 0; i < cellArrayLength; i++) {
+      let currentCell = JSON.stringify(cellArray[i]);
+      let isFlag = JSON.stringify(this.currentPlacedFlags).includes(currentCell);
+      let isLiveCell = JSON.stringify(this.currentLiveCells).includes(currentCell);
+      if (isLiveCell || isFlag) allowPlace = false;
+    }
+
+    if (allowPlace) {
       this.currentLiveCells = this.currentLiveCells.concat(cellArray);
       this.updateGrid(cellArray, player);
     }
+    return allowPlace;
   }
 
   removeCells = (cellArray, player = 1) => {
@@ -171,7 +182,6 @@ class Grid {
     const flagArrLength = this.currentPlacedFlags.length;
     let player1FlagCount = 0;
     let player2FlagCount = 0;
-    // console.log(this.currentPlacedFlags);
     for (let i = 0; i < flagArrLength; i++) {
       const xCoord = this.currentPlacedFlags[i][1];
       const yCoord = this.currentPlacedFlags[i][0];

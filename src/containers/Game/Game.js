@@ -39,19 +39,21 @@ class Game extends React.Component {
     if (this.state.playerTurn === 2 && (this.props.playerTwoCellsRemaining === 0 || (this.props.playerTwoCellsRemaining - coord.length < 0))) return;
     // if there are cellbars on that specific gamepage, run the logic below
     // keeps track of how many live cells the user placed on grid pre-game
-    if (this.props.onDecrement) this.props.onDecrement(coord.length, this.state.playerTurn);
+    // additionally if placing cells has been rejected then do not apply decrement
 
-    let updatedCoords = [...this.state.coords];
-    updatedCoords = updatedCoords.concat(coord);
+    let updatedCoords;
     const updatedModel = this.state.model;
-    updatedModel.placeCells(coord, this.state.playerTurn);
+    const hasUpdated = updatedModel.placeCells(coord, this.state.playerTurn);
 
-    this.setState(() => ({
-      model: updatedModel,
-      coords: updatedCoords,
-    }));
-    // console.log("player1", this.props.playerOneCellsRemaining);
-    // console.log("player2", this.props.playerTwoCellsRemaining);
+    if (hasUpdated) {
+      if (this.props.onDecrement) this.props.onDecrement(coord.length, this.state.playerTurn);
+      updatedCoords = [...this.state.coords];
+      updatedCoords = updatedCoords.concat(coord);
+      this.setState(() => ({
+        model: updatedModel,
+        coords: updatedCoords,
+      }));
+    }
   }
 
   placeDeadCell = (coord) => {
