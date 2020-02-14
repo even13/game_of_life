@@ -27,7 +27,7 @@ class GridDisplay extends React.Component {
 
     render() {
       return (
-        <div className={Classes.GridDisplay} style={{ width: this.props.width }} data-test="component-grid-display">
+        <div className={Classes.GridDisplay} style={{ width: `${(this.props.model.render().length * 10)}px` }} data-test="component-grid-display">
           {this.renderGrid()}
         </div>
       );

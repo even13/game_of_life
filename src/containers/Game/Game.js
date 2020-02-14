@@ -5,6 +5,7 @@ import Grid from '../../models/grid/grid';
 import Shape from '../../models/shape/shape';
 import UserControls from '../../components/UserControls/UserControls';
 import Classes from './Game.module.css';
+import DurationMeter from '../../components/DurationMeter/DurationMeter';
 
 class Game extends React.Component {
   state = {
@@ -93,8 +94,6 @@ class Game extends React.Component {
       coords: [],
       playerTurn: 1,
       isPlacingShape: false,
-      evolutionRate: 50,
-      maxIterations: 100,
       iterationCount: 0,
       shapeOrientation: 0,
       mirrorShape: false,
@@ -115,9 +114,11 @@ class Game extends React.Component {
     if (this.state.isRunning) {
       window.setTimeout(() => {
         this.setState((prevState) => ({ iterationCount: prevState.iterationCount + 1 }));
-        if (this.state.iterationCount === this.state.maxIterations) { this.render(); return; }
+        if (this.state.iterationCount === +this.props.settings.gameLength.value) { 
+          this.props.showWinner(); this.render(); return;
+        }
         this.evolve();
-      }, this.state.evolutionRate);
+      }, +this.props.settings.gameSpeed.value);
     }
   }
 
@@ -154,7 +155,7 @@ class Game extends React.Component {
   }
 
   render() {
-    const playerScores = this.state.model.playerScores();
+    // const playerScores = this.state.model.playerScores();
     return (
       <div className={Classes.Game} data-test="component-game">
         <div className={Classes.GridDisplayWrapper}>
@@ -167,6 +168,10 @@ class Game extends React.Component {
             auxId=""
           />
         </div>
+        <DurationMeter
+          maxAmount={+this.props.settings.gameLength.value}
+          currentAmount={this.state.iterationCount}
+        />
         <UserControls
           onReplay={this.resetGame}
           model={this.state.model}
@@ -184,6 +189,9 @@ class Game extends React.Component {
           orientation={this.state.shapeOrientation}
           mirrorShape={this.state.mirrorShape}
           test={this.props.test}
+          onReturn={this.props.onReturn}
+          colors={this.props.colors}
+          playerTurn={this.state.playerTurn}
         />
       </div>
     );

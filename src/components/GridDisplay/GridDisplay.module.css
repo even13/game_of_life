@@ -1,6 +1,6 @@
 .GridDisplay {
-  width: auto;
   height: 100%;
-  border: 2px solid #fdc0ff;
-  box-shadow: 0 0 5px #fdc0ff;
+  border-bottom: 2px solid #fdc0ff;
+  border-left: 2px solid #fdc0ff;
+  box-shadow: 0 0 50px #69a9b485;
 }

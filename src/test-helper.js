@@ -19,8 +19,6 @@ export const formatGrid = (grid) => {
     gridString.push(`${rowString}\n`);
   }
   gridString = gridString.join('\n');
-  // eslint-disable-next-line no-console
-  console.log(gridString);
 };
 
 export const findByTestAttr = (wrapper, testAttr) => wrapper.find(`[data-test='${testAttr}']`);

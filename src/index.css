@@ -23,7 +23,7 @@ html {
 }
 
 body {
-  background: url('./images/80s-background-gif-3.gif') no-repeat center center fixed;
+  background: url('./images/80s-background-gif-3.gif') no-repeat center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;

@@ -25,6 +25,7 @@ describe('placingShapes', () => {
     testGridModel = new Grid(15);
     wrapper = mount(
       <Game
+        test
         settings={defaultGameSettingsProps.gameForm}
         colors={{ playerOneColor: { value: '' } }}
       />,

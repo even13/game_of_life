@@ -1,0 +1,18 @@
+.DurationMeter {
+  width: 100%;
+  height: 10px;
+  margin-top: 20px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  border: 1px solid #fdc0ff;
+  overflow: hidden;
+  transition: 0.2s;
+  background-color: rgba(0, 68, 59, 0.377);
+}
+
+.DurationBar {
+  height: 100%;
+  background-color: #fdc0ff;
+  box-shadow: 0 0 5px #0da4b8a4;
+}

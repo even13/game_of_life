@@ -13,9 +13,7 @@ describe('resetGame', () => {
   const testGridModel = new Grid();
 
   beforeEach(() => {
-    wrapper = mount(
-      <App />,
-    );
+    wrapper = mount(<App />);
     wrapper.setState({ model: testGridModel });
   });
 
