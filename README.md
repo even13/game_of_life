@@ -1,80 +1,159 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/8076ad0ba100f1cc8036/maintainability)](https://codeclimate.com/github/even13/game_of_life/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/8076ad0ba100f1cc8036/test_coverage)](https://codeclimate.com/github/even13/game_of_life/test_coverage)
+[![Build Status](https://travis-ci.com/ajbacon/acebook-true-GrIT.svg?branch=master)](https://travis-ci.com/even13/game_of_life)
+
+[Introduction](#introduction) | [Contributors](#contributors) | [Getting started](#getting-started) | [Features](#features) | [Additional features](#additional-features) | [Code style](#code-style) | [Tech used](#tech-used) | [Test coverage](#test-coverage) | [User stories](#user-stories) | [Diagram](#diagram)
+
+## Introduction
+
+N.E.O.N is a game based on [Conway's Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life), a cellular automaton (CA) devised by the British mathematician Conway in the 1970s. Starting with that, we wanted to go beyond the checkered grids, and terminal stars and dashes, so we built something that would allow the public to engage with this fascinating concept in an accessible and entertaining manner. The result is a two-player, Capture the Flag-CA mix, with Vaporwave styling.
+
+The application is deployed [here](https://game-of-life-catch-the-flag.herokuapp.com/). Hope you enjoy!
+
+INSERT SCREENSHOTS
+
+## Contributors
+
+The team consisted of
+
+- [Andrew Bacon](https://github.com/ajbacon)
+- [Raluca Ciucu](https://github.com/IngramCapa)
+- [Sam Folorunsho](https://github.com/samfolo)
+- [Eve Noirault](https://github.com/even13)
+
+## Getting started
+
+First, clone this repository, then:
+
+To install dependencies:
+```
+npm install
+```
+
+To run the app in development mode type in your terminal
+```
+npm run dev
+```
+and visit [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+## Features
+
+In order not to influence strategising (and throw in an element of suspense), we decided to only show the flags on the grid after the users finished placing their cells and clicked Run.
+
+Users can:
+- type in their name;
+- choose a colour for their cells by clicking on the square next to the name box;
+- choose the size of the grid, the number of flags, the number of cell iterations (game length) and the game speed;
+- place single cells on the grid and create their own shapes;
+- select from three preset shapes (spinner, bird, spaceship);
+- play a solo game or against another player;
+- players can rotate or mirror their preset shapes;
+- see their scores and number of flags captured;
+- stop a game halfway through;
+- reset a game without changing the settings;
+- go back to the home page to select new settings.
 
 
-[How to contribute to this project](#how-to-contribute-to-this-project) | [Quickstart](#quickstart) | [Versioning](#versioning) | [User stories](#user-stories) | [Database structure](#database-structure) | [Features](#features) | [Code style](#code-style) | [Tech used](#tech-used) | [Test coverage](#test-coverage) | [Contributors](#contributors)
+### Additional features
 
+Had we had more time, we would have looked to implement the following features:
+- users can create and save their own shapes;
+- users can rotate and mirror their saved shapes;
+- users can see a list of highscores.
 
+## Code style
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- OOD
+- TDD
+- Spiking
 
-## Deployment
+## Tech used
 
-The application is deployed [here](https://game-of-life-catch-the-flag.herokuapp.com/).
+- JavaScript 
+- React JS
+- Node.js
+- Jest and Enzyme for testing
 
-## Available Scripts
+## Test coverage
 
-In the project directory, you can run:
+- To run the tests and see code coverage, type ```npm test -- --coverage a ```in the terminal.
 
-### `yarn start`
+## Linter
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- To run the linter, type ```npm run lint``` in the terminal.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## User stories
 
-### `yarn test`
+```
+As a user
+So that I can learn more about CA
+I want to visit a website where I can manipulate cell evolution.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+As a user
+So that I can manipulate the environment
+I want to select the size of the grid.
 
-### `yarn build`
+As a user
+So that I can manipulate the environment
+I want to select the number of evolutions.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+As a user
+So that I can manipulate the environment
+I want to select how fast the cells are evolving.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+As a user
+So that I can create my own shapes
+I want to place single cells on the grid.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+As a user
+So that I can populate the grid faster
+I want to choose from a series of preset shapes.
 
-### `yarn eject`
+As a user
+So that I can plan my strategy better
+I want to see how many cells I have left.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+As a user
+So that I can plan my strategy better
+I want to rotate and mirror the preset shapes.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+As a user
+So that I can share the fun
+I would like to play N.E.O.N with another person.
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+As a user
+So that I can identify which player is me
+I want to see my name when playing.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+As a user 
+So that I can identify which cells are mine
+I want to select from a choice of colors.
 
-## Learn More
+As a user
+So that I can have a more exciting experience
+I want the site to show me the remaining live cells after n evolutions.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+As a user
+So that I can compete against player 2
+I want the site to show me how many flags my cells captured after n evolutions.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+As a user
+So that I know who won
+I want the site to show me the total score for each player and notify me who won.
 
-### Code Splitting
+As a user
+So that I can experiment with CA even more
+I want to play multiple games against the same opponent.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+As a user
+So that I don't get bored
+I want to be able to stop the game while running.
 
-### Analyzing the Bundle Size
+As a user
+So that I can play against a new opponent or change settings
+I want to go back to the main page.
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+## Diagram
 
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+to be added
