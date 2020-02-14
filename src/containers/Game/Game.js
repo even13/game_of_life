@@ -24,8 +24,8 @@ class Game extends React.Component {
     this.evolve();
   }
 
-  runGame = async () => {
-    await this.setState((prevState) => {
+  runGame = () => {
+    this.setState((prevState) => {
       const updatedModel = prevState.model;
       updatedModel.randomFlags(+this.props.settings.numberOfFlags.value / 4);
       return {
@@ -34,7 +34,7 @@ class Game extends React.Component {
         isRunning: true,
       };
     });
-    setTimeout(() => { this.evolve(); });
+    this.evolve();
   }
 
   placeLiveCell = (coord) => {
