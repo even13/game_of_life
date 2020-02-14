@@ -9,13 +9,10 @@
 .BackgroundTint {
   position: absolute;
   z-index: -1;
-  width: 100%;
-  height: 3000px;
+  width: 1080;
+  height: 100%;
   border-radius: 30px;
-  padding: 20px 100%;
+  padding: 20px auto;
   margin-top: -50px;
   background-color: rgba(0, 41, 34, 0.062);
-  /* box-shadow: 0px -2px 20px rgba(0, 0, 0, 0.247); */
-  /* -webkit-backdrop-filter: blur(1px);
-  backdrop-filter: blur(1px); */
 }
