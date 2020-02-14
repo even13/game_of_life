@@ -7,15 +7,16 @@ class Input extends React.Component {
   formattedOutput = (field, value) => {
     switch (field) {
       case 'Grid Size': return `${value} x ${value}`;
+      case 'Flags': return `${+value + 1}`;
       default: return value;
     }
   }
 
-  render() {
+  formattedInput = (type) => {
     const suffix = this.props.id ? `-${this.props.id}` : '';
     let inputElement;
 
-    switch (this.props.type) {
+    switch (type) {
       case 'range':
         inputElement = (
           <Aux>
@@ -30,7 +31,7 @@ class Input extends React.Component {
               </div>
               <input
                 data-test={`input${suffix}`}
-                type={this.props.type}
+                type={type}
                 onChange={this.props.onChange}
                 value={this.props.value}
                 step={this.props.config.step}
@@ -55,7 +56,7 @@ class Input extends React.Component {
               <input
                 spellCheck={false}
                 data-test={`input${suffix}`}
-                type={this.props.type}
+                type={type}
                 onChange={this.props.onChange}
                 value={this.props.value}
                 className={Classes.TextInput}
@@ -69,9 +70,13 @@ class Input extends React.Component {
         );
     }
 
+    return inputElement;
+  }
+
+  render() {
     return (
       <div data-test="component-input" className={Classes.Input}>
-        {inputElement}
+        {this.formattedInput(this.props.type)}
       </div>
     );
   }

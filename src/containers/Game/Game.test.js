@@ -12,7 +12,7 @@ describe('<Game />', () => {
   const testGridModel = new Grid();
 
   beforeEach(() => {
-    wrapper = setup(Game, { settings: defaultGameSettingsProps.gameForm }, { model: testGridModel });
+    wrapper = setup(Game, { settings: defaultGameSettingsProps.gameForm, test: true, onReplay: jest.fn() }, { model: testGridModel });
     gameComponent = findByTestAttr(wrapper, 'component-game');
   });
 
@@ -63,6 +63,33 @@ describe('<Game />', () => {
       wrapper.instance().handleMirrorShape();
 
       expect(wrapper.state('mirrorShape')).toStrictEqual(false);
+    });
+  });
+
+  describe('resetGame', () => {
+    it('should reset the state of the game when called', () => {
+      // set state different to default
+
+      wrapper.state().coords = [[1, 1]];
+      wrapper.state().playerTurn = 2;
+      wrapper.state().isPlacingShape = true;
+      wrapper.state().maxIterations = 500;
+      wrapper.state().iterationCount = 500;
+      wrapper.state().shapeOrientation = 90;
+      wrapper.state().mirrorShape = true;
+      wrapper.state().isRunning = true;
+
+
+      wrapper.instance().resetGame();
+
+      expect(wrapper.state().coords).toEqual([]);
+      expect(wrapper.state().playerTurn).toEqual(1);
+      expect(wrapper.state().isPlacingShape).toEqual(false);
+      expect(wrapper.state().maxIterations).toEqual(100);
+      expect(wrapper.state().iterationCount).toEqual(0);
+      expect(wrapper.state().shapeOrientation).toEqual(0);
+      expect(wrapper.state().mirrorShape).toEqual(false);
+      expect(wrapper.state().isRunning).toEqual(false);
     });
   });
 });

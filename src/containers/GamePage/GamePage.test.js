@@ -47,4 +47,35 @@ describe('<GamePage />', () => {
     wrapper.instance().decrement(7, 2);
     expect(wrapper.state('playerTwoCells')).toBe(93);
   });
+
+  it('can reset the player scores', () => {
+    wrapper.instance().updateScoreDisplays([3, 22, 7, 2, 20, 10]);
+    expect(wrapper.state('playerOneFlags')).toBe(3);
+    expect(wrapper.state('playerOneScore')).toBe(22);
+    expect(wrapper.state('playerOneCellCount')).toBe(7);
+    expect(wrapper.state('playerTwoFlags')).toBe(2);
+    expect(wrapper.state('playerTwoScore')).toBe(20);
+    expect(wrapper.state('playerTwoCellCount')).toBe(10);
+  });
+
+  it('can update the player scores', () => {
+    wrapper.instance().updateScoreDisplays([3, 22, 7, 2, 20, 10]);
+    expect(wrapper.state('playerOneFlags')).toBe(3);
+    expect(wrapper.state('playerOneScore')).toBe(22);
+    expect(wrapper.state('playerOneCellCount')).toBe(7);
+    expect(wrapper.state('playerTwoFlags')).toBe(2);
+    expect(wrapper.state('playerTwoScore')).toBe(20);
+    expect(wrapper.state('playerTwoCellCount')).toBe(10);
+  });
+
+  it('can reset the player cells after decrement', () => {
+    wrapper.instance().decrement(6, 1);
+    wrapper.instance().decrement(7, 2);
+    expect(wrapper.state('playerOneCells')).toBe(94);
+    expect(wrapper.state('playerTwoCells')).toBe(93);
+
+    wrapper.instance().resetCells();
+    expect(wrapper.state('playerOneCells')).toBe(100);
+    expect(wrapper.state('playerTwoCells')).toBe(100);
+  });
 });

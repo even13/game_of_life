@@ -24,7 +24,7 @@ describe('flagCellInteraction', () => {
         onDisplayUpdate={jest.fn()}
         settings={defaultGameSettingsProps.gameForm}
         colors={{ playerOneColor: { value: '' } }}
-      />
+      />,
     );
     wrapper.setState({ model: testGridModel, settings: defaultGameSettingsProps.gameForm });
   });

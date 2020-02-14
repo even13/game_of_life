@@ -17,4 +17,19 @@ describe('<App />', () => {
   it('renders without error', () => {
     expect(appComponent).toHaveLength(1);
   });
+
+  describe('toggleInGame', () => {
+    it('should toggle the inGame state from initial value of false to true on being called once', () => {
+      wrapper.instance().toggleInGame();
+      expect(wrapper.state().inGame).toEqual(true);
+    });
+  });
+
+  describe('commitSettings', () => {
+    it('updates the current settings', () => {
+      wrapper.instance().commitSettings({ mock: 'object' }, 'blue, green, black');
+      expect(wrapper.state().currentSettings).toEqual({ mock: 'object' });
+      expect(wrapper.state().colorPickers).toEqual('blue, green, black');
+    });
+  });
 });
