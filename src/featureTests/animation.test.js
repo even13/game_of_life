@@ -51,6 +51,7 @@ describe('animation', () => {
 
     wrapper.instance().runGame()
     jest.runAllTimers()
+    jest.runAllTimers()
     wrapper.update()
 
     console.log("after")

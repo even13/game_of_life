@@ -34,7 +34,7 @@ class Game extends React.Component {
         isRunning: true,
       };
     });
-    this.evolve();
+    setTimeout(() => { this.evolve(); });
   }
 
   placeLiveCell = (coord) => {
