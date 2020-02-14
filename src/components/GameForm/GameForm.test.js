@@ -150,7 +150,7 @@ describe('<GameForm />', () => {
     setTimeout(() => { expect(instance.handleColorChange).toHaveBeenCalled(); });
   });
 
-  describe('handleClick' () => {
+  describe('handleClick', () => {
     it('should call props functions when called', () => {
       const instance = wrapper.instance();
 
