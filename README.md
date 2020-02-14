@@ -21,7 +21,7 @@ The team consisted of
 
 ## App screenshots
 
-![Home page](./images/home page.png)  
+![Home page](./images/home_page.png)  
 ![Game setup](./images/game_setup.png)   
 ![Won game](./images/win_page.png)   
 
