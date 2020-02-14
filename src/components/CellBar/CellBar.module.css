@@ -15,6 +15,7 @@
     align-items: flex-end;
     border: 5px solid #fdc0ff;
     box-shadow: 0 0 30px #ffffff60;
+    background-color: rgba(0, 68, 59, 0.575);
 }
 
 .Bar {

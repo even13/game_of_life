@@ -8,23 +8,30 @@ const ScoreDisplay = (props) => {
     : props.player === 1 ? 'Player 1' : 'Player 2';
 
   let result = null;
-  if (props.gameOver) result = <Result isWinner={props.isWinner} />;
+  if (props.gameOver) {
+    result = (
+      <Result
+        colors={props.colors}
+        isWinner={props.isWinner}
+        player={props.player}
+      />
+    );
+  }
 
   return (
     <div className={Classes.ScoreDisplay} data-test="component-score-display">
       <span className={Classes.PlayerName}>{playerName}</span>
       <div className={Classes.PlayerData}>
         <div className={Classes.PlayerScore}>
-          <span className={Classes.Label}>Score:</span>
           {props.score}
         </div>
         <div className={Classes.PlayerFlags}>
-          <span className={Classes.Label}>Flags:</span>
-          {props.flags}
+          <div className={Classes.Label}>Flags</div>
+          <div>{props.flags}</div>
         </div>
-        <div className={Classes.PlayeLiveCells}>
-          <span className={Classes.Label}>Live Cells:</span>
-          {props.cellCount}
+        <div className={Classes.PlayerLiveCells}>
+          <span className={Classes.Label}>Live Cells</span>
+          <span>{props.cellCount}</span>
         </div>
       </div>
       {result}

@@ -49,7 +49,15 @@ class UserControls extends React.Component {
 
         <div>
           {evolveButton}
-          <button type="button" onClick={this.props.onTogglePlayer} data-test="player-toggle">Click To Toggle Player</button>
+          <Button
+            isToggleButton
+            data-test="player-toggle"
+            content={`Using Player ${this.props.playerTurn}`}
+            onClick={this.props.onTogglePlayer}
+            fontSize={30}
+            width={300}
+            playerTurn={this.props.playerTurn}
+          />
           <Button
             data-test={this.state.isRunning ? 'replay-button' : 'run-button'}
             content={this.state.isRunning ? 'Replay' : 'Run'}

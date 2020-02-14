@@ -8,9 +8,13 @@ Enzyme.configure({ adapter: new EnzymeAdapter() });
 describe('<Result />', () => {
   let wrapper;
   let resultComponent;
+  const defaultProps = {
+    isWinner: () => true,
+    colors: { playerOneColor: {}, playerTwoColor: {} },
+  };
 
   beforeEach(() => {
-    wrapper = setup(Result, { isWinner: jest.fn() });
+    wrapper = setup(Result, defaultProps);
     resultComponent = findByTestAttr(wrapper, 'component-result');
   });
 

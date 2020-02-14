@@ -189,6 +189,8 @@ class Game extends React.Component {
           mirrorShape={this.state.mirrorShape}
           test={this.props.test}
           onReturn={this.props.onReturn}
+          colors={this.props.colors}
+          playerTurn={this.state.playerTurn}
         />
       </div>
     );

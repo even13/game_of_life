@@ -47,12 +47,12 @@ describe('twoPlayers', () => {
     expect(testCell2.prop('cell').player).toEqual(2);
   });
 
-  it('prevents player 2 from removing a cell placed by player 1', () => {
+  it('prevents player 2 from removing a cell placed by player 1', async () => {
     testCell = wrapper.find({ id: '2020_cell' });
 
     testCell.simulate('click');
 
-    playerToggle = findByTestAttr(wrapper, 'player-toggle');
+    playerToggle = await findByTestAttr(wrapper, 'player-toggle');
     playerToggle.simulate('click');
 
     testCell.simulate('click');

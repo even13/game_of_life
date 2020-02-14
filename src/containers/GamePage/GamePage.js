@@ -67,6 +67,7 @@ class GamePage extends React.Component {
           score={this.state.playerOneCellCount}
           gameOver={this.state.gameOver}
           isWinner={() => this.isWinner(1)}
+          colors={this.props.currentColors}
         />
         <CellBar cellsLeft={this.state.playerOneCells} />
         <Game
@@ -91,6 +92,7 @@ class GamePage extends React.Component {
           score={this.state.playerTwoCellCount}
           gameOver={this.state.gameOver}
           isWinner={() => this.isWinner(2)}
+          colors={this.props.currentColors}
         />
       </div>
     );

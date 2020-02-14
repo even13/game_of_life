@@ -7,7 +7,7 @@ class Input extends React.Component {
   formattedOutput = (field, value) => {
     switch (field) {
       case 'Grid Size': return `${value} x ${value}`;
-      case 'Flags': return `${+value + 1}`
+      case 'Flags': return `${+value + 1}`;
       default: return value;
     }
   }

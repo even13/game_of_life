@@ -1,0 +1,12 @@
+.UserControls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.TogglePlayer {
+  color: red;
+  width: 200px;
+  height: 50px;
+  border-radius: 10px;
+}

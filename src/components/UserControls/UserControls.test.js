@@ -29,6 +29,5 @@ describe('<UserControls />', () => {
     const button = findByTestAttr(wrapper, 'player-toggle');
 
     expect(button).toHaveLength(1);
-    expect(button.text()).toEqual('Click To Toggle Player');
   });
 });

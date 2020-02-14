@@ -41,6 +41,7 @@ class App extends React.Component {
     const currentlyRenderedPage = this.state.inGame ? gamePage : formPage;
     return (
       <div className={Classes.App} data-test="component-app">
+        <div className={Classes.BackgroundTint}></div>
         {currentlyRenderedPage}
       </div>
     );
