@@ -155,7 +155,6 @@ class Game extends React.Component {
   }
 
   render() {
-    // const playerScores = this.state.model.playerScores();
     return (
       <div className={Classes.Game} data-test="component-game">
         <div className={Classes.GridDisplayWrapper}>
