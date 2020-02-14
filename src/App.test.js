@@ -24,4 +24,12 @@ describe('<App />', () => {
       expect(wrapper.state().inGame).toEqual(true);
     });
   });
+
+  describe('commitSettings', () => {
+    it('updates the current settings', () => {
+      wrapper.instance().commitSettings({ mock: 'object' }, 'blue, green, black');
+      expect(wrapper.state().currentSettings).toEqual({ mock: 'object' });
+      expect(wrapper.state().colorPickers).toEqual('blue, green, black');
+    });
+  });
 });
