@@ -63,21 +63,11 @@ describe('<ShapeControls />', () => {
       placeShape: () => true, orientation: 0, mirrorShape: true, onMirrorShape: jest.fn(),
     }, { shapeDisplay: testShapeDisplay2 });
 
-    // console.log(wrapper2.instance());
-
     const spaceShipButton = findByTestAttr(wrapper2, 'create-spaceship');
     await spaceShipButton.simulate('click');
 
     await wrapper2.instance().handleMirror();
     await wrapper2.update();
-
-
-    // const mirrorButton = findByTestAttr(wrapper, 'mirror-button');
-    // await mirrorButton.simulate('click');
-
-    // await wrapper2.update();
-
-    // console.log(wrapper2.state().shapeDisplay.currentGrid);
 
     setTimeout(() => {
       testDisplayCell = wrapper2.state('shapeDisplay').currentGrid[3][4];
@@ -100,15 +90,11 @@ describe('<ShapeControls />', () => {
       placeShape: () => true, orientation: 0, mirrorShape: false, rotateShape: jest.fn(),
     }, { shapeDisplay: testShapeDisplay3 });
 
-    // console.log(wrapper3.instance());
-
     const spaceShipButton = findByTestAttr(wrapper3, 'create-spaceship');
     await spaceShipButton.simulate('click');
 
     await wrapper3.instance().handleRotation();
     await wrapper3.update();
-
-    console.log(wrapper3.state().shapeDisplay.currentGrid);
 
     setTimeout(() => {
       testDisplayCell6 = wrapper3.state('shapeDisplay').currentGrid[3][3];
