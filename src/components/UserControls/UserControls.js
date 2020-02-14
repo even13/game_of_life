@@ -21,7 +21,7 @@ class UserControls extends React.Component {
 
   render() {
     let evolutionControls = null;
-    
+
     if (this.props.test) {
       evolutionControls = (
         <EvolutionControls

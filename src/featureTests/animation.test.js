@@ -30,8 +30,6 @@ describe('animation', () => {
   });
 
   it('should iterate for 100 evolutions by default and update a single glider correctly', () => {
-
-
     testCell = wrapper.find({ id: '10_cell' });
     testCell.simulate('click');
 
@@ -47,10 +45,10 @@ describe('animation', () => {
     testCell = wrapper.find({ id: '02_cell' });
     testCell.simulate('click');
 
-    wrapper.instance().runGame()
-    jest.runAllTimers()
-    jest.runAllTimers()
-    wrapper.update()
+    wrapper.instance().runGame();
+    jest.runAllTimers();
+    jest.runAllTimers();
+    wrapper.update();
     expect(wrapper.state().iterationCount).toEqual(100);
 
     // const runButton = findByTestAttr(wrapper, 'run-button');

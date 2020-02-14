@@ -78,5 +78,4 @@ describe('<GamePage />', () => {
     expect(wrapper.state('playerOneCells')).toBe(100);
     expect(wrapper.state('playerTwoCells')).toBe(100);
   });
-  
 });
