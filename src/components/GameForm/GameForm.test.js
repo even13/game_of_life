@@ -10,7 +10,7 @@ describe('<GameForm />', () => {
   let gameFormComponent;
 
   beforeEach(() => {
-    wrapper = setup(GameForm);
+    wrapper = setup(GameForm, { onCommitSettings: jest.fn(), onPlayGame: jest.fn() });
     gameFormComponent = findByTestAttr(wrapper, 'component-game-form');
   });
 
@@ -68,7 +68,7 @@ describe('<GameForm />', () => {
     let playerTwoColor;
 
     beforeEach(() => {
-      wrapper = setup(GameForm);
+      wrapper = setup(GameForm, { onCommitSettings: jest.fn(), onPlayGame: jest.fn() });
       gameFormComponent = findByTestAttr(wrapper, 'component-game-form');
       playerOneColor = wrapper.find({ id: 'playerOneColor' });
       playerTwoColor = wrapper.find({ id: 'playerTwoColor' });
@@ -148,5 +148,15 @@ describe('<GameForm />', () => {
     jest.spyOn(instance, 'handleColorChange');
     await playerOneNameField.simulate('click', { persist: jest.fn() });
     setTimeout(() => { expect(instance.handleColorChange).toHaveBeenCalled(); });
+  });
+
+  describe('handleClick' () => {
+    it('should call props functions when called', () => {
+      const instance = wrapper.instance();
+
+      instance.handleClick();
+      expect(instance.props.onCommitSettings).toHaveBeenCalled();
+      expect(instance.props.onPlayGame).toHaveBeenCalled();
+    });
   });
 });
