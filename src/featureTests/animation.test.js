@@ -47,16 +47,10 @@ describe('animation', () => {
     testCell = wrapper.find({ id: '02_cell' });
     testCell.simulate('click');
 
-  
-
     wrapper.instance().runGame()
     jest.runAllTimers()
     jest.runAllTimers()
     wrapper.update()
-
-    console.log("after")
-
-    console.log(wrapper.debug())
     expect(wrapper.state().iterationCount).toEqual(100);
 
     // const runButton = findByTestAttr(wrapper, 'run-button');
