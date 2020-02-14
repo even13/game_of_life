@@ -10,8 +10,6 @@ N.E.O.N is a game based on [Conway's Game of Life](https://en.wikipedia.org/wiki
 
 The application is deployed [here](https://game-of-life-catch-the-flag.herokuapp.com/). Hope you enjoy!
 
-INSERT SCREENSHOTS
-
 ## Contributors
 
 The team consisted of
@@ -20,6 +18,12 @@ The team consisted of
 - [Raluca Ciucu](https://github.com/IngramCapa)
 - [Sam Folorunsho](https://github.com/samfolo)
 - [Eve Noirault](https://github.com/even13)
+
+## App screenshots
+
+![Home page](./images/home page.png)  
+![Game setup](./images/game_setup.png)   
+![Won game](./images/win_page.png)   
 
 ## Getting started
 
@@ -69,7 +73,7 @@ Had we had more time, we would have looked to implement the following features:
 
 ## Tech used
 
-- JavaScript 
+- JavaScript
 - React JS
 - Node.js
 - Jest and Enzyme for testing
@@ -125,7 +129,7 @@ As a user
 So that I can identify which player is me
 I want to see my name when playing.
 
-As a user 
+As a user
 So that I can identify which cells are mine
 I want to select from a choice of colors.
 
