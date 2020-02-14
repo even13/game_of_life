@@ -17,4 +17,11 @@ describe('<App />', () => {
   it('renders without error', () => {
     expect(appComponent).toHaveLength(1);
   });
+
+  describe('toggleInGame', () => {
+    it('should toggle the inGame state from initial value of false to true on being called once', () => {
+      wrapper.instance().toggleInGame();
+      expect(wrapper.state().inGame).toEqual(true);
+    });
+  });
 });
