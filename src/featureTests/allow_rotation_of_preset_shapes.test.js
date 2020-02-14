@@ -14,6 +14,7 @@ describe('rotationAndMirroring', () => {
   beforeEach(() => {
     wrapper = mount(
       <Game
+        test
         settings={defaultGameSettingsProps.gameForm}
         colors={{ playerOneColor: { value: '' } }}
       />,

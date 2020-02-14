@@ -85,7 +85,7 @@ describe('<Game />', () => {
       expect(wrapper.state().coords).toEqual([]);
       expect(wrapper.state().playerTurn).toEqual(1);
       expect(wrapper.state().isPlacingShape).toEqual(false);
-      expect(wrapper.state().maxIterations).toEqual(100);
+      expect(wrapper.state().maxIterations).toEqual(500);
       expect(wrapper.state().iterationCount).toEqual(0);
       expect(wrapper.state().shapeOrientation).toEqual(0);
       expect(wrapper.state().mirrorShape).toEqual(false);

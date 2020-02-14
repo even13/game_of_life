@@ -1,6 +1,5 @@
 .Button {
-  margin: 50px auto;
-  width: 200px;
+  margin: 50px auto 0 auto;
   height: 50px;
   font-size: 40px;
   display: flex;
@@ -8,12 +7,16 @@
   align-items: center;
 }
 
+.Button:hover {
+  cursor: pointer;
+}
+
 .InnerButton {
   text-align: center;
   border-radius: 10px;
   color: white;
   transition: 0.2s;
-  width: 200px;
+  width: 100%;
 }
 
 .InnerButton:hover {

@@ -14,6 +14,7 @@ class GamePage extends React.Component {
     playerTwoFlags: 0,
     playerTwoScore: 0,
     playerTwoCellCount: 0,
+    gameOver: false,
   }
 
   decrement = (amount, player) => {
@@ -41,8 +42,18 @@ class GamePage extends React.Component {
     this.setState({
       playerOneCells: 100,
       playerTwoCells: 100,
+      gameOver: false,
     });
   }
+
+  showWinner = () => {
+    this.setState({ gameOver: true });
+  }
+
+  isWinner = (player) => (
+    (this.state.playerOneFlags > this.state.playerTwoFlags && player === 1)
+      || (this.state.playerTwoFlags > this.state.playerOneFlags && player === 2)
+  )
 
   render() {
     return (
@@ -54,17 +65,22 @@ class GamePage extends React.Component {
           flags={this.state.playerOneFlags}
           cellCount={this.state.playerOneScore}
           score={this.state.playerOneCellCount}
+          gameOver={this.state.gameOver}
+          isWinner={() => this.isWinner(1)}
+          colors={this.props.currentColors}
         />
         <CellBar cellsLeft={this.state.playerOneCells} />
         <Game
           colors={this.props.currentColors}
           settings={this.props.currentSettings}
           onReplay={this.resetCells}
+          onReturn={this.props.onReturn}
           playerOneCellsRemaining={this.state.playerOneCells}
           playerTwoCellsRemaining={this.state.playerTwoCells}
           onIncrement={this.increment}
           onDecrement={this.decrement}
           onDisplayUpdate={this.updateScoreDisplays}
+          showWinner={this.showWinner}
         />
         <CellBar cellsLeft={this.state.playerTwoCells} />
         <ScoreDisplay
@@ -74,6 +90,9 @@ class GamePage extends React.Component {
           flags={this.state.playerTwoFlags}
           cellCount={this.state.playerTwoScore}
           score={this.state.playerTwoCellCount}
+          gameOver={this.state.gameOver}
+          isWinner={() => this.isWinner(2)}
+          colors={this.props.currentColors}
         />
       </div>
     );

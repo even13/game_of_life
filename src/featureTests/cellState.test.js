@@ -18,6 +18,7 @@ describe('cellState', () => {
   beforeEach(() => {
     wrapper = mount(
       <Game
+        test
         settings={defaultGameSettingsProps.gameForm}
         colors={{ playerOneColor: { value: '' } }}
       />,
