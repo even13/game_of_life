@@ -42,6 +42,12 @@ class GamePage extends React.Component {
     this.setState({
       playerOneCells: 100,
       playerTwoCells: 100,
+      playerOneFlags: 0,
+      playerOneScore: 0,
+      playerOneCellCount: 0,
+      playerTwoFlags: 0,
+      playerTwoScore: 0,
+      playerTwoCellCount: 0,
       gameOver: false,
     });
   }
