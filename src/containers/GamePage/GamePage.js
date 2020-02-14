@@ -17,7 +17,7 @@ class GamePage extends React.Component {
     gameOver: false,
   }
 
-  decrement = (amount = 1, player) => {
+  decrement = (amount, player) => {
     this.setState((prevState) => (player === 1 ? { playerOneCells: prevState.playerOneCells - amount }
       : { playerTwoCells: prevState.playerTwoCells - amount }));
   }

@@ -25,8 +25,8 @@ class Game extends React.Component {
     this.evolve();
   }
 
-  runGame = async () => {
-    await this.setState((prevState) => {
+  runGame = () => {
+    this.setState((prevState) => {
       const updatedModel = prevState.model;
       updatedModel.randomFlags(+this.props.settings.numberOfFlags.value / 4);
       return {
@@ -40,6 +40,7 @@ class Game extends React.Component {
 
   placeLiveCell = (coord) => {
     if (this.state.playerTurn === 1 && (this.props.playerOneCellsRemaining === 0 || (this.props.playerOneCellsRemaining - coord.length < 0))) return;
+    /* istanbul ignore next */
     if (this.state.playerTurn === 2 && (this.props.playerTwoCellsRemaining === 0 || (this.props.playerTwoCellsRemaining - coord.length < 0))) return;
     // if there are cellbars on that specific gamepage, run the logic below
     // keeps track of how many live cells the user placed on grid pre-game
