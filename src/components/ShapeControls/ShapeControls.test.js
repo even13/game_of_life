@@ -8,8 +8,10 @@ Enzyme.configure({ adapter: new EnzymeAdapter() });
 
 describe('<ShapeControls />', () => {
   let wrapper;
+  let wrapper2;
   let shapeControlsComponent;
   let testShapeDisplay;
+  let testShapeDisplay2;
   let shapeDisplay;
 
   let testDisplayCell;
@@ -43,6 +45,33 @@ describe('<ShapeControls />', () => {
       expect(testDisplayCell.value).toEqual('*');
       expect(testDisplayCell2.value).toEqual('*');
       expect(testDisplayCell3.value).toEqual('*');
+    });
+  });
+
+  it('displays a mirrored shape when the clicks the mirror button', async () => {
+    testShapeDisplay2 = new Grid(9);
+    wrapper2 = setup(ShapeControls, { placeShape: () => true, orientation: 0, mirrorShape: true, onMirrorShape: jest.fn() }, { shapeDisplay: testShapeDisplay2 });
+
+    console.log(wrapper2.instance());
+
+    const spaceShipButton = findByTestAttr(wrapper2, 'create-spaceship');
+    await spaceShipButton.simulate('click');
+
+    await wrapper2.instance().handleMirror()
+    await wrapper2.update();
+
+
+    // const mirrorButton = findByTestAttr(wrapper, 'mirror-button');
+    // await mirrorButton.simulate('click');
+
+    // await wrapper2.update();
+
+    // console.log(wrapper2.state().shapeDisplay.currentGrid);
+
+    setTimeout(() => {
+      testDisplayCell = wrapper.state('shapeDisplay').currentGrid[4][3];
+
+      expect(testDisplayCell.value).toEqual('*');
     });
   });
 });

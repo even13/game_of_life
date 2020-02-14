@@ -10,7 +10,7 @@ describe('<UserControls />', () => {
   let userControlsComponent;
 
   beforeEach(() => {
-    wrapper = setup(UserControls);
+    wrapper = setup(UserControls, { onReplay: jest.fn(), model: { randomFlags: jest.fn() }, onRunGame: jest.fn() });
     userControlsComponent = findByTestAttr(wrapper, 'component-user-controls');
   });
 
@@ -30,5 +30,25 @@ describe('<UserControls />', () => {
 
     expect(button).toHaveLength(1);
     expect(button.text()).toEqual('Click To Toggle Player');
+  });
+
+  describe('handleClick', () => {
+    it('calls onReplay when isRunning is true', () => {
+      const instance = wrapper.instance();
+      instance.handleClick();
+
+      expect(wrapper.state().isRunning).toEqual(true);
+      expect(instance.props.onReplay).toHaveBeenCalled();
+    });
+
+    it('calls model.randomFlags and onRunGAme when isRunning is false', () => {
+      const instance = wrapper.instance();
+      instance.handleClick();
+      instance.handleClick();
+
+      expect(wrapper.state().isRunning).toEqual(false);
+      expect(instance.props.model.randomFlags).toHaveBeenCalled();
+      expect(instance.props.onRunGame).toHaveBeenCalled();
+    });
   });
 });
