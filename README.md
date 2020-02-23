@@ -8,7 +8,7 @@
 
 N.E.O.N is a game based on [Conway's Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life), a cellular automaton (CA) devised by the British mathematician Conway in the 1970s. Starting with that, we wanted to go beyond the checkered grids, and terminal stars and dashes, so we built something that would allow the public to engage with this fascinating concept in an accessible and entertaining manner. The result is a two-player, Capture the Flag-CA mix, with Vaporwave styling.
 
-The application is deployed [here](https://game-of-life-catch-the-flag.herokuapp.com/). Hope you enjoy!
+The application is deployed [here](https://neon-simulation.herokuapp.com/). Hope you enjoy!
 
 ## Contributors
 
