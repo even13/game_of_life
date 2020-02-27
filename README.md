@@ -1,3 +1,5 @@
+# N.E.O.N.
+
 [![Maintainability](https://api.codeclimate.com/v1/badges/8076ad0ba100f1cc8036/maintainability)](https://codeclimate.com/github/even13/game_of_life/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/8076ad0ba100f1cc8036/test_coverage)](https://codeclimate.com/github/even13/game_of_life/test_coverage)
 [![Build Status](https://travis-ci.com/ajbacon/acebook-true-GrIT.svg?branch=master)](https://travis-ci.com/even13/game_of_life)
@@ -158,6 +160,6 @@ So that I can play against a new opponent or change settings
 I want to go back to the main page.
 ```
 
-## Diagram
+## App Structure
 
-to be added
+![N.E.O.N](./images/N.E.O.N-Tree-Diagram.png)  
